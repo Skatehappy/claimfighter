@@ -1,6 +1,4 @@
 // api/checklist.js
-// Generates submission checklist via Claude API
-
 export const config = { runtime: 'edge' };
 
 const VALID_CODES = (process.env.ACCESS_CODES || '').split(',').map(c => c.trim()).filter(Boolean);
@@ -17,7 +15,7 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
   try {
-    const { accessCode, address, state, varianceType, letterExcerpt } = await req.json();
+    const { accessCode, state, varianceType, letterExcerpt } = await req.json();
 
     if (!accessCode || !VALID_CODES.includes(accessCode.toUpperCase())) {
       return new Response(JSON.stringify({ error: 'Invalid access code' }), { status: 401, headers });
@@ -37,10 +35,10 @@ export default async function handler(req) {
         max_tokens: 500,
         messages: [{
           role: 'user',
-          content: `Generate a practical zoning variance submission checklist as a JSON array of strings. Be specific to this situation. Include items like completed application form, letter copies, site plan, survey, photos, filing fee, deed, abutter list, etc. Return ONLY a valid JSON array, no other text.
+          content: `Generate a practical insurance appeal submission checklist as a JSON array of strings. Be specific to an insurance claim appeal. Include items like: send via certified mail, keep copy of everything, note the deadline, include all supporting medical records or repair estimates, get doctor's letter if health claim, document all communications, request external review if denied again, file state insurance commissioner complaint if needed, etc. Return ONLY a valid JSON array, no other text.
 
-Property: ${address}, ${state}
-Variance type: ${varianceType || 'Area variance'}
+State: ${state}
+Claim type: ${varianceType || 'insurance appeal'}
 Letter excerpt: ${letterExcerpt?.substring(0, 200) || ''}`,
         }],
       }),
@@ -55,15 +53,16 @@ Letter excerpt: ${letterExcerpt?.substring(0, 200) || ''}`,
       checklist = JSON.parse(clean);
     } catch {
       checklist = [
-        'Completed variance application form (from town clerk)',
-        'This cover letter — 3 copies minimum',
-        'Current survey or plot plan showing dimensions',
-        'Site plan showing proposed work and setbacks',
-        'Photographs of the property from street and rear',
-        'Filing fee — check amount with town clerk',
-        'Copy of deed or proof of ownership',
-        'List of abutting property owners with addresses',
-        'Any prior variance approvals or relevant board decisions',
+        'Send letter via certified mail with return receipt requested',
+        'Keep a complete copy of everything you send',
+        'Note the appeal deadline — most insurers require response within 30-60 days',
+        'Attach all supporting documentation: medical records, repair estimates, receipts',
+        'Get a letter from your doctor or contractor supporting your claim if applicable',
+        'Document all phone calls with insurer — date, time, rep name, what was said',
+        'Request confirmation of receipt in writing',
+        'If denied again, request external independent review (your legal right under ACA)',
+        'File a complaint with your state insurance commissioner if bad faith is suspected',
+        'Consult an attorney for claims over $10,000',
       ];
     }
 

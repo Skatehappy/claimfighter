@@ -29,21 +29,25 @@ export default async function handler(req) {
       return new Response(JSON.stringify({ error: 'Service not configured' }), { status: 500, headers });
     }
 
-    // Internal check call — just verify key exists, don't mark as used
     const isCheckCall = systemPrompt === 'Reply: VALID';
 
     if (!isCheckCall) {
+      // Verify license key against Payhip API v2
       const payhipRes = await fetch(
-        `https://payhip.com/api/v1/license/verify?product_link=${PRODUCT_LINK}&license_key=${encodeURIComponent(accessCode.trim())}`,
-        { headers: { 'Authorization': `Bearer ${payhipSecret}` } }
+        `https://payhip.com/api/v2/license/verify?license_key=${encodeURIComponent(accessCode.trim())}`,
+        {
+          method: 'GET',
+          headers: { 'product-secret-key': payhipSecret },
+        }
       );
 
-      if (!payhipRes.ok) {
+      const payhipData = payhipRes.ok ? await payhipRes.json() : null;
+
+      if (!payhipData || !payhipData.data || payhipData.data.enabled === false) {
         return new Response(JSON.stringify({ error: 'Invalid access code. Check your Payhip receipt email.' }), { status: 401, headers });
       }
 
-      const payhipData = await payhipRes.json();
-      if (payhipData?.data?.uses >= 1) {
+      if (payhipData.data.uses >= 1) {
         return new Response(JSON.stringify({ error: 'This code has already been used. Each code generates one letter.' }), { status: 401, headers });
       }
     }
@@ -84,11 +88,13 @@ export default async function handler(req) {
 
     // Mark license as used after successful generation (non-blocking)
     if (!isCheckCall) {
-      fetch('https://payhip.com/api/v1/license/uses', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${payhipSecret}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product_link: PRODUCT_LINK, license_key: accessCode.trim() }),
-      }).catch(() => {});
+      fetch(
+        `https://payhip.com/api/v2/license/usage?license_key=${encodeURIComponent(accessCode.trim())}`,
+        {
+          method: 'PUT',
+          headers: { 'product-secret-key': payhipSecret },
+        }
+      ).catch(() => {});
     }
 
     return new Response(JSON.stringify({ text }), { status: 200, headers });

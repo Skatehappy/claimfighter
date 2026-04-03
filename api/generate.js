@@ -22,38 +22,33 @@ export default async function handler(req) {
       return new Response(JSON.stringify({ error: 'Access code required' }), { status: 401, headers });
     }
 
-    const payhipSecret = process.env.PAYHIP_SECRET_KEY;
+    const payhipApiKey = process.env.PAYHIP_API_KEY;
     const anthropicKey = process.env.ANTHROPIC_API_KEY;
 
-    if (!payhipSecret) {
+    if (!payhipApiKey || !anthropicKey) {
       return new Response(JSON.stringify({ error: 'Service not configured' }), { status: 500, headers });
     }
 
     const isCheckCall = systemPrompt === 'Reply: VALID';
 
     if (!isCheckCall) {
-      // Verify license key against Payhip API v2
       const payhipRes = await fetch(
-        `https://payhip.com/api/v2/license/verify?license_key=${encodeURIComponent(accessCode.trim())}`,
+        `https://payhip.com/api/v1/license/verify?product_link=${PRODUCT_LINK}&license_key=${encodeURIComponent(accessCode.trim())}`,
         {
           method: 'GET',
-          headers: { 'product-secret-key': payhipSecret },
+          headers: { 'payhip-api-key': payhipApiKey },
         }
       );
 
-      const payhipData = payhipRes.ok ? await payhipRes.json() : null;
+      const payhipData = payhipRes.ok ? await payhipRes.json().catch(() => null) : null;
 
-      if (!payhipData || !payhipData.data || payhipData.data.enabled === false) {
+      if (!payhipData || !payhipData.data) {
         return new Response(JSON.stringify({ error: 'Invalid access code. Check your Payhip receipt email.' }), { status: 401, headers });
       }
 
       if (payhipData.data.uses >= 1) {
         return new Response(JSON.stringify({ error: 'This code has already been used. Each code generates one letter.' }), { status: 401, headers });
       }
-    }
-
-    if (!anthropicKey) {
-      return new Response(JSON.stringify({ error: 'API not configured' }), { status: 500, headers });
     }
 
     let messages;
@@ -86,13 +81,17 @@ export default async function handler(req) {
     const data = await response.json();
     const text = data.content?.[0]?.text || '';
 
-    // Mark license as used after successful generation (non-blocking)
+    // Mark license as used (non-blocking)
     if (!isCheckCall) {
       fetch(
-        `https://payhip.com/api/v2/license/usage?license_key=${encodeURIComponent(accessCode.trim())}`,
+        `https://payhip.com/api/v1/license/usage`,
         {
           method: 'PUT',
-          headers: { 'product-secret-key': payhipSecret },
+          headers: {
+            'payhip-api-key': payhipApiKey,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `product_link=${PRODUCT_LINK}&license_key=${encodeURIComponent(accessCode.trim())}`,
         }
       ).catch(() => {});
     }

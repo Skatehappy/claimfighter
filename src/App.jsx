@@ -52,10 +52,11 @@ const stepFields = {
     { key: "insurerName",    label: "Insurance Company",      type: "text",   required: true,  placeholder: "e.g. Aetna, State Farm" },
     { key: "claimNumber",    label: "Claim Number",           type: "text",   required: false, placeholder: "CLM-789012" },
     { key: "claimType",      label: "Type of Claim",          type: "select", required: true,
-      options: ["Health Insurance — Medical Necessity Denial", "Health Insurance — Pre-Authorization Denial", "Health Insurance — Out-of-Network Denial", "Homeowners — Property Damage Denial", "Homeowners — Underpaid Claim", "Homeowners — Coverage Dispute", "Auto Insurance Denial", "Other"] },
+      options: ["Health Insurance — Medical Necessity Denial", "Health Insurance — Pre-Authorization Denial", "Health Insurance — Out-of-Network Denial", "Health Insurance — Experimental Treatment Denial", "Homeowners — Property Damage Denial", "Homeowners — Underpaid Claim", "Homeowners — Coverage Dispute", "Auto Insurance Denial", "Medical Bill — Surprise / Balance Billing", "Medical Bill — Itemized Bill Error / Overcharge", "Medical Bill — Insurance Underpayment (Patient Responsibility)", "Medical Bill — Sent to Collections Wrongfully", "Other"] },
     { key: "denialDate",     label: "Date of Denial Letter",  type: "text",   required: false, placeholder: "e.g. March 15, 2026" },
   ],
   Claim: [
+    { key: "billAmount",     label: "Bill Amount Disputed",   type: "text",     required: false, placeholder: "e.g. $4,200" },
     { key: "whatDenied",     label: "What Was Denied",        type: "textarea", required: true,
       placeholder: "e.g. Emergency room visit on Feb 10, 2026. Claim for $4,200. Denied as 'not medically necessary'." },
     { key: "whyWrong",       label: "Why the Denial Is Wrong", type: "textarea", required: true,
@@ -253,6 +254,8 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
+- For medical bill disputes: cite the No Surprises Act (effective Jan 1, 2022), state balance billing laws, and the patient's right to an itemized bill within 30 days. Demand removal of improper charges or correction of billing errors.
+- For collections disputes: cite FDCPA validation rights and demand proof of debt before any payment.
 - Output ONLY the letter, no preamble`;
 
   const buildPrompt = (tone) => {
@@ -263,6 +266,7 @@ POLICY NUMBER: ${formData.policyNumber || "not provided"}
 INSURER: ${formData.insurerName}
 CLAIM NUMBER: ${formData.claimNumber || "not provided"}
 CLAIM TYPE: ${formData.claimType}
+BILL AMOUNT DISPUTED: ${formData.billAmount || "not specified"}
 DENIAL DATE: ${formData.denialDate || "not provided"}
 WHAT WAS DENIED: ${formData.whatDenied}
 WHY DENIAL IS WRONG: ${formData.whyWrong}

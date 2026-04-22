@@ -52,7 +52,7 @@ const stepFields = {
     { key: "insurerName",    label: "Insurance Company",      type: "text",   required: true,  placeholder: "e.g. Aetna, State Farm" },
     { key: "claimNumber",    label: "Claim Number",           type: "text",   required: false, placeholder: "CLM-789012" },
     { key: "claimType",      label: "Type of Claim",          type: "select", required: true,
-      options: ["Health Insurance — Medical Necessity Denial", "Health Insurance — Pre-Authorization Denial", "Health Insurance — Out-of-Network Denial", "Health Insurance — Experimental Treatment Denial", "Homeowners — Property Damage Denial", "Homeowners — Underpaid Claim", "Homeowners — Coverage Dispute", "Auto Insurance Denial", "Medical Bill — Surprise / Balance Billing", "Medical Bill — Itemized Bill Error / Overcharge", "Medical Bill — Insurance Underpayment (Patient Responsibility)", "Medical Bill — Sent to Collections Wrongfully", "Other"] },
+      options: ["Health Insurance Denial", "Medical Bill Dispute", "Life Insurance Claim Denied", "Disability Insurance Denied", "Long-Term Care Denied", "Home / Auto / Renters Claim", "Surprise Medical Bill", "Other"] },
     { key: "denialDate",     label: "Date of Denial Letter",  type: "text",   required: false, placeholder: "e.g. March 15, 2026" },
   ],
   Claim: [
@@ -81,6 +81,53 @@ const requiredFields = {
   Claim: ["whatDenied", "whyWrong"],
   Demand: ["demand"],
 };
+
+const conditionalFields = {
+  "Health Insurance Denial": [
+    { key: "healthDenialReason", label: "Specific Denial Reason", type: "select", options: ["Medical necessity","Prior authorization not obtained","Out-of-network provider","Experimental or investigational treatment","Coverage exclusion","Other"] },
+  ],
+  "Medical Bill Dispute": [
+    { key: "medicalBillSubtype", label: "Type of Dispute", type: "select", options: ["Itemized bill error / overcharge","Insurance underpayment (patient responsibility)","Sent to collections wrongfully","Duplicate charge","Other"] },
+  ],
+  "Life Insurance Claim Denied": [
+    { key: "lifePolicyType",      label: "Policy Type",              type: "select", options: ["Term","Whole Life","Universal Life","Variable","Unknown"] },
+    { key: "lifeDenialReason",    label: "Reason for Denial",        type: "select", options: ["Misrepresentation on application","Exclusion clause (e.g., suicide, aviation)","Lapsed policy","Contestability period","Beneficiary dispute","Other"] },
+    { key: "lifeDateOfDeath",     label: "Date of Death",            type: "text",   placeholder: "e.g. March 10, 2025" },
+    { key: "lifePolicyIssueDate", label: "Policy Issue Date",        type: "text",   placeholder: "e.g. July 1, 2022" },
+  ],
+  "Disability Insurance Denied": [
+    { key: "disabilityPlanType",          label: "Plan Type",                              type: "select", options: ["Employer group plan (ERISA-governed)","Individual policy"] },
+    { key: "disabilityDuration",          label: "Short-Term or Long-Term",                type: "select", options: ["Short-term disability (STD)","Long-term disability (LTD)"] },
+    { key: "disabilityDenialReason",      label: "Reason for Denial",                      type: "select", options: ["Does not meet definition of disability","Pre-existing condition","Insufficient documentation","Independent medical exam (IME) dispute","Other"] },
+    { key: "disabilityBenefitsReceived",  label: "Benefits Received Before Denial (if any)", type: "text",   placeholder: "e.g. 6 months, or none" },
+  ],
+  "Long-Term Care Denied": [
+    { key: "ltcDenialReason",    label: "Reason for Denial",              type: "select",   options: ["Benefit trigger not met","Insufficient ADL limitations","Care setting not covered","Documentation dispute","Other"] },
+    { key: "ltcAdls",            label: "ADLs the Insured Cannot Perform", type: "textarea", rows: 2, placeholder: "e.g. Bathing, dressing, and toileting without substantial assistance (ADLs: bathing, dressing, eating, toileting, transferring, continence)" },
+    { key: "ltcCurrentSetting",  label: "Current Care Setting",            type: "select",   options: ["Home care","Assisted living","Nursing facility","Adult day care","Other"] },
+  ],
+  "Home / Auto / Renters Claim": [
+    { key: "propertyPolicyType",     label: "Policy Type",        type: "select", options: ["Homeowners","Auto","Renters","Condo","Landlord / rental property"] },
+    { key: "propertyDisputeType",    label: "Type of Dispute",    type: "select", options: ["Claim denial","Underpayment","Depreciation dispute","Coverage exclusion","Delay in adjustment"] },
+    { key: "propertyCauseOfLoss",    label: "Cause of Loss",      type: "select", options: ["Storm / wind","Fire","Water (not flood)","Flood","Theft","Vandalism","Auto collision","Auto comprehensive","Other"] },
+    { key: "propertyAmountOffered",  label: "Amount Insurer Offered", type: "text", placeholder: "e.g. $3,200" },
+    { key: "propertyAmountClaimed",  label: "Amount You Are Claiming", type: "text", placeholder: "e.g. $12,800" },
+  ],
+  "Surprise Medical Bill": [
+    { key: "surpriseBillType",         label: "Bill Type",                        type: "select", options: ["Out-of-network provider at in-network facility","Air ambulance","Emergency care at out-of-network facility","Anesthesia or pathology ancillary to in-network procedure","Other"] },
+    { key: "surpriseBilledAmount",     label: "Amount Billed",                    type: "text",   placeholder: "e.g. $4,800" },
+    { key: "surpriseInNetworkRate",    label: "In-Network Rate (if known)",       type: "text",   placeholder: "e.g. $850" },
+    { key: "surpriseInsurerContacted", label: "Have You Contacted the Insurer?",  type: "select", options: ["Yes","No","Insurer declined to help"] },
+  ],
+};
+
+function buildClaimFields(baseFields, claimType) {
+  const cond = conditionalFields[claimType];
+  if (!cond) return baseFields;
+  const idx = baseFields.findIndex(f => f.key === "claimType");
+  if (idx === -1) return [...baseFields, ...cond];
+  return [...baseFields.slice(0, idx + 1), ...cond, ...baseFields.slice(idx + 1)];
+}
 
 const inputStyle = (focused) => ({
   width: "100%",
@@ -258,6 +305,116 @@ Rules:
 - For collections disputes: cite FDCPA validation rights and demand proof of debt before any payment.
 - Output ONLY the letter, no preamble`;
 
+  const lifeSystemPrompt = `You are an expert insurance appeal attorney specializing in life insurance claim denials. Write compelling, legally precise demand letters to reverse denials of death benefit claims.
+
+Rules:
+- Open with clear statement of the policy, insured's name, date of death, policy number, and denied claim amount
+- Identify the insurer's stated denial reason and rebut it point by point
+- If the denial is based on misrepresentation: cite the state's contestability period statute and incontestability clause — if the policy has been in force beyond the contestability period (typically 2 years), material misrepresentation cannot void the policy
+- If the denial is based on an exclusion clause: require the insurer to cite the specific policy language and prove the exclusion applies; exclusions are construed narrowly against the insurer
+- If the denial is based on a lapsed policy: cite the state's grace period and reinstatement provisions, and any required notice-of-lapse statutes
+- If beneficiary dispute: demand interpleader or deposit of proceeds with the court pending resolution
+- Cite the insurer's duty of good faith and fair dealing under the state's common law and insurance code
+- Invoke state insurance department complaint rights
+- Set a firm 30-day response deadline
+- Professional, factual tone
+- 500-700 words
+- Format: formal letter with [DATE] placeholder, via certified mail
+- Output ONLY the letter, no preamble`;
+
+  const disabilitySystemPrompt = `You are an expert insurance appeal attorney specializing in disability insurance denials, including ERISA-governed group plans and individual policies. Write compelling, legally precise appeal letters.
+
+Rules:
+- Open with clear statement of the claimant, policy or plan, disability onset date, and denial details
+- Identify whether the plan is ERISA-governed (employer-sponsored group plan) or an individual policy, and tailor the legal authority accordingly
+- For ERISA plans: cite ERISA Section 503 (29 U.S.C. § 1133) and the claims regulation 29 CFR § 2560.503-1; demand a full and fair review, the complete administrative record (entire claim file, all reviewer reports, consultants' opinions), and note the 180-day appeal deadline for adverse benefit determinations
+- For individual policies: cite the state's insurance code, unfair claims settlement practices act, and common-law bad faith
+- Rebut the specific denial reason:
+  * If "does not meet definition of disability": quote the policy or plan definition verbatim and apply it to the claimant's documented limitations and treating physician's opinions
+  * If "insufficient documentation": demand a specific list of what is missing and an extension to supply it
+  * If based on an independent medical exam (IME): demand all IME records, the examiner's credentials, questions posed, and the right to submit a treating-physician rebuttal
+  * If "pre-existing condition": cite the policy's pre-existing condition look-back period and any HIPAA or ERISA portability protections
+- Reference the treating physician's opinion and the deference it is typically owed
+- Set a firm 45-day response deadline for ERISA plans, 30 days for individual policies
+- Professional, factual tone
+- 500-700 words
+- Format: formal letter with [DATE] placeholder, via certified mail
+- Output ONLY the letter, no preamble`;
+
+  const ltcSystemPrompt = `You are an expert insurance appeal attorney specializing in long-term care (LTC) insurance denials. Write compelling, legally precise appeal letters.
+
+Rules:
+- Open with clear statement of the insured, policy number, current care setting, and denial details
+- If denial is based on "benefit trigger not met": quote the policy's own benefit trigger definition and apply it to the insured's documented functional limitations — typically inability to perform 2 or more Activities of Daily Living (bathing, dressing, eating, toileting, transferring, continence) without substantial assistance, or severe cognitive impairment requiring substantial supervision
+- If denial is based on "care setting not covered": cite the specific policy language on covered settings (home care, assisted living, nursing facility, adult day care) and demand identification of the exclusion clause
+- If denial is based on "insufficient documentation": demand a specific list of what is missing
+- Cite the state's long-term care insurance regulations — most states adopt the NAIC Long-Term Care Insurance Model Act and Model Regulation; reference these when applicable
+- Cite the insured's right to an independent assessment by a qualified professional when the insurer's determination conflicts with the treating physician's
+- Cite the insurer's duty of good faith and fair dealing
+- Invoke state insurance department complaint rights
+- Set a firm 30-day response deadline
+- Professional, factual tone
+- 500-700 words
+- Format: formal letter with [DATE] placeholder, via certified mail
+- Output ONLY the letter, no preamble`;
+
+  const propertyCasualtySystemPrompt = `You are an expert insurance appeal attorney specializing in property and casualty insurance claims (homeowners, auto, renters). Write compelling, legally precise demand letters for denied or underpaid claims.
+
+Rules:
+- Open with clear statement of the policy type, policy number, claim number, date of loss, and the dispute
+- Identify the denial or underpayment reason and rebut it point by point
+- Cite the state's unfair claims settlement practices act — most states have statutory requirements for timely investigation, prompt good-faith settlement, and written explanation of denial
+- Cite the insurer's contractual duty to investigate thoroughly and pay covered losses
+- For underpayment disputes: invoke the policy's appraisal clause — if the insured and insurer disagree on the amount of loss, either party may demand appraisal; identify your independent appraiser and demand the insurer name theirs
+- For coverage denials based on exclusion: require the insurer to cite the specific exclusion language and prove it applies; exclusions are construed narrowly against the insurer, and the burden of proof is on the insurer
+- For depreciation disputes: demand an itemized depreciation calculation and cite the policy's replacement cost provisions
+- If applicable, cite the state's bad faith statute (first-party or common-law bad faith), preserving claims for consequential damages and attorney's fees
+- Invoke state insurance department complaint rights
+- Set a firm 30-day response deadline
+- Professional, factual tone
+- 500-700 words
+- Format: formal letter with [DATE] placeholder, via certified mail
+- Output ONLY the letter, no preamble`;
+
+  const surpriseBillPrompt = `You are an expert insurance appeal attorney specializing in surprise medical bills and balance billing disputes. Write compelling, legally precise demand letters.
+
+Rules:
+- Open with clear statement of the provider, facility, date of service, amount billed, and the applicable in-network cost-sharing rate when known
+- Cite the federal No Surprises Act (effective January 1, 2022) codified at 42 U.S.C. §§ 300gg-111 through 300gg-139, with implementing regulations at 45 CFR Parts 147 and 149 and Department of Labor regulations at 29 CFR § 2590.716-4 through 716-8
+- Identify which NSA protection applies:
+  * Out-of-network provider at an in-network facility (45 CFR § 149.410)
+  * Air ambulance services (45 CFR § 149.130)
+  * Emergency services at an out-of-network facility (45 CFR § 149.110)
+- Reference the patient's right to be billed no more than the in-network cost-sharing amount for protected services, and the statutory prohibition on balance billing
+- Note that the provider's recourse for any additional payment is the Federal Independent Dispute Resolution (IDR) process between the provider and insurer — not the patient
+- Cite any applicable state surprise billing law (e.g., California AB 72; New York Financial Services Law § 606; Texas SB 1264); many state laws provide stronger protections
+- Demand: immediate cessation of collection efforts, correction of the bill to reflect only the in-network cost-sharing amount, refund of any overpayment, and retraction of any credit reporting
+- Warn of remedies: complaint to the federal No Surprises Help Desk (1-800-985-3059), complaint to CMS, complaint to the state insurance department or attorney general, and private rights of action where state law provides
+- Set a firm 30-day response deadline
+- Professional, factual tone
+- 500-700 words
+- Format: formal letter with [DATE] placeholder, via certified mail
+- Output ONLY the letter, no preamble`;
+
+  const pickSystemPrompt = (claimType) => {
+    if (!claimType) return systemPrompt;
+    // Directive's coarse options
+    if (claimType === "Life Insurance Claim Denied") return lifeSystemPrompt;
+    if (claimType === "Disability Insurance Denied") return disabilitySystemPrompt;
+    if (claimType === "Long-Term Care Denied") return ltcSystemPrompt;
+    if (claimType === "Home / Auto / Renters Claim") return propertyCasualtySystemPrompt;
+    if (claimType === "Surprise Medical Bill") return surpriseBillPrompt;
+    if (claimType === "Health Insurance Denial") return systemPrompt;
+    if (claimType === "Medical Bill Dispute") return systemPrompt;
+    // Legacy fine-grained labels (session continuity)
+    if (claimType.startsWith("Life Insurance")) return lifeSystemPrompt;
+    if (claimType.startsWith("Disability")) return disabilitySystemPrompt;
+    if (claimType.startsWith("Long-Term Care")) return ltcSystemPrompt;
+    if (claimType.startsWith("Medical Bill — Surprise")) return surpriseBillPrompt;
+    if (claimType.startsWith("Homeowners") || claimType.startsWith("Renters") || claimType.startsWith("Auto Insurance")) return propertyCasualtySystemPrompt;
+    return systemPrompt;
+  };
+
   const buildPrompt = (tone) => {
     const base = `
 POLICYHOLDER: ${formData.ownerName}
@@ -277,10 +434,16 @@ RESPONSE DEADLINE: ${formData.deadline || "30 days"}
 NEXT STEPS IF IGNORED: ${formData.nextSteps || "all available remedies"}
 ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
 
+    const cond = (conditionalFields[formData.claimType] || [])
+      .filter(f => formData[f.key]?.toString().trim())
+      .map(f => `${f.label.toUpperCase()}: ${formData[f.key]}`)
+      .join("\n");
+    const fullBase = cond ? `${base}\n\nTYPE-SPECIFIC DETAILS:\n${cond}` : base;
+
     if (tone === "assertive") {
-      return `Write a MORE ASSERTIVE appeal letter. Stronger language, explicit bad faith references, more forceful demands. Different wording from standard:\n${base}`;
+      return `Write a MORE ASSERTIVE appeal letter. Stronger language, explicit bad faith references, more forceful demands. Different wording from standard:\n${fullBase}`;
     }
-    return `Write a STANDARD PROFESSIONAL appeal letter:\n${base}`;
+    return `Write a STANDARD PROFESSIONAL appeal letter:\n${fullBase}`;
   };
 
   const generateLetter = async () => {
@@ -290,13 +453,14 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
     setAltLetter("");
     setChecklist([]);
     try {
+      const effectivePrompt = pickSystemPrompt(formData.claimType);
       setLoadingMsg("Drafting your appeal letter...");
-      const draft = await callAPI(systemPrompt, buildPrompt("standard"), false, "");
+      const draft = await callAPI(effectivePrompt, buildPrompt("standard"), false, "");
       setLoadingMsg("Running quality review...");
       const reviewed = await callAPI("", "", true, draft);
       setLetter(reviewed);
       setLoadingMsg("Generating assertive version...");
-      const alt = await callAPI(systemPrompt, buildPrompt("assertive"), false, "");
+      const alt = await callAPI(effectivePrompt, buildPrompt("assertive"), false, "");
       setAltLetter(alt);
       setLoadingMsg("Building checklist...");
       try {
@@ -423,7 +587,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
               They Denied Your Claim. Fight Back.
             </h1>
             <p style={{ fontSize: "17px", color: colors.inkMuted, maxWidth: "480px", margin: "0 auto 40px", lineHeight: "1.7" }}>
-              AI-generated appeal letters for denied health and homeowners insurance claims. Attorney-quality. 5 minutes. $49.
+              AI-generated appeal letters for insurance denials of all types — health, medical bills, life, disability, long-term care, and property. Attorney-quality. 5 minutes. $49.
             </p>
             <div style={{ maxWidth: "400px", margin: "0 auto", background: colors.white, border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
               <div style={{ fontSize: "14px", color: colors.inkLight, marginBottom: "16px", fontWeight: "600" }}>Enter Your Access Code</div>
@@ -489,7 +653,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
 
             {/* Fields */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              {(stepFields[currentStep] || []).map(f => (
+              {(currentStep === "Property" ? buildClaimFields(stepFields.Property, formData.claimType) : (stepFields[currentStep] || [])).map(f => (
                 <Field key={f.key} field={f} value={formData[f.key]} onChange={v => handleChange(f.key, v)} />
               ))}
             </div>

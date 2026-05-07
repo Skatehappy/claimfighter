@@ -253,6 +253,33 @@ export default function App() {
     try { sessionStorage.setItem("cf_form", JSON.stringify(formData)); } catch {}
   }, [formData]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const stateParam = params.get("state");
+    const disputeParam = params.get("dispute");
+    const slugToStateName = {
+      "california": "California", "texas": "Texas", "florida": "Florida",
+      "new-york": "New York", "illinois": "Illinois", "pennsylvania": "Pennsylvania",
+      "ohio": "Ohio", "georgia": "Georgia", "north-carolina": "North Carolina", "arizona": "Arizona"
+    };
+    const slugToClaimType = {
+      "denied-homeowners-insurance-claim": "Homeowners — Property Damage Denial",
+      "underpaid-property-damage-claim": "Homeowners — Underpaid Claim",
+      "hurricane-storm-damage-dispute": "Homeowners — Property Damage Denial",
+      "water-damage-claim-denial": "Homeowners — Property Damage Denial",
+      "fire-damage-claim-underpayment": "Homeowners — Underpaid Claim",
+      "auto-insurance-claim-denial": "Auto Insurance Denial",
+      "health-insurance-claim-appeal": "Health Insurance — Medical Necessity Denial",
+      "roof-damage-claim-dispute": "Homeowners — Property Damage Denial",
+      "bad-faith-insurance-letter": "Other",
+      "business-interruption-claim-dispute": "Other"
+    };
+    const updates = {};
+    if (stateParam && slugToStateName[stateParam]) updates.state = slugToStateName[stateParam];
+    if (disputeParam && slugToClaimType[disputeParam]) updates.claimType = slugToClaimType[disputeParam];
+    if (Object.keys(updates).length) setFormData(prev => ({ ...prev, ...updates }));
+  }, []);
+
   const handleChange = (key, value) => setFormData(prev => ({ ...prev, [key]: value }));
 
   const isStepValid = (stepName) => {

@@ -409,7 +409,7 @@ Rules:
 - Open with clear statement of the provider, facility, date of service, amount billed, and the applicable in-network cost-sharing rate when known
 - Cite the federal No Surprises Act (effective January 1, 2022) codified at 42 U.S.C. §§ 300gg-111 through 300gg-139, with implementing regulations at 45 CFR Parts 147 and 149 and Department of Labor regulations at 29 CFR § 2590.716-4 through 716-8
 - Identify which NSA protection applies:
-  * Out-of-network provider at an in-network facility (45 CFR § 149.410)
+  * Out-of-network provider at an in-network facility, non-emergency services (45 CFR § 149.120)
   * Air ambulance services (45 CFR § 149.130)
   * Emergency services at an out-of-network facility (45 CFR § 149.110)
 - Reference the patient's right to be billed no more than the in-network cost-sharing amount for protected services, and the statutory prohibition on balance billing

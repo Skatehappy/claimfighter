@@ -150,3 +150,10 @@ Standard: Three-Gate v7
 - **Subject:** Two-year contestability / incontestability standard for life-insurance policies.
 - **Source:** NAIC standard (Standard Nonforfeiture / incontestability model provisions).
 - **Action:** no change — confirmed (NAIC standard; typically 2 years, per applicable state code).
+
+### 2026-07-19 — 45 CFR §149.120 (auto-fix resolution)
+- **Source file:** src/App.jsx:412
+- **Verdict:** VERIFIED (replacement for the miscited §149.410)
+- **Subject:** No Surprises Act, Subpart B — preventing surprise bills for NON-EMERGENCY services by nonparticipating providers at participating facilities (the patient-facing out-of-network-at-in-network-facility protection).
+- **Source:** https://www.law.cornell.edu/cfr/text/45/149.120
+- **Action:** §149.410 (Subpart E emergency-provider requirement) replaced with §149.120 at src/App.jsx:412 — resolves the earlier REQUIRES_HUMAN_JUDGMENT flag. Perplexity-verified 2026-07-19.

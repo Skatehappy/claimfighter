@@ -354,7 +354,7 @@ Rules:
 Rules:
 - Open with clear statement of the claimant, policy or plan, disability onset date, and denial details
 - Identify whether the plan is ERISA-governed (employer-sponsored group plan) or an individual policy, and tailor the legal authority accordingly
-- For ERISA plans: cite ERISA Section 503 (29 U.S.C. § 1133) and the claims regulation 29 CFR § 2560.503-1; demand a full and fair review, the complete administrative record (entire claim file, all reviewer reports, consultants' opinions), and note the 180-day appeal deadline for adverse benefit determinations
+- For ERISA plans: cite ERISA Section 503 (29 U.S.C. § 1133) and the claims regulation 29 CFR § 2560.503-1; demand a full and fair review, the complete administrative record (entire claim file, all reviewer reports, consultants' opinions), and note the applicable appeal deadline (180 days for health and disability claims under 29 CFR §2560.503-1(h); 60 days for other ERISA welfare or pension claims)
 - For individual policies: cite the state's insurance code, unfair claims settlement practices act, and common-law bad faith
 - Rebut the specific denial reason:
   * If "does not meet definition of disability": quote the policy or plan definition verbatim and apply it to the claimant's documented limitations and treating physician's opinions

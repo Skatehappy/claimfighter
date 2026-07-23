@@ -1,0 +1,455 @@
+{
+  "CA": {
+    "state": "California",
+    "abbreviation": "CA",
+    "primary_insurance_statute": {
+      "name": "Unfair Insurance Practices Act and the Fair Claims Settlement Practices Regulations",
+      "citation": "Cal. Ins. Code § 790.03(h); 10 CCR §§ 2695.1–2695.11",
+      "key_provisions": [
+        "Insurers must acknowledge a claim within 15 calendar days and accept or deny it within 40 days of receiving proof of claim (10 CCR §§ 2695.5, 2695.7).",
+        "A denial must be in writing and cite the specific policy provision, condition, or exclusion relied on.",
+        "Insurers may not misrepresent policy terms, fail to conduct a reasonable investigation, or force an insured to litigate by offering substantially less than the claim's value."
+      ]
+    },
+    "regulatory_body": "The California Department of Insurance (CDI). No agency orders payment of a disputed amount, but CDI investigates claim-handling violations and frequently prompts carriers to reconsider.",
+    "complaint_process": "File a free Request for Assistance with the California Department of Insurance at insurance.ca.gov under Consumer Services. CDI reviews the insurer's claim-handling conduct; disputed dollar amounts are pursued through mediation, small claims court (up to $12,500 for individuals), or civil litigation.",
+    "claim_deadlines": {
+      "acknowledge": "within 15 calendar days of receiving notice of the claim (10 CCR § 2695.5(e))",
+      "decision": "within 40 calendar days after receiving your proof of claim (10 CCR § 2695.7(b))",
+      "payment": "promptly after accepting it, generally treated as within 30 days (10 CCR § 2695.7(h))",
+      "status_updates": "If the insurer needs more time, it must send you a written status update every 30 days explaining why the investigation continues (10 CCR § 2695.7(c))",
+      "interest_penalty": "Prejudgment interest on wrongfully withheld benefits runs at 10% per year (Civ. Code § 3289); effective Jan 1, 2026, health plans must pay, contest, or deny claims within 30 days (AB 3275)."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "common-law tort for breach of the implied covenant of good faith and fair dealing",
+      "basis": "Every California policy carries an implied covenant of good faith and fair dealing; an unreasonable denial or delay is an insurance bad-faith tort under Gruenberg v. Aetna and Egan v. Mutual of Omaha.",
+      "remedies": "You can recover the full policy benefits, consequential damages (such as alternative living expenses and emotional distress), prejudgment interest, attorney's fees incurred to obtain the benefits (Brandt fees, from Brandt v. Superior Court, 37 Cal.3d 813), and — where the insurer acted with malice, oppression, or fraud — punitive damages under Civ. Code § 3294."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "The standard fire policy (Cal. Ins. Code § 2071) includes an appraisal provision; either party may demand appraisal to resolve a dispute over the amount of loss, though appraisal does not decide coverage or causation."
+    },
+    "statute_of_limitations": "Four years to sue for breach of a written policy (CCP § 337), but the standard fire policy contains a one-year suit-limitation measured from inception of the loss (Ins. Code § 2071). In a state-declared emergency the limitation period is extended to at least 24 months from when the claim is paid or denied.",
+    "external_review": "For health claims you have a right to an internal appeal and then Independent Medical Review (IMR) — through the DMHC for Knox-Keene health plans or the CDI for indemnity health insurers — generally requested within six months of the final denial. Effective Jan 1, 2026, AB 3275 requires health plans to pay, contest, or deny claims within 30 days.",
+    "unique_protections": [
+      "Brandt fees let you recover the attorney's fees spent to obtain wrongfully withheld policy benefits as bad-faith damages.",
+      "Independent Medical Review gives health-plan members a binding, no-cost external review of medical-necessity denials.",
+      "The 2026 wildfire package (SB 495 and companion bills) requires insurers to advance 60% of contents coverage without an itemized inventory and to extend proof-of-loss deadlines after a declared disaster.",
+      "Punitive damages are available under Civ. Code § 3294 when an insurer's denial is proven to involve malice, oppression, or fraud."
+    ],
+    "common_issues": [
+      "Wildfire and smoke-damage claims — disputes over total-loss status, underinsurance, code-upgrade coverage, and contents valuation.",
+      "Water-damage and mold claims turning on sudden-versus-gradual causation and mold sub-limits.",
+      "Auto total-loss valuation and diminished-value disputes.",
+      "Health-claim denials for medical necessity and out-of-network billing."
+    ],
+    "last_major_reform": "AB 3275, effective Jan 1, 2026, set a uniform 30-day deadline for health plans and insurers to pay, contest, or deny claims; the 2026 wildfire-reform package (SB 495 and companion bills) added mandatory contents advances and extended proof-of-loss deadlines."
+  },
+  "TX": {
+    "state": "Texas",
+    "abbreviation": "TX",
+    "primary_insurance_statute": {
+      "name": "Texas Prompt Payment of Claims Act and the Unfair Claim Settlement Practices provisions, with Chapter 542A for weather claims",
+      "citation": "Tex. Ins. Code Ch. 542, Subch. B (Prompt Payment); Ch. 541 (Unfair Settlement Practices); Ch. 542A (forces of nature)",
+      "key_provisions": [
+        "Insurers must acknowledge a claim within 15 days, accept or deny within 15 business days of receiving all requested items, and pay an accepted claim within 5 business days (§§ 542.055–542.057).",
+        "Late payment triggers statutory interest plus mandatory attorney's fees (§ 542.060).",
+        "For weather and forces-of-nature property claims, Chapter 542A requires a 60-day pre-suit notice and changes how penalty interest is calculated."
+      ]
+    },
+    "regulatory_body": "The Texas Department of Insurance (TDI), which collects and investigates consumer complaints and publishes claim-deadline guidance.",
+    "complaint_process": "File a complaint through TDI's online complaint system at tdi.texas.gov (Get help with an insurance complaint). TDI investigates claim-handling conduct; disputed amounts are pursued through appraisal or the courts, often after the Chapter 542A pre-suit notice.",
+    "claim_deadlines": {
+      "acknowledge": "within 15 days of receiving notice of the claim (Tex. Ins. Code § 542.055)",
+      "decision": "within 15 business days after receiving all items it reasonably requested (§ 542.056)",
+      "payment": "within 5 business days after notifying you the claim is accepted (§ 542.057)",
+      "status_updates": "Weather-catastrophe deadlines are extended 15 days when the commissioner declares a catastrophe (§ 542.059)",
+      "interest_penalty": "A late-paid claim accrues statutory interest — 18% per year for pre-September 2017 claims, or the post-judgment rate plus 5% (capped at 20%) for later claims — plus mandatory reasonable attorney's fees (§ 542.060)."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "both statutory and common-law first-party bad faith",
+      "basis": "Chapter 541 creates a private action for unfair settlement practices, Chapter 542/542A imposes prompt-payment penalties without proof of bad faith, and Texas recognizes a common-law duty of good faith and fair dealing (Arnold v. National County Mutual Fire Ins. Co.).",
+      "remedies": "Under Chapter 541 you can recover actual damages, mental-anguish and consequential damages, and treble (3×) damages for a knowing violation, plus attorney's fees. Under Chapter 542 you recover the full delayed amount, statutory interest, and mandatory attorney's fees."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Appraisal clauses are common and enforceable for amount-of-loss disputes, and SB 458 (2025), effective Jan 1, 2026, created Tex. Ins. Code Ch. 1813 mandating binding appraisal clauses in personal-auto and residential-property policies, letting either party demand appraisal when the amount of loss is disputed."
+    },
+    "statute_of_limitations": "Breach-of-contract suits carry a four-year limitations period and Chapter 541 bad-faith claims a two-year period, but most Texas property policies impose a contractual limit of two years and one day from the date of loss to file suit.",
+    "external_review": "For health claims you may file an internal appeal (generally within 180 days) and then request review by an Independent Review Organization (IRO); non-urgent IRO requests are generally made within four months of the denial, with decisions typically within 45 days or 72 hours for urgent care.",
+    "unique_protections": [
+      "The Prompt Payment of Claims Act imposes automatic statutory interest and mandatory attorney's fees for late payment without any need to prove bad faith (Ch. 542).",
+      "Chapter 541 allows treble damages for a knowing unfair-settlement-practice violation.",
+      "SB 458 (Ch. 1813), effective Jan 1, 2026, guarantees binding appraisal rights in personal-auto and residential-property policies for amount-of-loss disputes.",
+      "HB 2067, effective Jan 1, 2026, requires insurers to give automatic written explanations for any decline, cancellation, or non-renewal of home and auto policies."
+    ],
+    "common_issues": [
+      "Hail damage to roofs, siding, and windows, especially in North and Central Texas.",
+      "Windstorm and tornado damage litigated as Chapter 542A forces-of-nature claims.",
+      "Hurricane and named-storm claims on the Gulf Coast, including wind-versus-flood allocation and amount-of-loss disputes."
+    ],
+    "last_major_reform": "SB 458 (2025), effective Jan 1, 2026, created Chapter 1813 mandating binding appraisal in personal-auto and residential-property policies; HB 2067, also effective Jan 1, 2026, requires automatic written explanations for policy declinations, cancellations, and non-renewals."
+  },
+  "FL": {
+    "state": "Florida",
+    "abbreviation": "FL",
+    "primary_insurance_statute": {
+      "name": "Unfair Insurance Trade Practices Act, the property claim-handling statute, and the Homeowner Claims Bill of Rights",
+      "citation": "Fla. Stat. §§ 626.9541, 627.70131, 627.70132, 627.7142",
+      "key_provisions": [
+        "Insurers must acknowledge each claim communication within 7 days and pay or deny a claim within 60 days of notice (§ 627.70131), reduced from 90 days by 2022 reform.",
+        "A residential property insured must receive a plain-language Homeowner Claims Bill of Rights within 14 days of a claim (§ 627.7142).",
+        "Claim-notice deadlines were shortened to 1 year for new or reopened claims and 18 months for supplemental claims (§ 627.70132)."
+      ]
+    },
+    "regulatory_body": "The Florida Department of Financial Services (DFS), Division of Consumer Services handles consumer complaints; the Office of Insurance Regulation (OIR) oversees insurers and health external review.",
+    "complaint_process": "File a complaint with the DFS Division of Consumer Services at myfloridacfo.com. DFS also offers free mediation or neutral evaluation for many residential property disputes.",
+    "claim_deadlines": {
+      "acknowledge": "within 7 calendar days of receiving each claim communication (Fla. Stat. § 627.70131(1)(a))",
+      "decision": "within 60 days of notice of the claim (§ 627.70131(7)(a))",
+      "payment": "within 20 days after a settlement agreement is reached (§ 627.4265)",
+      "status_updates": "The insurer must begin its investigation within 7 days and, for residential property, conduct any physical inspection within 30 days of the proof of loss (§ 627.70131(3))",
+      "interest_penalty": "Overdue payments accrue interest from the date of notice at the statutory rate set by Fla. Stat. § 55.03 (§ 627.70131(7)(a))."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "statutory first-party bad faith under the civil-remedy statute",
+      "basis": "Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer's failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)).",
+      "remedies": "If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney's fees in residential property suits and largely banned assignment of benefits."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Appraisal is contractual rather than statutory in Florida; most property policies contain an appraisal provision that either party may invoke to resolve an amount-of-loss dispute."
+    },
+    "statute_of_limitations": "You generally have 5 years to sue on the insurance contract (Fla. Stat. § 95.11(2)(b)), but you must give notice of a new or reopened property claim within 1 year of the date of loss and any supplemental claim within 18 months (§ 627.70132).",
+    "external_review": "For health claims you have a right to internal appeal (generally within 180 days of denial), with the insurer deciding within 30 days for pre-service and 60 days for post-service claims and 72 hours for urgent cases, followed by external review overseen by OIR or a federal IRO contractor.",
+    "unique_protections": [
+      "The Homeowner Claims Bill of Rights (§ 627.7142) guarantees written acknowledgment, status updates, and a plain-language notice of your claim rights and deadlines.",
+      "DFS offers free mediation and neutral evaluation for many residential property disputes.",
+      "The 60-day Civil Remedy Notice cure process (§ 624.155) forces the insurer to reconsider before a bad-faith suit."
+    ],
+    "common_issues": [
+      "Hurricane and windstorm damage to roofs and exteriors — the dominant Florida property dispute.",
+      "Water damage from plumbing leaks, storm-driven rain, and flood exclusions.",
+      "Roof claims involving age, matching, and repair-versus-replacement, especially after named storms."
+    ],
+    "last_major_reform": "SB 2-A, passed in the December 2022 special session, repealed one-way attorney's fees, banned assignment of benefits, shortened the § 627.70132 notice periods, and imposed the 60-day pay-or-deny rule; HB 837 (2023) added broad civil-remedy and limitations reforms."
+  },
+  "NY": {
+    "state": "New York",
+    "abbreviation": "NY",
+    "primary_insurance_statute": {
+      "name": "Insurance Law § 2601 (unfair claim settlement practices) and Regulation 64",
+      "citation": "N.Y. Ins. Law § 2601; 11 NYCRR Part 216; health prompt-pay at Ins. Law § 3224-a",
+      "key_provisions": [
+        "Regulation 64 requires insurers to respond to claim communications within 15 business days and to accept or deny within 15 business days after completing the investigation (11 NYCRR 216.4, 216.6).",
+        "Section 2601 bars a general business practice of unfair claim settlement, but does not create a private right of action.",
+        "Health-insurance claims must be paid within 45 days, with overdue claims accruing 12% annual interest (Ins. Law § 3224-a)."
+      ]
+    },
+    "regulatory_body": "The New York Department of Financial Services (DFS), which regulates insurers and investigates consumer complaints.",
+    "complaint_process": "File a complaint through the DFS consumer complaint portal at dfs.ny.gov. DFS reviews claim-handling conduct; because New York does not recognize a bad-faith tort, disputed amounts are pursued as breach-of-contract actions or through appraisal.",
+    "claim_deadlines": {
+      "acknowledge": "within 15 business days of receiving a claim communication (11 NYCRR 216.4(b))",
+      "decision": "within 15 business days after completing its investigation, or it must explain why more time is needed (11 NYCRR 216.6(b))",
+      "payment": "promptly once liability is clear; health claims must be paid within 45 days (Ins. Law § 3224-a)",
+      "status_updates": "The insurer must begin investigating within 15 business days of the claim notice (11 NYCRR 216.6(a))",
+      "interest_penalty": "Overdue health-insurance claims accrue interest at 12% per year (Ins. Law § 3224-a)."
+    },
+    "bad_faith": {
+      "recognized": false,
+      "type": "no separate first-party bad-faith tort — recovery is by breach of contract plus consequential damages",
+      "basis": "New York does not recognize an independent first-party bad-faith tort. Instead, an insured recovers for breach of contract and may add foreseeable consequential damages under Bi-Economy Market v. Harleysville and Panasia Estates v. Hudson.",
+      "remedies": "You can recover the policy benefits plus consequential damages that were reasonably foreseeable at the time of contracting (for example, lost business or additional expenses), but punitive damages are generally unavailable absent egregious public-directed conduct."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "The New York standard fire policy (Ins. Law § 3408) includes an appraisal provision, and a 2014 amendment confirmed that scope-of-loss (not just dollar amount) disputes may be resolved by appraisal."
+    },
+    "statute_of_limitations": "First-party property claims are generally 6 years as contract actions (CPLR 213(2)), but the standard fire policy imposes a 2-year suit-limitation (Ins. Law § 3404(e)).",
+    "external_review": "For health claims you may file an internal appeal and then an external appeal through DFS, generally requested within 4 months of the final adverse determination, with standard decisions typically in 30 days and expedited decisions in 72 hours.",
+    "unique_protections": [
+      "Consequential-damages recovery under Bi-Economy and Panasia lets policyholders reach foreseeable losses beyond the policy limit even without a bad-faith tort.",
+      "The DFS external-appeal program gives health-plan members an independent, binding review of medical-necessity denials.",
+      "Appraisal under Ins. Law § 3408 can resolve scope-of-loss as well as amount-of-loss disputes."
+    ],
+    "common_issues": [
+      "Water-damage claims, including burst pipes and storm-driven water.",
+      "Fire-loss valuation and contents disputes.",
+      "Windstorm and theft claims and proof-of-loss disputes."
+    ],
+    "last_major_reform": "The 2026 motor-vehicle insurance reforms (Chapters 55 and 58 of the Laws of 2026) revised auto-claim rules, fraud definitions, and rate-approval standards."
+  },
+  "IL": {
+    "state": "Illinois",
+    "abbreviation": "IL",
+    "primary_insurance_statute": {
+      "name": "Improper Claims Practices provisions and the reasonable-settlement regulations",
+      "citation": "215 ILCS 5/154.5–154.6; 50 Ill. Adm. Code Part 919",
+      "key_provisions": [
+        "215 ILCS 5/154.6 lists prohibited claim practices such as failing to adopt reasonable investigation standards and failing to act promptly; enforcement is by the Department, not a private damages action.",
+        "50 Ill. Adm. Code 919.40 requires acknowledgment of a claim within 15 working days.",
+        "50 Ill. Adm. Code 919.80 requires written status updates every 45 days when a claim remains unresolved."
+      ]
+    },
+    "regulatory_body": "The Illinois Department of Insurance (IDOI), which enforces unfair-claims rules and offers consumer assistance.",
+    "complaint_process": "File a complaint through the Illinois Department of Insurance consumer complaint portal at idoi.illinois.gov. IDOI enforces claim-handling rules; unreasonable delay or denial is pursued under the exclusive statutory remedy in 215 ILCS 5/155.",
+    "claim_deadlines": {
+      "acknowledge": "within 15 working days after receiving notice or proof of loss (50 Ill. Adm. Code 919.40)",
+      "decision": "within a reasonable time after completing its investigation (50 Ill. Adm. Code 919.50)",
+      "payment": "promptly once the amount is affirmed and undisputed",
+      "status_updates": "If a claim remains unresolved, the insurer must send a written explanation of delay every 45 days (50 Ill. Adm. Code 919.80)",
+      "interest_penalty": "There is no separate statutory interest rate for property claims; the 215 ILCS 5/155 penalty is the primary consequence of unreasonable delay."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "statutory remedy only — Illinois does not recognize a separate common-law bad-faith tort",
+      "basis": "215 ILCS 5/155 is the exclusive first-party remedy for vexatious and unreasonable claim handling; Illinois courts do not recognize an independent common-law bad-faith tort in first-party cases.",
+      "remedies": "A court may award reasonable attorney's fees and costs plus an additional penalty — the greater of 60% of the amount the court finds owed, $60,000, or the amount by which the claim exceeds the insurer's pre-suit offer (215 ILCS 5/155)."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Illinois property policies commonly include an appraisal clause, and courts treat amount-of-loss and valuation disputes as appraisal-eligible once coverage is admitted."
+    },
+    "statute_of_limitations": "Written-contract actions have a 10-year limitations period (735 ILCS 5/13-206), but most Illinois property policies impose a valid contractual suit-limitation, often 1 year from the date of loss, which the courts generally enforce.",
+    "external_review": "For health claims, the Health Carrier External Review Act (215 ILCS 180) requires you to exhaust internal appeals, then request external review generally within 4 months of the final adverse determination, with the independent reviewer's decision binding on the carrier.",
+    "unique_protections": [
+      "215 ILCS 5/155 gives policyholders attorney's fees plus a penalty of up to $60,000 (or 60% of the amount owed) for vexatious and unreasonable claim handling.",
+      "50 Ill. Adm. Code Part 919 imposes prompt claim-handling duties and 45-day status-update letters.",
+      "The Health Carrier External Review Act provides binding independent review of health-claim denials."
+    ],
+    "common_issues": [
+      "Hail damage to roofs and siding.",
+      "Wind and storm damage disputes.",
+      "Water and fire losses, including causation and scope-of-repair disputes."
+    ],
+    "last_major_reform": "Illinois enacted a 2025 insurance-regulation package tightening rate-notice rules and expanding the Department's rate-review authority, with reported effect July 1, 2027."
+  },
+  "PA": {
+    "state": "Pennsylvania",
+    "abbreviation": "PA",
+    "primary_insurance_statute": {
+      "name": "Unfair Insurance Practices Act and the Unfair Claims Settlement Practices regulations",
+      "citation": "40 P.S. §§ 1171.1–1171.15; 31 Pa. Code Ch. 146",
+      "key_provisions": [
+        "Insurers must acknowledge a claim within 10 working days and respond to pertinent communications within 10 working days (31 Pa. Code § 146.5).",
+        "A first-party claim must be accepted or denied within 15 working days of a properly executed proof of loss (31 Pa. Code § 146.7).",
+        "If the investigation is not complete within 30 days, the insurer must send a written delay explanation and repeat it every 45 days (31 Pa. Code § 146.6)."
+      ]
+    },
+    "regulatory_body": "The Pennsylvania Insurance Department, Bureau of Consumer Services.",
+    "complaint_process": "File a complaint through the Pennsylvania Insurance Department at insurance.pa.gov. Because Pennsylvania has a strong statutory bad-faith remedy, unresolved disputes are pursued under 42 Pa.C.S. § 8371.",
+    "claim_deadlines": {
+      "acknowledge": "within 10 working days of receiving notice of the claim (31 Pa. Code § 146.5(a))",
+      "decision": "within 15 working days after receiving a properly executed proof of loss (31 Pa. Code § 146.7(a))",
+      "payment": "promptly after acceptance once the amount is determined and undisputed",
+      "status_updates": "If the investigation is not complete within 30 days, the insurer must send a written delay explanation and update it every 45 days (31 Pa. Code § 146.6)",
+      "interest_penalty": "Under the bad-faith statute, a court may award interest on the claim from the date it was made at the prime rate plus 3% (42 Pa.C.S. § 8371)."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "statutory first-party bad faith",
+      "basis": "42 Pa.C.S. § 8371 gives policyholders a statutory bad-faith cause of action; the Pennsylvania Supreme Court clarified the standard in Rancosky v. Washington National Ins. Co. (2017), adopting the two-part Terletsky test.",
+      "remedies": "A court may award interest on the claim at the prime rate plus 3%, punitive damages, and court costs and attorney's fees (42 Pa.C.S. § 8371)."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Most Pennsylvania homeowners and auto policies contain an appraisal clause allowing either party to demand appraisal of an amount-of-loss dispute after a covered event."
+    },
+    "statute_of_limitations": "First-party property (contract) claims have a 4-year limitations period (42 Pa.C.S. § 5525) and statutory bad-faith claims a 2-year period (42 Pa.C.S. § 5524), while many policies also recite a 1-year suit-limitation from the date of loss.",
+    "external_review": "For health claims, Act 68 gives you an internal grievance right (generally filed within 180 days) and Act 146 of 2022 established a Pennsylvania Insurance Department-administered external review by an independent review organization, with standard decisions typically in 45 days and expedited decisions in 72 hours.",
+    "unique_protections": [
+      "42 Pa.C.S. § 8371 provides a strong statutory bad-faith remedy with prime-plus-3% interest, punitive damages, and attorney's fees.",
+      "31 Pa. Code Ch. 146 imposes strict claim-handling deadlines and 45-day delay-status letters.",
+      "Act 146 of 2022 created a state-administered independent external review for health-claim denials."
+    ],
+    "common_issues": [
+      "Water damage from burst pipes, sewer backup, and storm-driven rain, including mold-exclusion disputes.",
+      "Wind and roof damage from storms and hail, often sent to appraisal over scope and matching.",
+      "Fire losses involving valuation, smoke damage, and additional-living-expense disputes."
+    ],
+    "last_major_reform": "Act 146 of 2022 established the Insurance Department-administered external-review program for health claims; the Pennsylvania Supreme Court's Rancosky decision (2017) fixed the modern § 8371 bad-faith standard."
+  },
+  "OH": {
+    "state": "Ohio",
+    "abbreviation": "OH",
+    "primary_insurance_statute": {
+      "name": "Unfair and Deceptive Insurance Practices statutes and the property/casualty claims rule",
+      "citation": "R.C. 3901.20–3901.21; Ohio Adm. Code 3901-1-54",
+      "key_provisions": [
+        "R.C. 3901.21 enumerates unfair or deceptive claim practices, including failing to act promptly, failing to adopt reasonable investigation standards, and not attempting a prompt, fair, equitable settlement.",
+        "OAC 3901-1-54 requires acknowledgment within 15 calendar days and a coverage decision within 21 days of a properly executed proof of loss.",
+        "The rule requires written status updates at least every 45 days and payment within 10 days after acceptance."
+      ]
+    },
+    "regulatory_body": "The Ohio Department of Insurance, Consumer Services Division.",
+    "complaint_process": "File a complaint through the Ohio Department of Insurance Complaint Center at insurance.ohio.gov. The Department reviews claim-handling conduct; disputed amounts are pursued through appraisal or a common-law bad-faith action.",
+    "claim_deadlines": {
+      "acknowledge": "within 15 calendar days of receiving notice of the claim (OAC 3901-1-54)",
+      "decision": "within 21 days of receiving a properly executed proof of loss, or the insurer must explain in writing why more time is needed (OAC 3901-1-54)",
+      "payment": "within 10 days after accepting the claim when the amount is determined and undisputed (OAC 3901-1-54)",
+      "status_updates": "The insurer must provide written claim-status updates at least every 45 days until a final determination (OAC 3901-1-54)",
+      "interest_penalty": "There is no separate prompt-payment penalty statute; the consequence of unreasonable delay is a common-law bad-faith claim."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "common-law first-party bad-faith tort",
+      "basis": "Ohio recognizes a common-law first-party bad-faith tort; an insurer acts in bad faith when it refuses to pay a claim without a reasonable justification (Hoskins v. Aetna; Zoppo v. Homestead Ins. Co.).",
+      "remedies": "You can recover compensatory and consequential damages, and — on proof of actual malice — punitive damages, subject to Ohio's general punitive-damages caps (R.C. 2315.21); attorney's fees may be recoverable where punitive damages are awarded."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Ohio property and auto policies commonly contain an appraisal clause allowing either party to demand appraisal to resolve an amount-of-loss dispute; it is a contractual mechanism rather than a statutory one."
+    },
+    "statute_of_limitations": "Written-contract (policy) claims have an 8-year limitations period (R.C. 2305.06) and tort-based bad-faith claims a 4-year period (R.C. 2305.09), but many Ohio property policies impose a 1-year contractual suit-limitation from the date of loss.",
+    "external_review": "For health claims, R.C. Chapter 3922 gives you an internal appeal and then a standard external review — generally requested within 180 days of the final adverse determination — with expedited external review (typically within 72 hours) available for urgent medical situations.",
+    "unique_protections": [
+      "Ohio's common-law bad-faith tort allows punitive damages when an insurer denies a claim with no reasonable justification and actual malice.",
+      "OAC 3901-1-54 sets firm claim-handling timeframes: 15-day acknowledgment, 21-day decision, 45-day status letters, and 10-day payment.",
+      "R.C. Chapter 3922 gives health-plan enrollees an independent external review of adverse benefit determinations."
+    ],
+    "common_issues": [
+      "Wind and hail damage to roofs and siding, including cosmetic-versus-functional disputes.",
+      "Water damage, including storm-created openings versus excluded seepage or backup.",
+      "Fire losses involving smoke and soot damage and additional-living-expense disputes."
+    ],
+    "last_major_reform": "Ohio amended OAC 3901-1-54 effective 2022, adjusting claim-handling timeframes and clarifying unfair claim settlement practices."
+  },
+  "GA": {
+    "state": "Georgia",
+    "abbreviation": "GA",
+    "primary_insurance_statute": {
+      "name": "Unfair Claims Settlement Practices Act",
+      "citation": "O.C.G.A. §§ 33-6-30 to 33-6-37; bad-faith penalty at O.C.G.A. § 33-4-6",
+      "key_provisions": [
+        "O.C.G.A. § 33-6-34 requires prompt acknowledgment and investigation and a written acceptance or denial within 15 days after receiving a claim.",
+        "O.C.G.A. § 33-4-6 imposes a bad-faith penalty only after a written demand and a 60-day failure to pay.",
+        "Insurers may not misrepresent policy terms or fail to attempt a prompt, fair settlement."
+      ]
+    },
+    "regulatory_body": "The Office of the Commissioner of Insurance and Safety Fire (Georgia OCI).",
+    "complaint_process": "File a complaint through the Georgia Office of Insurance and Safety Fire Commissioner at oci.georgia.gov. Because the bad-faith penalty requires a 60-day written demand, a demand letter is the necessary first step.",
+    "claim_deadlines": {
+      "acknowledge": "promptly, with a written acceptance or denial within 15 days after receiving the claim (O.C.G.A. § 33-6-34)",
+      "decision": "within 15 days of receipt (O.C.G.A. § 33-6-34)",
+      "payment": "generally within 10 days after a settlement or approval, per Georgia claims practice",
+      "status_updates": "The insurer must conduct a reasonably prompt investigation and communicate its decision in writing (O.C.G.A. § 33-6-34)",
+      "interest_penalty": "The bad-faith penalty under O.C.G.A. § 33-4-6 substitutes for a prompt-payment interest statute and requires a 60-day written demand first."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "statutory bad-faith penalty conditioned on a 60-day demand",
+      "basis": "O.C.G.A. § 33-4-6 provides a first-party bad-faith penalty, but only after you make a written demand and the insurer refuses to pay within 60 days.",
+      "remedies": "If bad faith is found, you may recover up to 50% of the insurer's liability for the loss or $5,000, whichever is greater, plus reasonable attorney's fees; the statute itself does not add a separate punitive-damages award."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Standard Georgia property policies include an appraisal clause for amount-of-loss and valuation disputes; Georgia treats appraisal as a contractual dispute-resolution mechanism."
+    },
+    "statute_of_limitations": "Written-contract actions have a 6-year limitations period (O.C.G.A. § 9-3-24), but many property policies contain a shorter suit-limitation clause; 2026 legislation bars property suit deadlines shorter than 2 years for many claims.",
+    "external_review": "For health claims, O.C.G.A. Chapter 33-20E governs external review: you generally must exhaust the plan's internal appeal first, then request external review within the statutory deadline after the adverse determination, with expedited review for urgent care.",
+    "unique_protections": [
+      "The 60-day pre-suit demand under O.C.G.A. § 33-4-6 gives the insurer a defined window to pay before penalties and fees attach.",
+      "A bad-faith finding yields the greater of 50% of the loss or $5,000 plus attorney's fees.",
+      "2026 legislation (HB 1344) bars carriers from imposing property suit deadlines shorter than 2 years."
+    ],
+    "common_issues": [
+      "Wind and hail damage to roofs and exteriors.",
+      "Water damage, including plumbing leaks and storm-driven water.",
+      "Fire losses and hurricane claims litigated as wind-versus-water allocation."
+    ],
+    "last_major_reform": "HB 1344, the Georgia Insurance Affordability and Claims Integrity Act, was signed May 12, 2026, and includes property suit-limitation protections."
+  },
+  "NC": {
+    "state": "North Carolina",
+    "abbreviation": "NC",
+    "primary_insurance_statute": {
+      "name": "Unfair Claim Settlement Practices Act and the Unfair and Deceptive Trade Practices Act",
+      "citation": "N.C.G.S. § 58-63-15(11); N.C.G.S. § 75-1.1; treble damages at § 75-16",
+      "key_provisions": [
+        "N.C.G.S. § 58-63-15(11) lists specific unfair claim-handling acts; while it has no direct private action, a violation can support a UDTPA claim.",
+        "N.C.G.S. § 58-3-100 requires a claim to be acknowledged within 30 days and status updates every 45 days.",
+        "The standard fire policy makes the loss payable 60 days after proof of loss and ascertainment by agreement or appraisal (§ 58-44-16(17))."
+      ]
+    },
+    "regulatory_body": "The North Carolina Department of Insurance, Consumer Services Division.",
+    "complaint_process": "File a complaint through the NC Department of Insurance at ncdoi.gov, or call the consumer helpline at 855-408-1212. The Department enforces claim-handling rules with civil penalties.",
+    "claim_deadlines": {
+      "acknowledge": "within 30 days of receiving notice sufficient to identify coverage (N.C.G.S. § 58-3-100(a))",
+      "decision": "within a reasonable time after completing its investigation (N.C.G.S. § 58-63-15(11))",
+      "payment": "within 60 days after receiving proof of loss and ascertainment of the loss by agreement or appraisal (N.C.G.S. § 58-44-16(17))",
+      "status_updates": "The insurer must provide a written status update every 45 days on an unresolved claim (N.C.G.S. § 58-3-100(c))",
+      "interest_penalty": "Health clean-claims must be paid within 30 days of receipt (N.C.G.S. § 58-3-225)."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "common-law bad faith plus UDTPA treble damages",
+      "basis": "North Carolina recognizes an independent common-law first-party bad-faith claim (refusal to pay a valid claim, in bad faith, with aggravating conduct), and a § 58-63-15(11) violation can constitute a per se Unfair and Deceptive Trade Practices Act claim under § 75-1.1.",
+      "remedies": "You can recover contract benefits, punitive damages for aggravating conduct, and — through the UDTPA — mandatory treble (3×) damages (§ 75-16) plus attorney's fees (§ 75-16.1)."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "The standard North Carolina fire policy incorporates an appraisal provision; either party may demand appraisal when the amount of loss is disputed, and the 60-day payment clock keys to the filing of the appraisal award (§ 58-44-16(17))."
+    },
+    "statute_of_limitations": "First-party property (contract) claims have a 3-year limitations period (N.C.G.S. § 1-52), and North Carolina does not permit policies to contractually shorten that period for property claims.",
+    "external_review": "For health claims you have an internal grievance right and then external review through Smart NC (N.C.G.S. §§ 58-50-75 to 58-50-95), with expedited review for urgent care and a standard decision generally within about 45 days.",
+    "unique_protections": [
+      "A single unfair claim-handling act can trigger mandatory treble damages and attorney's fees under the UDTPA (§§ 75-16, 75-16.1).",
+      "Insurers may not contractually shorten the 3-year suit limitation for property claims.",
+      "Smart NC provides free help and independent external review for health-claim denials."
+    ],
+    "common_issues": [
+      "Hurricane and windstorm damage, especially in coastal and Piedmont regions.",
+      "Hail damage to roofs and siding.",
+      "Water intrusion and flood-versus-wind causation disputes."
+    ],
+    "last_major_reform": "Senate Bill 452 (effective July 1, 2025) raised minimum auto liability limits to 50/100/50 and expanded UM/UIM coverage; the 2026 Prohibit Litigation Investments Act (HB 315) banned third-party litigation funding effective July 1, 2026."
+  },
+  "AZ": {
+    "state": "Arizona",
+    "abbreviation": "AZ",
+    "primary_insurance_statute": {
+      "name": "Unfair Claim Settlement Practices Act and the property/casualty claims rule",
+      "citation": "A.R.S. § 20-461; A.A.C. R20-6-801",
+      "key_provisions": [
+        "A.R.S. § 20-461 prohibits misrepresenting policy facts, failing to adopt reasonable investigation standards, and failing to act promptly on claim communications.",
+        "A.A.C. R20-6-801 requires acknowledgment within 10 working days and a coverage decision within 15 working days of a proof of loss.",
+        "First-party benefits are generally due within 30 days of an acceptable proof of loss, after which interest accrues (A.R.S. § 20-462)."
+      ]
+    },
+    "regulatory_body": "The Arizona Department of Insurance and Financial Institutions (DIFI), Consumer Services Division.",
+    "complaint_process": "File a complaint through DIFI's online complaint system at difi.az.gov. DIFI reviews claim-handling conduct; Arizona's strong bad-faith tort means disputes are also pursued directly in court without any pre-suit demand requirement.",
+    "claim_deadlines": {
+      "acknowledge": "within 10 working days of receiving the claim (A.A.C. R20-6-801)",
+      "decision": "within 15 working days after receiving your proof of loss (A.A.C. R20-6-801)",
+      "payment": "within 30 days after an acceptable proof of loss, after which interest accrues (A.R.S. § 20-462)",
+      "status_updates": "The insurer must continue to communicate claim status at least every 45 days until the claim is resolved (A.A.C. R20-6-801)",
+      "interest_penalty": "First-party claims unpaid within 30 days of an acceptable proof of loss accrue interest at the legal rate (A.R.S. § 20-462(A))."
+    },
+    "bad_faith": {
+      "recognized": true,
+      "type": "robust common-law first-party bad-faith tort",
+      "basis": "Arizona recognizes a strong common-law first-party bad-faith tort; the insurer breaches when it denies a claim without a reasonable basis and knows or recklessly disregards that lack of basis (Noble v. National American Life Ins. Co.; Zilisch v. State Farm confirmed the duty extends beyond mere fair debatability).",
+      "remedies": "You can recover contract damages, extra-contractual compensatory damages including emotional distress, and punitive damages for aggravated conduct — with no statutory 60-day demand or notice prerequisite before suing."
+    },
+    "appraisal": {
+      "available": true,
+      "notes": "Arizona property and auto policies commonly include an appraisal clause, and courts enforce appraisal as a contractual remedy for amount-of-loss disputes (not coverage or causation)."
+    },
+    "statute_of_limitations": "First-party property (written-contract) claims have a 6-year limitations period (A.R.S. § 12-548) and bad-faith tort claims a 2-year period (A.R.S. § 12-542), while property policies typically require suit within 1 year of the date of loss.",
+    "external_review": "For health claims, A.R.S. §§ 20-2533 to 20-2537 give you an internal appeal and then external independent review, with standard external reviews generally decided within 15 business days and expedited urgent reviews within 72 hours.",
+    "unique_protections": [
+      "Arizona's bad-faith tort allows punitive and emotional-distress damages with no pre-suit demand requirement.",
+      "The reasonable-expectations doctrine (Darner Motor Sales v. Universal Underwriters) protects policyholders against some boilerplate limitations.",
+      "First-party claims unpaid within 30 days of proof of loss accrue statutory interest (A.R.S. § 20-462)."
+    ],
+    "common_issues": [
+      "Hail and windstorm damage to roofs, stucco, and vehicles.",
+      "Monsoon and haboob water and wind damage, including surface-water-versus-flood and concurrent-causation disputes.",
+      "Wildfire and fire claims involving sub-limits, smoke and ash contamination, and additional living expenses."
+    ],
+    "last_major_reform": "Recent Arizona changes have been incremental — including amendments to A.R.S. § 12-555 clarifying UM/UIM claim notice and timing — rather than a broad overhaul of A.R.S. § 20-461 or R20-6-801."
+  }
+}

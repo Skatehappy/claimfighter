@@ -13,7 +13,7 @@ const APP = {
   colorLight: "#2d7a4e",
   payhip: "https://payhip.com/claimfighter",
   support: "support@claimfighter.com",
-  price: "$49",
+  price: "$19",
   font: "'Source Serif 4', Georgia, serif",
   displayFont: "'Playfair Display', serif",
 };
@@ -614,7 +614,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
               They Denied Your Claim. Fight Back.
             </h1>
             <p style={{ fontSize: "17px", color: colors.inkMuted, maxWidth: "480px", margin: "0 auto 40px", lineHeight: "1.7" }}>
-              AI-generated appeal letters for insurance denials of all types — health, medical bills, life, disability, long-term care, and property. Attorney-quality. 5 minutes. $49.
+              AI-generated appeal letters for insurance denials of all types — health, medical bills, life, disability, long-term care, and property. Attorney-quality. 5 minutes. $19.
             </p>
             <div style={{ maxWidth: "400px", margin: "0 auto", background: colors.white, border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
               <div style={{ fontSize: "14px", color: colors.inkLight, marginBottom: "16px", fontWeight: "600" }}>Enter Your Access Code</div>

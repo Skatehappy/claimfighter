@@ -8,6 +8,8 @@ import { DISPUTES } from './data/disputes.js';
 import { APP_CONFIG } from './data/config.js';
 import { renderStateHub } from './templates/state-hub-template.js';
 import { renderDeepPage } from './templates/deep-page-template.js';
+import { NATIONAL_PAGES } from './data/national-pages.js';
+import { renderNationalPage } from './templates/national-page-template.js';
 
 const PUBLIC_DIR = 'public';
 const GENERATED_DIR = path.join('scripts', 'data', 'generated');
@@ -65,6 +67,15 @@ for (const state of STATES) {
   }
 }
 
+// National (all-state) guide pages. holdBack withholds any unlogged citation; warn if it changed anything.
+for (const page of NATIONAL_PAGES) {
+  const kept = holdBack(page.slug, page);
+  if (JSON.stringify(kept) !== JSON.stringify(page)) console.warn(`WARN: ${page.slug} has citations not in a VERIFICATION_LOG — sentences withheld`);
+  const dir = path.join(PUBLIC_DIR, page.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), renderNationalPage(kept, STATES));
+}
+
 // Sitemap lists indexable URLs only (merged combos 301 to their hub). lastmod is the
 // file's last git commit date; a file changed since HEAD gets today's date.
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -79,6 +90,7 @@ const url = (loc, file, priority, changefreq) =>
 
 const sitemapUrls = [
   url('/', 'landing.html', '1.0', 'weekly'),
+  ...NATIONAL_PAGES.map(p => url(`/${p.slug}`, `${p.slug}/index.html`, '0.8', 'monthly')),
   ...STATES.map(s => url(`/${s.slug}`, `${s.slug}/index.html`, '0.8', 'monthly')),
   ...STATES.flatMap(s => DISPUTES.filter(d => !isMerged(s.slug, d.slug))
     .map(d => url(`/${s.slug}/${d.slug}`, `${s.slug}/${d.slug}/index.html`, '0.7', 'monthly')))

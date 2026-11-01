@@ -302,3 +302,19 @@ Official text: Texas Insurance Code Chapter 542A, `https://tcss.legis.texas.gov/
 | § 542A.004 | VERIFIED | Insurer may request inspection within 30 days of notice; complete within 60 days if reasonably possible | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
 | § 542A.005 | VERIFIED | Plea in abatement for missing notice or no inspection opportunity | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
 | § 542A.007 / § 542A.007(d) | VERIFIED | Fee award proportional to judgment/amount-alleged ratio (<0.2 none; >=0.8 full); fee cutoff if notice lacked specific amount | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+
+### National pages — health insurance appeal deadlines + how to fight a claim denial (2026-11-02)
+Official text: eCFR, read 2026-11-02 (current through 2026-10-29): 45 CFR § 147.136 (`https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-147/section-147.136`) and 29 CFR § 2560.503-1 (`https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-L/part-2560/section-2560.503-1`). Source type: Official (eCFR).
+
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| 29 CFR § 2560.503-1(h)(3)(i) | VERIFIED | Group health plan procedures must give claimants at least 180 days after notice of an adverse benefit determination to appeal | eCFR 2560.503-1 |
+| 29 CFR § 2560.503-1(h)(2)(ii), (h)(2)(iii), (h)(3)(ii) | VERIFIED | Opportunity to submit written comments/documents; free reasonable access to and copies of all relevant documents; review that does not defer to the initial determination | eCFR 2560.503-1 |
+| 29 CFR § 2560.503-1(f)(2)(i) | VERIFIED | Urgent care claims: decision as soon as possible, no later than 72 hours after receipt | eCFR 2560.503-1 |
+| 29 CFR § 2560.503-1(f)(2)(iii) | VERIFIED | Pre-service claims 15 days (one extension up to 15 days); post-service claims 30 days (one extension up to 15 days) | eCFR 2560.503-1 |
+| 29 CFR § 2560.503-1(i)(2)(i)-(iii) | VERIFIED | Appeal decisions: urgent 72 hours; pre-service 30 days and post-service 60 days for a plan with one level of appeal | eCFR 2560.503-1 |
+| 45 CFR § 147.136 / § 147.136(b) | VERIFIED | Internal claims and appeals and external review requirements for group health plans and issuers (group and individual coverage) | eCFR 147.136 |
+| § 147.136(a)(1)(ii) | VERIFIED | Grandfathered plans: external review (c) and (d) still apply to certain out-of-network emergency, nonparticipating-provider-at-participating-facility, and air ambulance disputes | eCFR 147.136 |
+| § 147.136(b)(2)(ii)(F) | VERIFIED | Deemed exhaustion of internal process where the plan fails to adhere to the requirements | eCFR 147.136 |
+| § 147.136(c) | VERIFIED | State external review standards; state process must allow at least four months to request external review | eCFR 147.136 |
+| § 147.136(d) | VERIFIED | Federal external review process for plans/issuers not subject to a state process: four months to file; IRO decision within 45 days; expedited review within 72 hours | eCFR 147.136 |

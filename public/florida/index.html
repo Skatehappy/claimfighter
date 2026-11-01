@@ -43,6 +43,11 @@ h2{font-family:'Fraunces',Georgia,serif;font-size:32px;font-weight:900;margin-bo
 .state-link:hover{background:#1a3a5c;color:#fff}
 footer{background:#0f0f0f;color:rgba(255,255,255,0.5);text-align:center;padding:32px 24px;font-size:12px}
 footer a{color:rgba(255,255,255,0.7);text-decoration:none}
+.merged-topics{display:grid;gap:16px;margin-bottom:64px}
+.merged-topic{background:#fff;border:1px solid #dde3ec;border-radius:10px;padding:24px;scroll-margin-top:80px}
+.merged-topic h3{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:700;margin-bottom:10px}
+.merged-topic p{font-size:15px;color:#3a3a3a;line-height:1.7;margin-bottom:10px}
+.merged-cta{color:#1a3a5c;font-weight:700;text-decoration:none}
 .cta-section{text-align:center;padding:64px 24px;background:#fff;border-radius:14px;margin-bottom:48px}
 .cta-section h2{margin-bottom:16px}
 .cta-section p{color:#6b6b6b;margin-bottom:24px}
@@ -68,12 +73,12 @@ footer a{color:rgba(255,255,255,0.7);text-decoration:none}
 
   <h2>Florida Dispute Types</h2>
   <div class="dispute-grid">
-    <a class="dispute-card" href="/florida/denied-homeowners-insurance-claim">
+    <a class="dispute-card" href="#denied-homeowners-insurance-claim">
       <div class="dispute-icon">🏠</div>
       <div class="dispute-name">Denied Homeowners Insurance Claim</div>
       <div class="dispute-arrow">→</div>
     </a>
-    <a class="dispute-card" href="/florida/underpaid-property-damage-claim">
+    <a class="dispute-card" href="#underpaid-property-damage-claim">
       <div class="dispute-icon">💧</div>
       <div class="dispute-name">Underpaid Property Damage Claim</div>
       <div class="dispute-arrow">→</div>
@@ -83,17 +88,17 @@ footer a{color:rgba(255,255,255,0.7);text-decoration:none}
       <div class="dispute-name">Hurricane and Storm Damage Dispute</div>
       <div class="dispute-arrow">→</div>
     </a>
-    <a class="dispute-card" href="/florida/water-damage-claim-denial">
+    <a class="dispute-card" href="#water-damage-claim-denial">
       <div class="dispute-icon">💦</div>
       <div class="dispute-name">Water Damage Claim Denial</div>
       <div class="dispute-arrow">→</div>
     </a>
-    <a class="dispute-card" href="/florida/fire-damage-claim-underpayment">
+    <a class="dispute-card" href="#fire-damage-claim-underpayment">
       <div class="dispute-icon">🔥</div>
       <div class="dispute-name">Fire Damage Claim Underpayment</div>
       <div class="dispute-arrow">→</div>
     </a>
-    <a class="dispute-card" href="/florida/auto-insurance-claim-denial">
+    <a class="dispute-card" href="#auto-insurance-claim-denial">
       <div class="dispute-icon">🚗</div>
       <div class="dispute-name">Auto Insurance Claim Denial</div>
       <div class="dispute-arrow">→</div>
@@ -108,16 +113,62 @@ footer a{color:rgba(255,255,255,0.7);text-decoration:none}
       <div class="dispute-name">Roof Damage Claim Dispute</div>
       <div class="dispute-arrow">→</div>
     </a>
-    <a class="dispute-card" href="/florida/bad-faith-insurance-letter">
+    <a class="dispute-card" href="#bad-faith-insurance-letter">
       <div class="dispute-icon">⚖️</div>
       <div class="dispute-name">Bad Faith Insurance Practices Letter</div>
       <div class="dispute-arrow">→</div>
     </a>
-    <a class="dispute-card" href="/florida/business-interruption-claim-dispute">
+    <a class="dispute-card" href="#business-interruption-claim-dispute">
       <div class="dispute-icon">🏢</div>
       <div class="dispute-name">Business Interruption Claim Dispute</div>
       <div class="dispute-arrow">→</div>
     </a></div>
+
+  <h2>Florida Dispute Guides</h2>
+  <div class="merged-topics">
+    <section class="merged-topic" id="denied-homeowners-insurance-claim">
+      <h3>🏠 Denied Homeowners Insurance Claim in Florida</h3>
+      <p data-field="claim_deadlines"><strong>Claim-handling deadlines:</strong> In Florida, your insurer must acknowledge your claim within 7 calendar days of receiving each claim communication (Fla. Stat. § 627.70131(1)(a)), accept or deny it within 60 days of notice of the claim (§ 627.70131(7)(a)), and pay an accepted claim within 20 days after a settlement agreement is reached (§ 627.4265). The insurer must begin its investigation within 7 days and, for residential property, conduct any physical inspection within 30 days of the proof of loss (§ 627.70131(3)). Overdue payments accrue interest from the date of notice at the statutory rate set by Fla. Stat. § 55.03 (§ 627.70131(7)(a)).</p>
+      <p data-field="bad_faith"><strong>Bad-faith remedies:</strong> Florida recognizes statutory first-party bad faith under the civil-remedy statute. Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer&#039;s failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)). If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney&#039;s fees in residential property suits and largely banned assignment of benefits.</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=denied-homeowners-insurance-claim">Generate my Florida denied homeowners insurance claim letter →</a></p>
+    </section>
+    <section class="merged-topic" id="underpaid-property-damage-claim">
+      <h3>💧 Underpaid Property Damage Claim in Florida</h3>
+      <p data-field="appraisal"><strong>Appraisal rights:</strong> Appraisal is contractual rather than statutory in Florida; most property policies contain an appraisal provision that either party may invoke to resolve an amount-of-loss dispute.</p>
+      <p data-field="bad_faith"><strong>Bad-faith remedies:</strong> Florida recognizes statutory first-party bad faith under the civil-remedy statute. Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer&#039;s failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)). If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney&#039;s fees in residential property suits and largely banned assignment of benefits.</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=underpaid-property-damage-claim">Generate my Florida underpaid property damage claim letter →</a></p>
+    </section>
+    <section class="merged-topic" id="water-damage-claim-denial">
+      <h3>💦 Water Damage Claim Denial in Florida</h3>
+      <p data-field="claim_deadlines"><strong>Claim-handling deadlines:</strong> In Florida, your insurer must acknowledge your claim within 7 calendar days of receiving each claim communication (Fla. Stat. § 627.70131(1)(a)), accept or deny it within 60 days of notice of the claim (§ 627.70131(7)(a)), and pay an accepted claim within 20 days after a settlement agreement is reached (§ 627.4265). The insurer must begin its investigation within 7 days and, for residential property, conduct any physical inspection within 30 days of the proof of loss (§ 627.70131(3)). Overdue payments accrue interest from the date of notice at the statutory rate set by Fla. Stat. § 55.03 (§ 627.70131(7)(a)).</p>
+      <p data-field="bad_faith"><strong>Bad-faith remedies:</strong> Florida recognizes statutory first-party bad faith under the civil-remedy statute. Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer&#039;s failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)). If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney&#039;s fees in residential property suits and largely banned assignment of benefits.</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=water-damage-claim-denial">Generate my Florida water damage claim denial letter →</a></p>
+    </section>
+    <section class="merged-topic" id="fire-damage-claim-underpayment">
+      <h3>🔥 Fire Damage Claim Underpayment in Florida</h3>
+      <p data-field="appraisal"><strong>Appraisal rights:</strong> Appraisal is contractual rather than statutory in Florida; most property policies contain an appraisal provision that either party may invoke to resolve an amount-of-loss dispute.</p>
+      <p data-field="statute_of_limitations"><strong>Deadline to sue:</strong> You generally have 5 years to sue on the insurance contract (Fla. Stat. § 95.11(2)(b)), but you must give notice of a new or reopened property claim within 1 year of the date of loss and any supplemental claim within 18 months (§ 627.70132).</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=fire-damage-claim-underpayment">Generate my Florida fire damage claim underpayment letter →</a></p>
+    </section>
+    <section class="merged-topic" id="auto-insurance-claim-denial">
+      <h3>🚗 Auto Insurance Claim Denial in Florida</h3>
+      <p data-field="claim_deadlines"><strong>Claim-handling deadlines:</strong> In Florida, your insurer must acknowledge your claim within 7 calendar days of receiving each claim communication (Fla. Stat. § 627.70131(1)(a)), accept or deny it within 60 days of notice of the claim (§ 627.70131(7)(a)), and pay an accepted claim within 20 days after a settlement agreement is reached (§ 627.4265). The insurer must begin its investigation within 7 days and, for residential property, conduct any physical inspection within 30 days of the proof of loss (§ 627.70131(3)). Overdue payments accrue interest from the date of notice at the statutory rate set by Fla. Stat. § 55.03 (§ 627.70131(7)(a)).</p>
+      <p data-field="bad_faith"><strong>Bad-faith remedies:</strong> Florida recognizes statutory first-party bad faith under the civil-remedy statute. Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer&#039;s failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)). If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney&#039;s fees in residential property suits and largely banned assignment of benefits.</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=auto-insurance-claim-denial">Generate my Florida auto insurance claim denial letter →</a></p>
+    </section>
+    <section class="merged-topic" id="bad-faith-insurance-letter">
+      <h3>⚖️ Bad Faith Insurance Practices Letter in Florida</h3>
+      <p data-field="bad_faith"><strong>Bad-faith remedies:</strong> Florida recognizes statutory first-party bad faith under the civil-remedy statute. Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer&#039;s failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)). If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney&#039;s fees in residential property suits and largely banned assignment of benefits.</p>
+      <p data-field="claim_deadlines"><strong>Claim-handling deadlines:</strong> In Florida, your insurer must acknowledge your claim within 7 calendar days of receiving each claim communication (Fla. Stat. § 627.70131(1)(a)), accept or deny it within 60 days of notice of the claim (§ 627.70131(7)(a)), and pay an accepted claim within 20 days after a settlement agreement is reached (§ 627.4265). The insurer must begin its investigation within 7 days and, for residential property, conduct any physical inspection within 30 days of the proof of loss (§ 627.70131(3)). Overdue payments accrue interest from the date of notice at the statutory rate set by Fla. Stat. § 55.03 (§ 627.70131(7)(a)).</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=bad-faith-insurance-letter">Generate my Florida bad faith insurance practices letter letter →</a></p>
+    </section>
+    <section class="merged-topic" id="business-interruption-claim-dispute">
+      <h3>🏢 Business Interruption Claim Dispute in Florida</h3>
+      <p data-field="claim_deadlines"><strong>Claim-handling deadlines:</strong> In Florida, your insurer must acknowledge your claim within 7 calendar days of receiving each claim communication (Fla. Stat. § 627.70131(1)(a)), accept or deny it within 60 days of notice of the claim (§ 627.70131(7)(a)), and pay an accepted claim within 20 days after a settlement agreement is reached (§ 627.4265). The insurer must begin its investigation within 7 days and, for residential property, conduct any physical inspection within 30 days of the proof of loss (§ 627.70131(3)). Overdue payments accrue interest from the date of notice at the statutory rate set by Fla. Stat. § 55.03 (§ 627.70131(7)(a)).</p>
+      <p data-field="bad_faith"><strong>Bad-faith remedies:</strong> Florida recognizes statutory first-party bad faith under the civil-remedy statute. Fla. Stat. § 624.155 creates a first-party civil remedy for an insurer&#039;s failure to settle in good faith, but you must first file a Civil Remedy Notice (CRN) and give the insurer a 60-day cure period (§ 624.155(3)). If the insurer does not cure within 60 days, you may recover extra-contractual damages caused by the bad faith. Note that SB 76 (2021) and SB 2-A (2022) eliminated one-way attorney&#039;s fees in residential property suits and largely banned assignment of benefits.</p>
+      <p><a class="merged-cta" href="/app?state=florida&amp;dispute=business-interruption-claim-dispute">Generate my Florida business interruption claim dispute letter →</a></p>
+    </section>
+  </div>
 
   <h2>How It Works</h2>
   <div class="steps">

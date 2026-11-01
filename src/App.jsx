@@ -11,8 +11,8 @@ const APP = {
   icon: "⚔️",
   color: "#1a4a2e",
   colorLight: "#2d7a4e",
-  payhip: "https://payhip.com/claimfighter",
-  support: "support@claimfighter.com",
+  payhip: "https://payhip.com/b/O80Tw",
+  support: "support@claimfighterapp.com",
   price: "$19",
   font: "'Source Serif 4', Georgia, serif",
   displayFont: "'Playfair Display', serif",
@@ -633,6 +633,9 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
                 Don't have a code?{" "}
                 <a href={APP.payhip} style={{ color: colors.goldLight, textDecoration: "none" }}>Purchase for {APP.price} →</a>
               </div>
+              <div style={{ marginTop: "12px", fontSize: "12px", color: colors.inkFaint }}>
+                Your letter tool is at <strong>claimfighterapp.com</strong> — bookmark it.
+              </div>
             </div>
           </div>
         )}
@@ -810,7 +813,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
 
             <div style={{ marginTop: "24px", textAlign: "center", padding: "20px", background: colors.white, borderRadius: "10px", border: `1px solid ${colors.borderLight}` }}>
               <div style={{ fontSize: "14px", color: colors.inkMuted, marginBottom: "6px" }}>Did your claim get approved?</div>
-              <div style={{ fontSize: "12px", color: colors.inkFaint }}>Share your outcome → <span style={{ color: colors.goldLight }}>results@claimfighter.com</span></div>
+              <div style={{ fontSize: "12px", color: colors.inkFaint }}>Share your outcome → <span style={{ color: colors.goldLight }}>results@claimfighterapp.com</span></div>
             </div>
           </div>
         )}

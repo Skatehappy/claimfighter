@@ -44,5 +44,11 @@ if (missing.length) {
   for (const m of [...missing].sort()) console.error('  ' + m);
   fail(missing.length + ' unlogged citation(s)');
 }
-console.log('GATE GREEN — A1 files ok; A9 citation-log parity: all ' + tokens.size + ' citations logged.');
+// ── A10: citation lock — verified-citation set is current, and the lint/G4T mock test passes ──
+import { execFileSync } from 'node:child_process';
+for (const [label, args] of [['A10: api/_verified-citations.json is stale (run npm run generate:citations)', ['scripts/build-verified-citations.mjs', '--check']], ['A10: citation-lint mock test failed (run npm run test:citelint)', ['scripts/test-citelint.mjs']]]) {
+  try { execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'pipe' }); } catch { fail(label); }
+}
+
+console.log('GATE GREEN — A1 files ok; A9 citation-log parity: all ' + tokens.size + ' citations logged; A10 citation lock current + mock test passes.');
 process.exit(0);

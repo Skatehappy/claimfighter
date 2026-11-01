@@ -20,6 +20,8 @@
     "preview": "vite preview",
     "generate:content": "node scripts/generate-content.js",
     "generate:pages": "node scripts/build-pages.js",
+    "generate:citations": "node scripts/build-verified-citations.mjs",
+    "test:citelint": "node scripts/test-citelint.mjs",
     "generate:all": "npm run generate:content && npm run generate:pages"
   }
 }

@@ -25,6 +25,14 @@ ${mergedTopicSection(state, d, stateData)}
     </section>`).join('')}
   </div>` : '';
 
+  const stormClaims = Array.isArray(stateData && stateData.storm_claims) ? stateData.storm_claims.filter(Boolean) : [];
+  const stormHTML = stormClaims.length ? `
+  <h2>${state.name} Storm, Hurricane and Roof Claims</h2>
+  <section class="merged-topic" id="storm-roof-claims" style="margin-bottom:64px">
+${stormClaims.map(p => `    <p>${escapeHtml(p)}</p>`).join('\n')}
+    <p><a class="merged-cta" href="/${state.slug}/hurricane-storm-damage-dispute">Hurricane and storm damage dispute letter →</a> &middot; <a class="merged-cta" href="/${state.slug}/roof-damage-claim-dispute">Roof damage claim letter →</a> &middot; <a class="merged-cta" href="/app?state=${state.slug}&amp;dispute=hurricane-storm-damage-dispute">Generate my letter →</a></p>
+  </section>` : '';
+
   const otherStateLinks = otherStates.map(s => `
     <a class="state-link" href="/${s.slug}">${s.name}</a>`).join('');
 
@@ -102,7 +110,7 @@ footer a{color:rgba(255,255,255,0.7);text-decoration:none}
 
   <h2>${state.name} Dispute Types</h2>
   <div class="dispute-grid">${disputeCards}</div>
-${mergedHTML}
+${mergedHTML}${stormHTML}
 
   <h2>How It Works</h2>
   <div class="steps">

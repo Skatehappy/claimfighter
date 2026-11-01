@@ -289,3 +289,16 @@ Official text: Texas Insurance Code chapters 542 and 542A, `https://tcss.legis.t
 | § 542A.003 | CORRECTED (state data) | Written notice is required no later than the 61st day before filing an action to which Chapter 542A applies. "60-day pre-suit notice" was replaced. | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
 | § 542.060 / § 542.060(c) | CORRECTED (state data) | (a) 18% a year plus reasonable and necessary attorney's fees; (c) only in an action to which Chapter 542A applies: simple interest at the judgment-date rate under Finance Code § 304.003 plus five percent, plus fees. The claim that the judgment rate plus 5% applies to all post-September-2017 claims was wrong and was replaced. The unverified "capped at 20%" figure was removed. | https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm |
 | Finance Code § 304.003 | VERIFIED (as cross-referenced) | The rate source that § 542.060(c) incorporates by reference (stated in § 542.060(c) itself). | https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm |
+
+### Texas hub — Chapter 542A storm/hurricane/roof section (2026-11-02)
+Official text: Texas Insurance Code Chapter 542A, `https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm`, read 2026-11-02 (Texas Legislature Online statute text — official).
+
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| Chapter 542A | VERIFIED | Claims for damage to real property caused wholly or partly by forces of nature | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+| § 542A.001 | VERIFIED | Defines "claim" (first-party real-property claim, forces of nature incl. hurricane, hail, wind, tornado, flood, wildfire, lightning, rainstorm) | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+| § 542A.002 | VERIFIED | Applies to actions against insurer or agent for contract, negligence/fraud, Ch. 541 Subch. D, Ch. 542 Subch. B, DTPA | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+| § 542A.003(a), (b), (d) | VERIFIED | 61st-day written notice; contents (acts/omissions, specific amount owed, attorney's fees incurred); exceptions (limitations, counterclaim) | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+| § 542A.004 | VERIFIED | Insurer may request inspection within 30 days of notice; complete within 60 days if reasonably possible | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+| § 542A.005 | VERIFIED | Plea in abatement for missing notice or no inspection opportunity | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |
+| § 542A.007 / § 542A.007(d) | VERIFIED | Fee award proportional to judgment/amount-alleged ratio (<0.2 none; >=0.8 full); fee cutoff if notice lacked specific amount | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm |

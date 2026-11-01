@@ -90,7 +90,14 @@
       "Windstorm and tornado damage litigated as Chapter 542A forces-of-nature claims.",
       "Hurricane and named-storm claims on the Gulf Coast, including wind-versus-flood allocation and amount-of-loss disputes."
     ],
-    "last_major_reform": "SB 458 (2025), effective Jan 1, 2026, created Chapter 1813 mandating binding appraisal in personal-auto and residential-property policies; HB 2067, also effective Jan 1, 2026, requires automatic written explanations for policy declinations, cancellations, and non-renewals."
+    "last_major_reform": "SB 458 (2025), effective Jan 1, 2026, created Chapter 1813 mandating binding appraisal in personal-auto and residential-property policies; HB 2067, also effective Jan 1, 2026, requires automatic written explanations for policy declinations, cancellations, and non-renewals.",
+    "storm_claims": [
+      "Chapter 542A governs first-party claims for damage to real property caused wholly or partly by forces of nature, including hurricane, hail, wind, tornado, flood, wildfire, lightning and rainstorm (§ 542A.001). It applies to a lawsuit on such a claim against the insurer or its adjuster, whether the suit alleges breach of contract, a Chapter 541 unfair-settlement violation or a Chapter 542 prompt-payment violation (§ 542A.002).",
+      "Before you sue, you must give written notice no later than the 61st day before filing suit (§ 542A.003(a)). The notice must state the acts or omissions behind the claim, the specific amount you say the insurer owes for the property damage, and the reasonable attorney's fees incurred to date (§ 542A.003(b)). Notice is not required if there is too little time left before limitations runs, or if the action is a counterclaim (§ 542A.003(d)).",
+      "After receiving your notice, the insurer has 30 days to send a written request to inspect, photograph or evaluate the property, and the inspection must be completed within 60 days of the notice if reasonably possible (§ 542A.004). An insurer that did not get a compliant notice, or was not given a reasonable chance to inspect, can ask the court to abate the suit (§ 542A.005).",
+      "Attorney's fees in a Chapter 542A action are tied to how closely the judgment tracks the amount demanded in your notice: no fees are awarded if the judgment is less than 20% of the amount alleged in the notice, and full reasonable fees are available if it is 80% or more (§ 542A.007). If the notice never stated the specific amount owed, fees incurred after the insurer pleads that defect can be cut off (§ 542A.007(d)). This is why the amount in your demand letter matters.",
+      "Late-payment interest in a Chapter 542A action is simple interest at the judgment-date rate under Finance Code § 304.003 plus 5%, rather than the 18% rate that applies otherwise (§ 542.060(c)). Disputes over the amount of a storm loss are often decided through the policy's appraisal clause; the Texas Supreme Court held in Barbara Technologies Corp. v. State Farm Lloyds that paying an appraisal award does not, by itself, shield an insurer from prompt-payment damages."
+    ]
   },
   "FL": {
     "state": "Florida",

@@ -16,7 +16,7 @@
     "claim_deadlines": {
       "acknowledge": "within 15 calendar days of receiving notice of the claim (10 CCR § 2695.5(e))",
       "decision": "within 40 calendar days after receiving your proof of claim (10 CCR § 2695.7(b))",
-      "payment": "promptly after accepting it, generally treated as within 30 days (10 CCR § 2695.7(h))",
+      "payment": "within 30 calendar days after accepting it (10 CCR § 2695.7(h))",
       "status_updates": "If the insurer needs more time, it must send you a written status update every 30 days explaining why the investigation continues (10 CCR § 2695.7(c))",
       "interest_penalty": "Prejudgment interest on wrongfully withheld benefits runs at 10% per year (Civ. Code § 3289); effective Jan 1, 2026, health plans must pay, contest, or deny claims within 30 days (AB 3275)."
     },
@@ -190,18 +190,18 @@
       "citation": "215 ILCS 5/154.5–154.6; 50 Ill. Adm. Code Part 919",
       "key_provisions": [
         "215 ILCS 5/154.6 lists prohibited claim practices such as failing to adopt reasonable investigation standards and failing to act promptly; enforcement is by the Department, not a private damages action.",
-        "50 Ill. Adm. Code 919.40 requires acknowledgment of a claim within 15 working days.",
-        "50 Ill. Adm. Code 919.80 requires written status updates every 45 days when a claim remains unresolved."
+        "50 Ill. Adm. Code 919.40 defines the required 'reasonable promptness' for responding to claim communications as a maximum of 15 working days.",
+        "50 Ill. Adm. Code 919.80 requires a written explanation of delay when a fire and extended coverage claim remains unresolved more than 75 days after it is reported, or 25 days after proof of loss, whichever is less."
       ]
     },
     "regulatory_body": "The Illinois Department of Insurance (IDOI), which enforces unfair-claims rules and offers consumer assistance.",
     "complaint_process": "File a complaint through the Illinois Department of Insurance consumer complaint portal at idoi.illinois.gov. IDOI enforces claim-handling rules; unreasonable delay or denial is pursued under the exclusive statutory remedy in 215 ILCS 5/155.",
     "claim_deadlines": {
-      "acknowledge": "within 15 working days after receiving notice or proof of loss (50 Ill. Adm. Code 919.40)",
+      "acknowledge": "within 15 working days of receiving a communication from you (50 Ill. Adm. Code 919.40)",
       "decision": "within a reasonable time after completing its investigation (50 Ill. Adm. Code 919.50)",
-      "payment": "promptly once the amount is affirmed and undisputed",
-      "status_updates": "If a claim remains unresolved, the insurer must send a written explanation of delay every 45 days (50 Ill. Adm. Code 919.80)",
-      "interest_penalty": "There is no separate statutory interest rate for property claims; the 215 ILCS 5/155 penalty is the primary consequence of unreasonable delay."
+      "payment": "within 30 days after affirming liability, if the amount is determined and not in dispute (50 Ill. Adm. Code 919.50)",
+      "status_updates": "If a fire and extended coverage claim remains unresolved more than 75 days after it is reported, or 25 days after proof of loss (whichever is less), the insurer must send you a written explanation of the delay (50 Ill. Adm. Code 919.80)",
+      "interest_penalty": "The 215 ILCS 5/155 penalty is the primary statutory consequence of vexatious and unreasonable delay: attorney fees and costs plus an amount up to the greatest of 60% of the amount owed, $60,000, or the excess over the insurer's settlement offer."
     },
     "bad_faith": {
       "recognized": true,
@@ -217,7 +217,7 @@
     "external_review": "For health claims, the Health Carrier External Review Act (215 ILCS 180) requires you to exhaust internal appeals, then request external review generally within 4 months of the final adverse determination, with the independent reviewer's decision binding on the carrier.",
     "unique_protections": [
       "215 ILCS 5/155 gives policyholders attorney's fees plus a penalty of up to $60,000 (or 60% of the amount owed) for vexatious and unreasonable claim handling.",
-      "50 Ill. Adm. Code Part 919 imposes prompt claim-handling duties and 45-day status-update letters.",
+      "50 Ill. Adm. Code Part 919 imposes prompt claim-handling duties, including payment within 30 days after liability is affirmed and written delay explanations on unresolved claims.",
       "The Health Carrier External Review Act provides binding independent review of health-claim denials."
     ],
     "common_issues": [
@@ -450,6 +450,6 @@
       "Monsoon and haboob water and wind damage, including surface-water-versus-flood and concurrent-causation disputes.",
       "Wildfire and fire claims involving sub-limits, smoke and ash contamination, and additional living expenses."
     ],
-    "last_major_reform": "Recent Arizona changes have been incremental — including amendments to A.R.S. § 12-555 clarifying UM/UIM claim notice and timing — rather than a broad overhaul of A.R.S. § 20-461 or R20-6-801."
+    "last_major_reform": "Arizona has made no broad overhaul of A.R.S. § 20-461 or R20-6-801; related claim-timing rules sit in separate statutes, such as A.R.S. § 12-555, which requires written notice of an uninsured or underinsured motorist claim within three years after the accident."
   }
 }

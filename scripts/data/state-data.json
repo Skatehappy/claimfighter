@@ -55,7 +55,7 @@
       "key_provisions": [
         "Insurers must acknowledge a claim within 15 days, accept or deny within 15 business days of receiving all requested items, and pay an accepted claim within 5 business days (§§ 542.055–542.057).",
         "Late payment triggers statutory interest plus mandatory attorney's fees (§ 542.060).",
-        "For weather and forces-of-nature property claims, Chapter 542A requires a 60-day pre-suit notice and changes how penalty interest is calculated."
+        "For weather and forces-of-nature property claims, Chapter 542A requires written notice at least 61 days before filing suit (§ 542A.003) and changes how penalty interest is calculated (§ 542.060(c))."
       ]
     },
     "regulatory_body": "The Texas Department of Insurance (TDI), which collects and investigates consumer complaints and publishes claim-deadline guidance.",
@@ -65,7 +65,7 @@
       "decision": "within 15 business days after receiving all items it reasonably requested (§ 542.056)",
       "payment": "within 5 business days after notifying you the claim is accepted (§ 542.057)",
       "status_updates": "Weather-catastrophe deadlines are extended 15 days when the commissioner declares a catastrophe (§ 542.059)",
-      "interest_penalty": "A late-paid claim accrues statutory interest — 18% per year for pre-September 2017 claims, or the post-judgment rate plus 5% (capped at 20%) for later claims — plus mandatory reasonable attorney's fees (§ 542.060)."
+      "interest_penalty": "A late-paid claim accrues statutory interest of 18% per year, or, in an action to which Chapter 542A applies (forces-of-nature claims), simple interest at the judgment-date rate under Finance Code § 304.003 plus 5% — plus reasonable and necessary attorney's fees (§ 542.060)."
     },
     "bad_faith": {
       "recognized": true,

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { isMerged } from './data/merged.js';
+import { holdBack } from './data/pending.js';
 import { STATES } from './data/states.js';
 import { DISPUTES } from './data/disputes.js';
 import { APP_CONFIG } from './data/config.js';
@@ -29,7 +30,7 @@ for (const state of STATES) {
 
   fs.writeFileSync(
     path.join(stateDir, 'index.html'),
-    renderStateHub(state, DISPUTES, STATES, STATE_DATA[state.abbr])
+    renderStateHub(state, DISPUTES, STATES, holdBack(state.slug, STATE_DATA[state.abbr]))
   );
   stats.stateHubs++;
 
@@ -49,13 +50,16 @@ for (const state of STATES) {
       continue;
     }
 
-    const content = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
+    const pageKey = `${state.slug}/${dispute.slug}`;
+    const content = holdBack(pageKey, JSON.parse(fs.readFileSync(cacheFile, 'utf8')));
+    // a description withheld in full falls back to the dispute's generic (citation-free) one
+    if (!content.metaDescription) content.metaDescription = dispute.metaDescription;
     const disputeDir = path.join(stateDir, dispute.slug);
     if (!fs.existsSync(disputeDir)) fs.mkdirSync(disputeDir, { recursive: true });
 
     fs.writeFileSync(
       path.join(disputeDir, 'index.html'),
-      renderDeepPage(state, dispute, content, STATES, DISPUTES, STATE_DATA[state.abbr])
+      renderDeepPage(state, dispute, content, STATES, DISPUTES, holdBack(pageKey, STATE_DATA[state.abbr]))
     );
     stats.deepPages++;
   }

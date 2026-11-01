@@ -8,7 +8,10 @@
     { "source": "/:state", "destination": "/:state/index.html" }
   ],
   "redirects": [
-    { "source": "/", "destination": "/landing.html", "permanent": true }
+    { "source": "/", "destination": "/landing.html", "permanent": true },
+    { "source": "/hoafight.html", "destination": "https://hoafight.com/", "permanent": true },
+    { "source": "/tenantfight.html", "destination": "https://tenantfight.com/", "permanent": true },
+    { "source": "/zoningfight.html", "destination": "https://zoningfight.com/", "permanent": true }
   ],
   "headers": [
     { "source": "/api/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }

@@ -318,3 +318,12 @@ Official text: eCFR, read 2026-11-02 (current through 2026-10-29): 45 CFR § 147
 | § 147.136(b)(2)(ii)(F) | VERIFIED | Deemed exhaustion of internal process where the plan fails to adhere to the requirements | eCFR 147.136 |
 | § 147.136(c) | VERIFIED | State external review standards; state process must allow at least four months to request external review | eCFR 147.136 |
 | § 147.136(d) | VERIFIED | Federal external review process for plans/issuers not subject to a state process: four months to file; IRO decision within 45 days; expedited review within 72 hours | eCFR 147.136 |
+
+### National pages — letter-generator templates (ERISA claims regulation) (2026-11-01 close-out)
+Official text: eCFR 29 CFR § 2560.503-1, current through 2026-10-29, `https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-L/part-2560/section-2560.503-1`. Source type: Official (eCFR).
+
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| 29 CFR § 2560.503-1(h)(2)(i) | VERIFIED | Plans other than group health and disability plans must give claimants at least 60 days after notice of an adverse benefit determination to appeal | eCFR 2560.503-1 |
+| 29 CFR § 2560.503-1(h)(4) | VERIFIED | Plans providing disability benefits must meet (h)(3)(i)-(v), including at least 180 days to appeal | eCFR 2560.503-1 |
+| 29 CFR § 2560.503-1(h) | VERIFIED | Full and fair review: 180 days to appeal for group health and disability plans (h)(3)(i), (h)(4); 60 days for other plans (h)(2)(i) | eCFR 2560.503-1 |

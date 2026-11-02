@@ -8,7 +8,8 @@
 // Matching is on the citation CORE (e.g. "542.060" for "Tex. Ins. Code § 542.060(c)"),
 // so a real section with a wrong subsection letter passes; an unlogged section, rule
 // or case name does not. Logs carry only citation strings and counts, never letter text.
-import VERIFIED from './_verified-citations.json' with { type: 'json' };
+import { VERIFIED, FIGURES } from './_verified-data.js';
+import { figureSet, sentenceFigureHits } from './_numlint.js';
 
 const core = x => (x.match(/\d[\d.\-–/:]*[A-Za-z]?(?:[.\-]\d+)*/) || [''])[0].replace(/[–]/g, '-').replace(/[.\-/:]+$/, '');
 const CASE_SKIP = new Set(['in', 'under', 'yes', 'see', 'the', 'inc', 'llc', 'co', 'corp', 'if', 'and', 'when', 'as', 'per', 'cf', 'also', 'after', 'because', 'following', 'landmark', 'court', 'case', 'courts', 'decision', 'ruling', 'holding']);
@@ -73,7 +74,13 @@ export function verifiedFor(state, data = VERIFIED) {
   const cache = keySetCache.get(data);
   if (!cache.has(abbr)) {
     const entries = [...(data.all || []), ...(abbr ? (data.states?.[abbr] || []) : [])];
-    cache.set(abbr, { abbr, entries, set: toKeySet(entries.map(e => e.cite)) });
+    const figs = [...(FIGURES.all || []), ...(abbr ? (FIGURES.states?.[abbr] || []) : [])];
+    cache.set(abbr, {
+      abbr, entries, set: toKeySet(entries.map(e => e.cite)),
+      subs: subsectionMap(entries.map(e => e.cite + ' ' + (e.what || ''))),
+      figures: figs.slice(0, 80),
+      figSet: figureSet(entries.map(e => e.cite + ' ' + (e.what || '')).concat(figs)),
+    });
   }
   return cache.get(abbr);
 }
@@ -81,13 +88,47 @@ export function verifiedFor(state, data = VERIFIED) {
 // Server-side block appended to the system prompt: the only authorities the letter may cite.
 export function citationBlock(v) {
   const list = v.entries.map(e => `- ${e.cite}${e.what ? ` — ${e.what}` : ''}`).join('\n');
-  return `\n\nCITATION RULE (mandatory): you may cite ONLY the legal authorities in the verified list below${v.abbr ? ` (${v.abbr} state law plus federal law)` : ' (federal law only; the policyholder\'s state is not in our verified set, so cite NO state statute, regulation or case)'}. Do not cite, name or number any other statute, regulation, bulletin or court case, even one you believe is real. If no listed authority fits a point, make the argument from the policy language and the facts, or state the general right without a citation.\n\nVERIFIED AUTHORITIES:\n${list || '(none)'}`;
+  return `\n\nCITATION RULE (mandatory): you may cite ONLY the legal authorities in the verified list below${v.abbr ? ` (${v.abbr} state law plus federal law)` : ' (federal law only; the policyholder\'s state is not in our verified set, so cite NO state statute, regulation or case)'}. Do not cite, name or number any other statute, regulation, bulletin or court case, even one you believe is real. If no listed authority fits a point, make the argument from the policy language and the facts, or state the general right without a citation. Cite a pinpoint subsection (for example "(c)") ONLY if it appears in the list below; otherwise cite the section alone. NUMBERS RULE: state a dollar amount, percentage, or number of days, hours, months or years as a legal rule ONLY if it appears in the list below or in the policyholder's own facts; otherwise describe the right without a figure.\n\nVERIFIED AUTHORITIES:\n${list || '(none)'}${v.figures && v.figures.length ? `\n\nVERIFIED FIGURES (usable as legal rules): ${v.figures.join('; ')}` : ''}`;
+}
+
+// ── Subsection pin-cites ─────────────────────────────────────────────────────
+// extractCitations() matches on the section number only, so "§ 542.060(f)" passed whenever
+// § 542.060 was logged. A pinpoint subsection is now allowed only if the VERIFIED set records it
+// (a logged "(c)" covers "(c)(1)" and vice-versa); otherwise the subsection is trimmed to the section.
+const SUBRE = /(?:§§?|Section)\s*(\d[\w.\-–:/]*?)((?:\([A-Za-z0-9]{1,5}\))+)((?:\s*(?:,|and|or|&)\s*(?:\([A-Za-z0-9]{1,5}\))+)*)/g;
+const secKey = s => s.replace(/[–]/g, '-').replace(/[.\-/:]+$/, '').toLowerCase();
+const groups = (sub, cont) => [sub, ...(cont.match(/(?:\([A-Za-z0-9]{1,5}\))+/g) || [])].map(g => g.toLowerCase());
+export function subsectionMap(strings) {
+  const map = new Map();
+  for (const s of strings) for (const m of String(s).matchAll(SUBRE)) {
+    const k = secKey(m[1]); if (!map.has(k)) map.set(k, new Set());
+    for (const g of groups(m[2], m[3])) map.get(k).add(g);
+  }
+  return map;
+}
+const subOk = (g, set) => !!set && [...set].some(x => x.startsWith(g) || g.startsWith(x));
+export function findUnverifiedSubsections(text, v) {
+  const out = [];
+  for (const m of text.matchAll(SUBRE)) {
+    const set = v.subs?.get(secKey(m[1]));
+    if (!groups(m[2], m[3]).every(g => subOk(g, set))) out.push(m[0].trim());
+  }
+  return out;
+}
+export function trimUnverifiedSubsections(text, v) {
+  let n = 0;
+  const out = text.replace(SUBRE, (m, sec, sub, cont) => {
+    const set = v.subs?.get(secKey(sec));
+    if (groups(sub, cont).every(g => subOk(g, set))) return m;
+    n++; return m.slice(0, m.length - sub.length - cont.length);
+  });
+  return { text: out, trimmed: n };
 }
 
 // Sentence splitter. Unlike scripts/data/pending.js it must not merge ordinary sentence endings
 // ("...you must pay. Under..."), so only listed citation/name abbreviations suppress a split.
 const ABBR = new Set(['tex', 'ins', 'code', 'stat', 'ann', 'rev', 'gen', 'cal', 'civ', 'prac', 'rem', 'comp', 'reg', 'regs', 'admin', 'fla', 'pa', 'ill', 'ga', 'ariz', 'no', 'nos', 'ch', 'sec', 'art', 'v', 'vs', 'al', 'cf', 'inc', 'co', 'ltd', 'corp', 'mr', 'mrs', 'ms', 'dr', 'st', 'dept', 'cir', 'supp', 'subch', 'para']);
-function sentences(s) {
+export function sentences(s) {
   const out = []; let start = 0;
   const re = /[.!?]["')\]]?\s+(?=[A-Z"(§])/g; let m;
   while ((m = re.exec(s))) {
@@ -100,28 +141,36 @@ function sentences(s) {
 }
 
 // Remove every sentence that carries an unverified citation. Paragraph structure is kept.
-export function stripUnverified(text, set) {
+export function stripSentences(text, isBad) {
   let removed = 0;
   const lines = text.split('\n').map(line => {
-    if (!findUnverified(line, set).length) return line;
-    const kept = sentences(line).filter(s => { const bad = findUnverified(s, set).length > 0; if (bad) removed++; return !bad; });
+    if (!isBad(line)) return line;
+    const kept = sentences(line).filter(s => { const bad = isBad(s); if (bad) removed++; return !bad; });
     return kept.join('').replace(/[ \t]+$/g, '');
   });
   return { text: lines.join('\n').replace(/\n{3,}/g, '\n\n').trim(), removed };
 }
+export function stripUnverified(text, set) { return stripSentences(text, s => findUnverified(s, set).length > 0); }
 
-// Lint orchestration. regenerate(forbiddenCites) → new text (or null on failure/skip).
-// Returns { text, hits, regenerated, stripped }.
-export async function lintLetter(text, v, regenerate, log = console.log) {
-  const first = findUnverified(text, v.set);
-  if (!first.length) return { text, hits: 0, regenerated: false, stripped: 0 };
-  let out = text, regenerated = false, current = first;
-  const redo = await regenerate(first.map(h => h.cite));
-  if (redo) {
-    regenerated = true; out = redo; current = findUnverified(redo, v.set);
+// Lint orchestration. regenerate(forbidden) → new text (or null on failure/skip).
+// ctx = { figAllowed: Set } (optional) switches on the numeric-claims check. Returns
+// { text, hits, regenerated, stripped, subsTrimmed, figHits }.
+export async function lintLetter(text, v, regenerate, log = console.log, ctx = null) {
+  const subFix = t => trimUnverifiedSubsections(t, v);
+  const first0 = subFix(text); text = first0.text; let subsTrimmed = first0.trimmed;
+  const figBad = t => (ctx?.figAllowed ? sentences(t).flatMap(s => sentenceFigureHits(s, ctx.figAllowed)) : []);
+  const bad = t => [...findUnverified(t, v.set).map(h => h.cite), ...figBad(t).map(h => h.fig)];
+  const first = bad(text);
+  if (!first.length) {
+    if (subsTrimmed) log(JSON.stringify({ event: 'citelint', state: v.abbr || 'other', hits: 0, subsTrimmed }));
+    return { text, hits: 0, regenerated: false, stripped: 0, subsTrimmed, figHits: 0 };
   }
+  let out = text, regenerated = false;
+  const redo = await regenerate(first);
+  if (redo) { const r = subFix(redo); subsTrimmed += r.trimmed; regenerated = true; out = r.text; }
   let stripped = 0;
-  if (current.length) { const r = stripUnverified(out, v.set); out = r.text; stripped = r.removed; }
-  log(JSON.stringify({ event: 'citelint', state: v.abbr || 'other', hits: first.length, cites: first.map(h => h.cite), regenerated, stripped }));
-  return { text: out, hits: first.length, regenerated, stripped };
+  if (bad(out).length) { const r = stripSentences(out, s => findUnverified(s, v.set).length > 0 || figBad(s).length > 0); out = r.text; stripped = r.removed; }
+  const figHits = first.filter(x => /[$%]|\d/.test(x) && !/§|v\./.test(x)).length;
+  log(JSON.stringify({ event: 'citelint', state: v.abbr || 'other', hits: first.length, cites: first, regenerated, stripped, subsTrimmed, figHits }));
+  return { text: out, hits: first.length, regenerated, stripped, subsTrimmed, figHits };
 }

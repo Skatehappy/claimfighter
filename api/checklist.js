@@ -1,6 +1,8 @@
 // api/checklist.js
 import { MODEL } from './_config.js';
 import { verifyLicense, isG4TCode, g4tCount } from './_auth.js';
+import { verifiedFor, citationBlock } from './_citelint.js';
+import { FALLBACK_CHECKLIST, lockChecklist } from './_checklist-lock.js';
 
 export const config = { runtime: 'edge' };
 
@@ -18,7 +20,14 @@ export default async function handler(req) {
   if (req.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
   try {
-    const { accessCode, state, varianceType, letterExcerpt } = await req.json();
+    const { accessCode, state: rawState, varianceType: rawVar, letterExcerpt } = await req.json();
+    // Input caps: over-cap = invalid input, the code is not consumed.
+    const tooLong = (v, n) => typeof v === 'string' && v.length > n;
+    if (tooLong(accessCode, 128) || tooLong(rawState, 60) || tooLong(rawVar, 120) || tooLong(letterExcerpt, 20000)) {
+      return new Response(JSON.stringify({ error: 'Input too long. Shorten your entries and try again — your access code has not been used.', kind: 'invalid_input' }), { status: 413, headers });
+    }
+    const state = String(rawState || '').slice(0, 60);
+    const varianceType = String(rawVar || '').slice(0, 120);
 
     // Same gate as api/generate.js: a passed Payhip verify or a G4T test code, else no Anthropic call.
     const payhipApiKey = process.env.PAYHIP_API_KEY;
@@ -46,10 +55,11 @@ export default async function handler(req) {
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 900,
+        system: citationBlock(verifiedFor(state)).trim(),
         thinking: { type: 'disabled' },
         messages: [{
           role: 'user',
-          content: `Generate a practical insurance appeal submission checklist as a JSON array of strings. Be specific to an insurance claim appeal. Include items like: send via certified mail, keep copy of everything, note the deadline, include all supporting medical records or repair estimates, get doctor's letter if health claim, document all communications, request external review if denied again, file state insurance commissioner complaint if needed, etc. Return ONLY a valid JSON array, no other text.
+          content: `Generate a practical insurance appeal submission checklist as a JSON array of strings. Be specific to an insurance claim appeal. Include practical steps like: send via certified mail, keep a copy of everything, note the deadline stated in the denial, include supporting records or estimates, document all communications, ask about external review, file a state insurance department complaint if needed. Do not state any deadline, dollar amount or percentage unless it is in the verified list. Return ONLY a valid JSON array, no other text.
 
 State: ${state}
 Claim type: ${varianceType || 'insurance appeal'}
@@ -71,20 +81,11 @@ Letter excerpt: ${letterExcerpt?.substring(0, 200) || ''}`,
 
     let checklist;
     try {
-      checklist = JSON.parse(clean);
+      const parsed = JSON.parse(clean);
+      checklist = lockChecklist(Array.isArray(parsed) ? parsed : [], verifiedFor(state), `${state} ${varianceType} ${letterExcerpt?.substring(0, 200) || ''}`);
+      if (checklist.length < 3) checklist = FALLBACK_CHECKLIST;
     } catch {
-      checklist = [
-        'Send letter via certified mail with return receipt requested',
-        'Keep a complete copy of everything you send',
-        'Note the appeal deadline — most insurers require response within 30-60 days',
-        'Attach all supporting documentation: medical records, repair estimates, receipts',
-        'Get a letter from your doctor or contractor supporting your claim if applicable',
-        'Document all phone calls with insurer — date, time, rep name, what was said',
-        'Request confirmation of receipt in writing',
-        'If denied again, request external independent review (your legal right under ACA)',
-        'File a complaint with your state insurance commissioner if bad faith is suspected',
-        'Consult an attorney for claims over $10,000',
-      ];
+      checklist = FALLBACK_CHECKLIST;
     }
 
     return new Response(JSON.stringify({ checklist }), { status: 200, headers });

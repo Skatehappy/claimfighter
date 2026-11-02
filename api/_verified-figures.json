@@ -1,0 +1,120 @@
+{
+ "all": [],
+ "states": {
+  "CA": [
+   "15 calendar days",
+   "40 days",
+   "$12,500",
+   "30 calendar days",
+   "10%",
+   "Four years",
+   "one-year",
+   "24 months",
+   "six months",
+   "60%"
+  ],
+  "TX": [
+   "15 days",
+   "15 business days",
+   "5 business days",
+   "61 days",
+   "18%",
+   "5%",
+   "four-year",
+   "two-year",
+   "one day",
+   "180 days",
+   "four months",
+   "45 days",
+   "72 hours",
+   "30 days",
+   "60 days",
+   "20%",
+   "80%"
+  ],
+  "FL": [
+   "7 days",
+   "60 days",
+   "90 days",
+   "14 days",
+   "1 year",
+   "18 months",
+   "20 days",
+   "30 days",
+   "5 years",
+   "180 days",
+   "72 hours"
+  ],
+  "NY": [
+   "15 business days",
+   "12%",
+   "45 days",
+   "6 years",
+   "2-year",
+   "4 months",
+   "30 days",
+   "72 hours"
+  ],
+  "IL": [
+   "15 working days",
+   "75 days",
+   "25 days",
+   "30 days",
+   "$60,000",
+   "60%",
+   "10-year",
+   "1 year",
+   "4 months"
+  ],
+  "PA": [
+   "10 working days",
+   "15 working days",
+   "30 days",
+   "45 days",
+   "3%",
+   "4-year",
+   "2-year",
+   "1-year",
+   "180 days",
+   "72 hours"
+  ],
+  "OH": [
+   "15 calendar days",
+   "21 days",
+   "45 days",
+   "10 days",
+   "6-year",
+   "4-year",
+   "1-year",
+   "180 days",
+   "72 hours"
+  ],
+  "GA": [
+   "15 days",
+   "60-day",
+   "10 days",
+   "$5,000",
+   "50%",
+   "6-year",
+   "2 years"
+  ],
+  "NC": [
+   "30 days",
+   "45 days",
+   "60 days",
+   "3-year"
+  ],
+  "AZ": [
+   "10 working days",
+   "15 working days",
+   "30 days",
+   "45 days",
+   "60-day",
+   "6-year",
+   "2-year",
+   "1 year",
+   "72 hours",
+   "three years"
+  ]
+ }
+}

@@ -2,6 +2,7 @@
 import { MODEL } from './_config.js';
 import { verifiedFor, citationBlock, lintLetter } from './_citelint.js';
 import { verifyLicense, isG4TCode, g4tCount } from './_auth.js';
+import { figureSet } from './_numlint.js';
 
 // Node serverless runtime (NOT edge). Edge caps at ~25s on Hobby and ignores
 // maxDuration, which 504'd ~25s Opus letters. Node honors maxDuration:60. This
@@ -57,6 +58,11 @@ export default async function handler(req, res) {
     if (!accessCode || !accessCode.trim()) {
       return res.status(401).json({ error: 'Access code required' });
     }
+    // Input caps (server side; the client shows a visible counter). Over-cap = invalid input, code NOT consumed.
+    const over = (v, n) => typeof v === 'string' && v.length > n;
+    if (over(accessCode, 128) || over(systemPrompt, 20000) || over(userPrompt, 20000) || over(draftLetter, 20000) || over(state, 60)) {
+      return res.status(413).json({ error: 'Input too long. Shorten your entries and try again — your access code has not been used.', kind: 'invalid_input' });
+    }
 
     const payhipApiKey = process.env.PAYHIP_API_KEY;
     const anthropicKey = process.env.ANTHROPIC_API_KEY;
@@ -96,15 +102,17 @@ export default async function handler(req, res) {
     let text = await callModel({ anthropicKey, system, messages });
 
     if (!isCheckCall) {
+      // numeric-claims allow-list: verified data for this state + the buyer's own facts + this app's own instructions
+      const figAllowed = new Set([...verified.figSet, ...figureSet([systemPrompt || '', userPrompt || '', draftLetter || ''])]);
       const linted = await lintLetter(text, verified, async forbidden => {
         // one regeneration, skipped when the 60s function budget is mostly spent
         if (Date.now() - t0 > 30000) return null;
         try {
           return await callModel({ anthropicKey, system: (system || '') + `
 
-Your previous draft cited authorities that are not verified: ${forbidden.join('; ')}. Rewrite the letter and do NOT cite those or any authority not in the verified list.`, messages });
+Your previous draft cited authorities or stated figures that are not verified: ${forbidden.join('; ')}. Rewrite the letter and do NOT cite those or any authority not in the verified list, and do not state any dollar amount, percentage or number of days/months/years as a legal rule unless it is in the verified list or the policyholder's own facts.`, messages });
         } catch { return null; }
-      });
+      }, console.log, { figAllowed });
       text = linted.text;
       if (!text) throw new Error('Letter was empty after citation check.');
     }

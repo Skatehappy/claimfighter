@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const EMAILJS_SERVICE_ID  = "YOUR_EMAILJS_SERVICE_ID";
@@ -162,6 +162,30 @@ const btnStyle = (active) => ({
   boxShadow: active ? `0 2px 12px ${colors.goldLight}55` : "none",
 });
 
+// Draft persistence: localStorage (survives closing the tab). Never stores the access code.
+const DRAFT_KEY = "cf_draft_v1";
+const store = {
+  get() { try { const s = localStorage.getItem(DRAFT_KEY); return s ? JSON.parse(s) : null; } catch { return null; } },
+  set(o) { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(o)); } catch {} },
+  clear() { try { localStorage.removeItem(DRAFT_KEY); } catch {} },
+};
+
+// Error taxonomy. transient = free retry, code intact; invalid = fix the input and retry, code intact;
+// consumed = the code is no longer accepted, contact support.
+const SUPPORT = "support@buyappsonce.com";
+class ApiError extends Error { constructor(kind, message) { super(message); this.kind = kind; } }
+function classify(status, serverMsg) {
+  if (status === 401) return new ApiError("consumed", `Your access code is no longer accepted (it may have been used or disabled). Please contact ${SUPPORT} with your Payhip receipt.`);
+  if (status === 400 || status === 413 || status === 422) return new ApiError("invalid", `${serverMsg || "Some of your entries could not be processed."} Fix your entries and try again. Your access code is intact.`);
+  return new ApiError("transient", "We hit a temporary problem. Nothing was lost and your access code is intact. Click Try again; it is free.");
+}
+
+const MAX_TEXT = 200, MAX_TEXTAREA = 1500;
+function Counter({ n, max }) {
+  const near = n >= max * 0.9;
+  return <div data-testid="char-counter" style={{ textAlign: "right", fontSize: "11px", marginTop: "3px", color: near ? colors.errorText : colors.inkFaint }}>{n} / {max}</div>;
+}
+
 function Field({ field, value, onChange }) {
   const [focused, setFocused] = useState(false);
   return (
@@ -187,21 +211,28 @@ function Field({ field, value, onChange }) {
           onChange={e => onChange(e.target.value)}
           placeholder={field.placeholder}
           rows={4}
+          maxLength={MAX_TEXTAREA}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           style={{ ...inputStyle(focused), resize: "vertical", lineHeight: "1.7", minHeight: "112px" }}
         />
-      ) : (
-        <input
-          type="text"
-          value={value || ""}
-          onChange={e => onChange(e.target.value)}
-          placeholder={field.placeholder}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          style={inputStyle(focused)}
-        />
-      )}
+      ) : null}
+      {field.type === "textarea" ? <Counter n={(value || "").length} max={MAX_TEXTAREA} /> : null}
+      {field.type !== "select" && field.type !== "textarea" ? (
+        <>
+          <input
+            type="text"
+            value={value || ""}
+            onChange={e => onChange(e.target.value)}
+            placeholder={field.placeholder}
+            maxLength={MAX_TEXT}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            style={inputStyle(focused)}
+          />
+          <Counter n={(value || "").length} max={MAX_TEXT} />
+        </>
+      ) : null}
     </div>
   );
 }
@@ -237,6 +268,7 @@ export default function App() {
   const [emailSending, setEmailSending] = useState(false);
   const [error, setError] = useState("");
   const [retryCount, setRetryCount] = useState(0);
+  const [errorKind, setErrorKind] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -247,13 +279,23 @@ export default function App() {
     }
   }, []);
 
+  const [restored, setRestored] = useState(false);
+  const progress = useRef({});
+  const hydrated = useRef(false);
+
   useEffect(() => {
-    try { const s = sessionStorage.getItem("cf_form"); if (s) setFormData(JSON.parse(s)); } catch {}
+    const d = store.get();
+    if (d && d.formData) setFormData(d.formData);
+    if (d && d.letter) { setLetter(d.letter); setAltLetter(d.altLetter || ""); setChecklist(d.checklist || []); setRestored(true); }
+    hydrated.current = true;
   }, []);
 
   useEffect(() => {
-    try { sessionStorage.setItem("cf_form", JSON.stringify(formData)); } catch {}
-  }, [formData]);
+    if (!hydrated.current) return;
+    store.set({ formData, letter, altLetter, checklist, savedAt: Date.now() });
+  }, [formData, letter, altLetter, checklist]);
+
+  useEffect(() => { progress.current = {}; }, [formData]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -300,22 +342,29 @@ export default function App() {
       if (res.status === 401) {
         if (!silent) setCodeError("Invalid access code. Check your Payhip receipt email.");
         setCodeValid(false);
+      } else if (res.status === 429 || res.status >= 500) {
+        if (!silent) setCodeError("We could not verify your code right now (temporary problem). Your code is intact; please try again in a moment.");
+      } else if (res.status >= 400) {
+        if (!silent) setCodeError("That code could not be processed. Check it and try again.");
       } else {
         setCodeValid(true);
         if (!silent) setStep(1);
       }
     } catch {
-      if (!silent) setCodeError("Could not verify. Check your connection.");
+      if (!silent) setCodeError("Could not verify. Check your connection; your code is intact.");
     }
   };
 
   const callAPI = async (systemPrompt, userPrompt, reviewMode, draftLetter) => {
-    const res = await fetch("/api/generate", {
+    let res;
+    try {
+      res = await fetch("/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ accessCode, systemPrompt, userPrompt, reviewMode: !!reviewMode, draftLetter: draftLetter || "", state: formData.state || "" }),
-    });
-    if (!res.ok) { const err = await res.json(); throw new Error(err.error || "Generation failed"); }
+      });
+    } catch { throw classify(0, ""); }
+    if (!res.ok) { let msg = ""; try { msg = (await res.json()).error || ""; } catch {} throw classify(res.status, msg); }
     return (await res.json()).text;
   };
 
@@ -330,7 +379,7 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
-- For medical bill disputes: cite the No Surprises Act (effective Jan 1, 2022), state balance billing laws, and the patient's right to an itemized bill within 30 days. Demand removal of improper charges or correction of billing errors.
+- For medical bill disputes: cite the No Surprises Act (effective Jan 1, 2022), and state balance billing laws. Demand an itemized bill and removal of improper charges or correction of billing errors.
 - For collections disputes: cite FDCPA validation rights and demand proof of debt before any payment.
 - Output ONLY the letter, no preamble`;
 
@@ -339,7 +388,7 @@ Rules:
 Rules:
 - Open with clear statement of the policy, insured's name, date of death, policy number, and denied claim amount
 - Identify the insurer's stated denial reason and rebut it point by point
-- If the denial is based on misrepresentation: cite the state's contestability period statute and incontestability clause — if the policy has been in force beyond the contestability period (typically 2 years), material misrepresentation cannot void the policy
+- If the denial is based on misrepresentation: cite the state's contestability period statute and incontestability clause — if the policy has been in force beyond the contestability period (check the policy and state law for its length), material misrepresentation cannot void the policy
 - If the denial is based on an exclusion clause: require the insurer to cite the specific policy language and prove the exclusion applies; exclusions are construed narrowly against the insurer
 - If the denial is based on a lapsed policy: cite the state's grace period and reinstatement provisions, and any required notice-of-lapse statutes
 - If beneficiary dispute: demand interpleader or deposit of proceeds with the court pending resolution
@@ -409,14 +458,14 @@ Rules:
 
 Rules:
 - Open with clear statement of the provider, facility, date of service, amount billed, and the applicable in-network cost-sharing rate when known
-- Cite the federal No Surprises Act (effective January 1, 2022) codified at 42 U.S.C. §§ 300gg-111 through 300gg-139, with implementing regulations at 45 CFR Parts 147 and 149 and Department of Labor regulations at 29 CFR § 2590.716-4 through 716-8
+- Cite the federal No Surprises Act (effective January 1, 2022) codified at 42 U.S.C. §§ 300gg-111 et seq., with implementing regulations in 45 CFR Part 149 and Department of Labor regulations at 29 CFR § 2590.716-4
 - Identify which NSA protection applies:
   * Out-of-network provider at an in-network facility, non-emergency services (45 CFR § 149.120)
   * Air ambulance services (45 CFR § 149.130)
   * Emergency services at an out-of-network facility (45 CFR § 149.110)
 - Reference the patient's right to be billed no more than the in-network cost-sharing amount for protected services, and the statutory prohibition on balance billing
 - Note that the provider's recourse for any additional payment is the Federal Independent Dispute Resolution (IDR) process between the provider and insurer — not the patient
-- Cite any applicable state surprise billing law (e.g., California AB 72; New York Financial Services Law § 606; Texas SB 1264); many state laws provide stronger protections
+- Cite any applicable state surprise billing law (for example, New York Financial Services Law § 606); many state laws provide stronger protections
 - Demand: immediate cessation of collection efforts, correction of the bill to reflect only the in-network cost-sharing amount, refund of any overpayment, and retraction of any credit reporting
 - Warn of remedies: complaint to the federal No Surprises Help Desk (1-800-985-3059), complaint to CMS, complaint to the state insurance department or attorney general, and private rights of action where state law provides
 - Set a firm 30-day response deadline
@@ -484,12 +533,16 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
     try {
       const effectivePrompt = pickSystemPrompt(formData.claimType);
       setLoadingMsg("Drafting your appeal letter...");
-      const draft = await callAPI(effectivePrompt, buildPrompt("standard"), false, "");
+      const pr = progress.current;   // resume after a transient failure: finished passes are not re-run
+      const draft = pr.draft || await callAPI(effectivePrompt, buildPrompt("standard"), false, "");
+      pr.draft = draft;
       setLoadingMsg("Running quality review...");
-      const reviewed = await callAPI("", "", true, draft);
+      const reviewed = pr.reviewed || await callAPI("", "", true, draft);
+      pr.reviewed = reviewed;
       setLetter(reviewed);
       setLoadingMsg("Generating assertive version...");
-      const alt = await callAPI(effectivePrompt, buildPrompt("assertive"), false, "");
+      const alt = pr.alt || await callAPI(effectivePrompt, buildPrompt("assertive"), false, "");
+      pr.alt = alt;
       setAltLetter(alt);
       setLoadingMsg("Building checklist...");
       try {
@@ -514,7 +567,8 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
     } catch (e) {
       const n = retryCount + 1;
       setRetryCount(n);
-      setError(`Generation failed: ${e.message}. Please try again.`);
+      setErrorKind(e.kind || "transient");
+      setError(e.kind ? e.message : "We hit a temporary problem. Nothing was lost and your access code is intact. Click Try again; it is free.");
     }
     setLoading(false);
     setLoadingMsg("");
@@ -578,7 +632,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
     setEmailSent(false);
     setChecklist([]);
     setRetryCount(0);
-    try { sessionStorage.removeItem("cf_form"); } catch {}
+    store.clear();
   };
 
   const currentStep = STEPS[step];
@@ -623,11 +677,13 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
               <input
                 type="text"
                 value={accessCode}
+                maxLength={64}
                 onChange={e => { setAccessCode(e.target.value.toUpperCase()); setCodeError(""); }}
                 placeholder="e.g. CF-ABC123"
                 style={{ ...inputStyle(false), textAlign: "center", fontSize: "18px", letterSpacing: "0.1em", marginBottom: "12px", fontWeight: "600" }}
               />
               {codeError && <div style={{ color: colors.errorText, fontSize: "13px", marginBottom: "12px" }}>{codeError}</div>}
+              {restored && letter && <button data-testid="view-saved" onClick={() => setStep(STEPS.indexOf("Letter"))} style={{ width: "100%", marginBottom: "12px", background: "transparent", border: `1px solid ${colors.border}`, borderRadius: "8px", padding: "10px", cursor: "pointer", fontSize: "13px", color: colors.inkLight, fontFamily: APP.font }}>View your saved letter from last time</button>}
               <button onClick={() => verifyCode(accessCode)} style={{ ...btnStyle(!!accessCode.trim()), width: "100%", justifyContent: "center", padding: "14px" }}>
                 Unlock My Letter →
               </button>
@@ -725,7 +781,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
               {error && (
                 <div style={{ marginTop: "16px", padding: "13px 16px", background: colors.errorBg, border: `1px solid ${colors.errorBorder}`, borderRadius: "8px", color: colors.errorText, fontSize: "13px" }}>
                   {error}
-                  <button onClick={generateLetter} style={{ marginLeft: "12px", background: "transparent", border: "none", color: colors.goldLight, cursor: "pointer", fontSize: "13px" }}>Try again →</button>
+                  {errorKind !== "consumed" && <button onClick={generateLetter} style={{ marginLeft: "12px", background: "transparent", border: "none", color: colors.goldLight, cursor: "pointer", fontSize: "13px" }}>{errorKind === "invalid" ? "Retry after fixing →" : "Try again (free) →"}</button>}
                 </div>
               )}
               <div style={{ marginTop: "14px", fontSize: "12px", color: colors.inkFaint }}>Two-pass AI review · Standard + Assertive versions · Checklist included</div>

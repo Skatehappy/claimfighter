@@ -66,3 +66,49 @@ test('stamp: new undated entries get today, existing dates untouched, idempotent
   assert.equal(stampMissing(s.text, '2030-01-01').stamped, 0);
   assert.equal(stampMissing(LOG, '2030-01-01').text, LOG);
 });
+
+// ── strict mode: nothing is skipped ──
+test('strict: a page citation with no log entry FAILS', async () => {
+  const page = { file: 'public/texas/x/index.html', html: '<p>See Tex. Ins. Code &sect; 999.999 and Fakecase v. Nobody.</p>' };
+  const r = await runCheck({ now: D('2026-11-02'), pages: [page], sources: [] });
+  assert.ok(r.fail.some(f => /UNMAPPED public\/texas\/x\/index\.html: citation .*999\.999/.test(f)), r.fail.join('\n'));
+  assert.ok(r.fail.some(f => /citation .*Fakecase/.test(f)));
+});
+
+test('strict: a page figure with no log entry FAILS; a logged figure passes', async () => {
+  const bad = { file: 'public/texas/x/index.html', html: '<p>The filing fee is $777 and you have 23 days.</p>' };
+  const r = await runCheck({ now: D('2026-11-02'), pages: [bad], sources: [] });
+  assert.ok(r.fail.some(f => /figure "\$777" has no dated log entry/.test(f)), r.fail.join('\n'));
+  assert.ok(r.fail.some(f => /figure "23 days" has no dated log entry/.test(f)));
+  const ok = { file: 'public/texas/x/index.html', html: '<p>Justice courts hear cases up to $20,000.</p>' };
+  const r2 = await runCheck({ now: D('2026-11-02'), pages: [ok], sources: [] });
+  assert.equal(r2.fail.length, 0, r2.fail.join('\n'));
+});
+
+test('strict: generator data (FIGURES) with an unlogged figure FAILS', async () => {
+  const data = await import('../api/_verified-data.js');
+  const bad = { ...data, FIGURES: { all: [], states: { TX: ['a 913-day wait'] } } };
+  const r = await runCheck({ now: D('2026-11-02'), data: bad, pages: [], sources: [] });
+  assert.ok(r.fail.some(f => /\[TX\] figures: figure "913-day"?.* has no dated log entry|figure "913/.test(f)), r.fail.join('\n'));
+});
+
+test('strict: an unlogged citation in ANY source file FAILS (json leaf, code, merged/unrendered)', async () => {
+  const sources = [
+    { file: 'scripts/data/generated/ohio/x.json', bucket: 'OH', text: 'R.C. 9999.99 applies.' },
+    { file: 'src/App.jsx', bucket: 'ALL', text: 'cites 42 U.S.C. § 99999 here' },
+    { file: 'scripts/data/generated/texas/y.json', bucket: 'TX', text: 'Tex. Ins. Code § 542.060 is logged.' },
+  ];
+  const r = await runCheck({ now: D('2026-11-02'), pages: [], sources });
+  assert.ok(r.fail.some(f => /scripts\/data\/generated\/ohio\/x\.json: citation .*9999\.99/.test(f)), r.fail.join('\n'));
+  assert.ok(r.fail.some(f => /src\/App\.jsx: citation/.test(f)));
+  assert.ok(!r.fail.some(f => /generated\/texas\/y\.json/.test(f)));
+});
+
+test('strict: per-figure staleness - one stale row flags only the figures it alone supports', async () => {
+  const page = { file: 'public/texas/x/index.html', html: '<p>Justice courts hear cases up to $20,000. Contract suits have a four-year period.</p>' };
+  const logText = LOG.replace(/(\| Tex\. Gov't Code § 27\.031 \|[^\r\n]*\|) 2026-11-02 \|/, '$1 2025-01-01 |');
+  assert.notEqual(logText, LOG);
+  const r = await runCheck({ now: D('2026-11-02'), logText, pages: [page], sources: [] });
+  assert.ok(r.fail.some(f => f.includes('figure "$20,000"') && /older than 12 months/.test(f)), r.fail.join('\n'));
+  assert.ok(!r.fail.some(f => /four-year/.test(f)), r.fail.join('\n'));
+});

@@ -13,7 +13,7 @@ function citations(text) {
   const keys = new Map(); // key -> sample
   const canon = k => {
     if (!k || !k.startsWith('S:')) return k;
-    let v = k.slice(2).replace(/^(PA|FED)\d+-(?=\d)/, '');            // "40 P.S. § 1171.5" / "29 U.S.C. § 1132" → section only
+    let v = k.slice(2).replace(/^(PA|FED)\d+-(?=\d)/, '');            // state-code and federal-code forms → section only
     if (/^\d+\.\d+[A-Za-z]?-\d+\.\d+/.test(v)) v = v.split('-')[0];       // ranges "991.2141-991.2193" → first section
     return 'S:' + v;
   };
@@ -49,7 +49,7 @@ function inLog(key, logText) {
   if (t === 'CH') return new RegExp('\\b(Chapter|Ch\\.)\\s*' + esc + '\\b', 'i').test(logText);
   if (t === 'ART') return new RegExp('\\b(Article|Art\\.)\\s*' + esc + '\\b', 'i').test(logText);
   if (t === 'TITLE') return new RegExp('\\bTitle\\s*' + esc + '\\b', 'i').test(logText);
-  // short bare numbers ("§ 65", "§ 202") count as logged only WITH a section sign; longer cores (627.7011, 33-7-11) may appear bare
+  // short bare numbers (three or four digits) count as logged only WITH a section sign; longer cores (627.7011, 33-7-11) may appear bare
   if (/^\d{1,4}$/.test(last)) return new RegExp('§+\\s*' + esc + '(?![\\d.])').test(logText);
   return new RegExp('(^|[^\\d.])' + esc + '([^\\d]|$)').test(logText) && !!needle;
 }
@@ -57,7 +57,7 @@ function inLog(key, logText) {
 const cache = new Map();
 function logged(key) {
   if (!cache.has(key)) {
-    // bare ILCS act cites ("215 ILCS 180") are logged in that literal form
+    // bare ILCS act cites (act number only) are logged in that literal form
     const m = key.match(/^S:(\d+)ILCS(\d+)$/);
     cache.set(key, m ? new RegExp('\\b' + m[1] + '\\s*ILCS\\s*' + m[2] + '\\b').test(LOG) : inLog(key, LOG));
   }

@@ -88,7 +88,7 @@ Domain fields per state: `primary_insurance_statute`, `regulatory_body` / `compl
 ## Georgia (GA)
 - **verified_on:** 2026-11-01
 - **Primary framework:** Unfair Claims Settlement Practices Act (O.C.G.A. §§ 33-6-30 to 33-6-37) + bad-faith penalty O.C.G.A. § 33-4-6.
-- **Key verified facts:** § 33-6-34 prompt acknowledgment/investigation, 15-day written accept/deny; **§ 33-4-6 requires a 60-day written demand** before penalties attach — recovery = greater of 50% of the insurer's liability or $5,000, plus attorney's fees (statute itself adds no separate punitive award); 6-yr written-contract SOL (O.C.G.A. § 9-3-24); appraisal contractual; O.C.G.A. Ch. 33-20E external review; HB 1344 (Georgia Insurance Affordability and Claims Integrity Act) signed May 12, 2026 (incl. 2-yr minimum property suit-limit).
+- **Key verified facts:** § 33-6-34 prompt acknowledgment/investigation, reasonable-time affirm/deny (no fixed statutory day count; 15 days applies only to personal auto claims under Ga. Comp. R. & Regs. 120-2-52-.03); **§ 33-4-6 requires a 60-day written demand** before penalties attach — recovery = greater of 50% of the insurer's liability or $5,000, plus attorney's fees (statute itself adds no separate punitive award); 6-yr written-contract SOL (O.C.G.A. § 9-3-24); appraisal contractual; O.C.G.A. Ch. 33-20E external review; HB 1344 (Georgia Insurance Affordability and Claims Integrity Act) signed May 12, 2026 (incl. 2-yr minimum property suit-limit).
 - **Sources:**
   - https://law.justia.com/codes/georgia/2020/title-33/chapter-4/section-33-4-6/ (§ 33-4-6 60-day demand; 50%/$5,000 penalty + fees)
   - https://www.robinskaplan.com/newsroom/insights/claims-handling-practices-georgia (§§ 33-6-30 to 33-6-37; § 33-6-34 15-day decision)
@@ -205,7 +205,7 @@ Totals: **122 checked — 74 VERIFIED, 39 CORRECTED, 9 REMOVED.**
 | 215 ILCS 180 | VERIFIED | Health Carrier External Review Act; request within 4 months (180/35) | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200180/021501800K35.html | 2026-11-01 |
 | 50 Ill. Adm. Code 919.50 (Code 919.50) | VERIFIED (hub) | Affirm or deny within a reasonable time; pay within 30 days after affirming liability; written denial explanation within 30 days | https://ftp.ilga.gov/JCAR/AdminCode/050/050009190000500R.html | 2026-11-01 |
 | 50 Ill. Adm. Code 919 / Code 919 | VERIFIED | Improper Claims Practice rules | https://ftp.ilga.gov/JCAR/AdminCode/050/ | 2026-11-01 |
-| Sandy Point Dental, P.C. v. Cincinnati Ins. Co., 20 F.4th 327 (7th Cir. 2021) | CORRECTED (it was presented as an "Illinois courts" holding) | Federal court applying Illinois law: COVID loss of use without physical alteration is not "direct physical loss" | https://law.justia.com/cases/federal/appellate-courts/ca7/21-1186/21-1186-2021-12-09.html | 2026-11-01 |
+| Sandy Point Dental v. Cincinnati Ins. Co., 20 F.4th 327 (7th Cir. 2021) | CORRECTED (it was presented as an "Illinois courts" holding) | Federal court applying Illinois law: COVID loss of use without physical alteration is not "direct physical loss" | https://law.justia.com/cases/federal/appellate-courts/ca7/21-1186/21-1186-2021-12-09.html | 2026-11-01 |
 | 215 ILCS 5/ (Insurance Code); 215 ILCS 5/155 | VERIFIED; CORRECTED "lesser of $60,000 or 60%" | § 155 allows fees and costs plus an amount not exceeding any one of 60%, $60,000, or the excess over the settlement offer | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K155.html | 2026-11-01 |
 | 215 ILCS 5/397 | CORRECTED (claim) | It only directs the Director to make basic fire policies uniform. It sets no 60-day proof-of-loss rule and no suit deadline. | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K397.html | 2026-11-01 |
 | 215 ILCS 5/143.1 | CORRECTED (claim) | It does not "permit" a one-year limit; it tolls the policy's suit-limitation period from proof of loss until denial | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K143.1.html | 2026-11-01 |
@@ -425,9 +425,9 @@ The Phase A state sections above cited secondary sources (law-firm blogs, aggreg
 | Zilisch v. State Farm Mut. Auto. Ins. Co., 196 Ariz. 234 (2000) | VERIFIED (Primary: CourtListener opinion text) | Bad faith: duty beyond fair debatability | https://www.courtlistener.com/c/Ariz./196/234/ | 2026-11-01 |
 
 ### Remaining SECONDARY (official source blocks automated reads or is not public)
-- **California:** Ins. Code § 790.03, § 2071; Civ. Code § 3294. leginfo.legislature.ca.gov returns a Cloudflare challenge to every automated request. Sources used: law.justia.com California code mirror and the Phase B official-domain reads. [verified_on: 2026-11-01]
-- **New York:** Ins. Law § 2601, § 3224-a, § 3408, § 3404. nysenate.gov (the official NY Senate statute site) returns a Cloudflare challenge; the FindLaw mirror is the fallback. [verified_on: 2026-11-01]
-- **Georgia:** O.C.G.A. §§ 33-6-30 to 33-6-37, § 33-6-34, § 33-4-6, § 9-3-24, Title 33. Georgia's official code is published by LexisNexis behind a click-through license; no free official text exists. Justia is the fallback. [verified_on: 2026-11-01]
+- **California:** Ins. Code § 790.03, § 2071; Civ. Code § 3294. leginfo.legislature.ca.gov and law.justia.com return 403 to automated requests. Re-checked 2026-11-02 through Perplexity (quoting leginfo) and the california.public.law mirror (§ 2071); URLs and amendment dates are in Phase C. Remains SECONDARY. [verified_on: 2026-11-02]
+- **New York:** none. Ins. Law § 2601, § 3224-a, § 3408 and § 3404 were read on nysenate.gov on 2026-11-02 and upgraded to Official (see Phase C). The NY court dollar limits and the § 4910 fee remain Secondary (nycourts.gov returns 403). [verified_on: 2026-11-02]
+- **Georgia:** O.C.G.A. § 33-4-6, § 9-3-24, § 15-10-2 (Justia/govinfo court opinions; the legislature hosts only an annotated Title 33 supplement that omits their unamended text). § 33-6-34 and § 33-7-11(j) were read in the official Title 33 PDF on 2026-11-02 (Phase C). [verified_on: 2026-11-02]
 - **Pennsylvania:** 40 P.S. §§ 1171.1 to 1171.15: § 1171.5 is verified against legis.state.pa.us (Phase B); the other sections of the range were not individually re-read. [verified_on: 2026-11-01]
 
 ### Illinois (IL) — literal page forms (2026-11-01 close-out)
@@ -435,3 +435,108 @@ The Phase A state sections above cited secondary sources (law-firm blogs, aggreg
 |---|---|---|---|---|
 | Insurance Code § 397 (Section 397; 215 ILCS 5/397) | VERIFIED | Directs the Director to make basic fire policies uniform; no proof-of-loss or suit deadline of its own | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K397.html | 2026-11-01 |
 | 50 Ill. Adm. Code § 919 (Section 919; Code 919) | VERIFIED | Improper Claims Practice rules: 15 working days for reasonable promptness (919.40); affirm or deny in a reasonable time and pay within 30 days after affirming liability (919.50) | https://ftp.ilga.gov/JCAR/AdminCode/050/050009190000500R.html | 2026-11-01 |
+
+## Phase C — strict-mode verification (2026-11-02)
+Gate A15 is now strict: every citation (pages, generator data, and every source file) and every dollar/percent/day figure (pages, generator data) must map to a dated entry in this log. This section logs, against primary text read on 2026-11-02, every item that had no entry; unverifiable sentences were removed from the sources (court filing-fee ranges, policy-clause durations, a 60-70% IMR statistic, attorney-fee price claims on the landing page, and the unverified sentences in the 70 merged/unrendered combo files). Source grade is in the Status column: Official = the legislature's, court's or agency's own site; Primary = full opinion text resolved by reporter citation on CourtListener; Secondary = mirror or Perplexity-only, with the URL and amendment date recorded.
+
+### Arizona (AZ)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| A.R.S. § 20-2537 | VERIFIED (Official) | External independent review and expedited external independent review; a member may start one within four months after written notice of an adverse determination (subsection B); read 2026-11-02 | https://www.azleg.gov/ars/20/02537.htm | 2026-11-02 |
+| A.R.S. § 22-201 | VERIFIED (Official) | Justices of the peace have exclusive original jurisdiction of civil actions of $10,000 or less (subsection B); read 2026-11-02 | https://www.azleg.gov/ars/22/00201.htm | 2026-11-02 |
+| A.R.S. § 22-503 | VERIFIED (Official) | Small claims division jurisdiction: claims not exceeding $5,000, exclusive of interest and costs; read 2026-11-02 | https://www.azleg.gov/ars/22/00503.htm | 2026-11-02 |
+| Darner Motor Sales v. Universal Underwriters Ins. Co., 140 Ariz. 383 (1984) | VERIFIED (Primary: CourtListener reporter cite resolves to the named case) | Reasonable-expectations doctrine for insurance contract terms | https://www.courtlistener.com/c/Ariz./140/383/ | 2026-11-02 |
+
+### California (CA)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| Gruenberg v. Aetna Ins. Co., 9 Cal.3d 566 (1973) | VERIFIED (Primary: CourtListener reporter cite resolves to the named case) | Insurer's bad-faith withholding of benefits is a tort | https://www.courtlistener.com/c/Cal.%203d/9/566/ | 2026-11-02 |
+| Egan v. Mutual of Omaha Ins. Co., 24 Cal.3d 809 (1979) | VERIFIED (Primary: CourtListener reporter cite resolves to the named case) | Implied covenant of good faith: tort liability for unreasonable refusal to pay benefits | https://www.courtlistener.com/c/Cal.%203d/24/809/ | 2026-11-02 |
+| Moradi-Shalal v. Fireman's Fund Ins. Companies, 46 Cal.3d 287 (1988) | VERIFIED (Primary: CourtListener reporter cite resolves to the named case) | No private right of action under Ins. Code § 790.03(h) | https://www.courtlistener.com/c/Cal.%203d/46/287/ | 2026-11-02 |
+| Code of Civil Procedure § 85 | VERIFIED (Secondary: Perplexity quoting leginfo; leginfo returns 403 to automated reads) | Limited civil case: amount in controversy $35,000 or less (Stats. 2023, ch. 861, SB 71, effective 1/1/2024) | https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=85. | 2026-11-02 |
+| Health & Safety Code § 1368(a)(4)(A) | VERIFIED (Secondary: california.public.law mirror) | Health plan grievance system must provide written acknowledgment within five calendar days of receiving a grievance (5 days), with exceptions | https://california.public.law/codes/ca_health_and_safety_code_section_1368 | 2026-11-02 |
+| Insurance Code § 2071 | VERIFIED (Secondary: Perplexity + california.public.law mirror; amendment Stats. 2018, ch. 639, AB 2594, effective 9/21/2018) | Standard fire policy: suit within 12 months after inception of the loss; 24 months for a Gov. Code § 8558(b) state of emergency; informal appraisal | https://california.public.law/codes/ca_ins_code_section_2071 | 2026-11-02 |
+| Insurance Code § 790.03(h) | VERIFIED (Secondary: Perplexity quoting leginfo; no 2025-26 chaptered change found) | Sixteen unfair claims settlement practices | https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=790.03 | 2026-11-02 |
+| Civil Code § 3294 | VERIFIED (Secondary: Perplexity quoting leginfo; Stats. 1992, ch. 178, effective 1/1/1993) | Punitive damages require clear and convincing evidence of oppression, fraud or malice | https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=3294.&lawCode=CIV | 2026-11-02 |
+
+### Florida (FL)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| Fla. Stat. § 627.6141 | VERIFIED (Official) | A claim denied as not medically necessary gets an appeal to the insurer's licensed physician, who must respond within a reasonable time not to exceed 15 business days; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/627.6141 | 2026-11-02 |
+| Fla. Stat. § 641.511 | VERIFIED (Official) | HMO subscriber grievance procedure; a subscriber must submit a grievance within 1 year after the action that initiated it; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/641.511 | 2026-11-02 |
+| Fla. Stat. § 86.121 | VERIFIED (Official) | Attorney fees to the insured in a declaratory action on coverage after a total coverage denial; does not apply to residential or commercial property policies; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/86.121 | 2026-11-02 |
+| Fla. Stat. § 95.11 | VERIFIED (Official) | Five years for an action on a written instrument, § 95.11(2)(b) (5 years; five years); property insurance contract action five years from date of loss, § 95.11(2)(e); read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/95.11 | 2026-11-02 |
+| Fla. Stat. § 627.6131 and § 641.3155 | VERIFIED (Official for § 627.6131) | Electronic health claims paid or denied within 20 days of receipt; non-electronic claims within 40 days; 12% interest on overdue claims; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/627.6131 | 2026-11-02 |
+| Fla. Stat. § 627.70132 | VERIFIED (Official) | Claim or reopened claim barred unless notice given within 1 year after the date of loss; supplemental claim within 18 months after the date of loss; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/627.70132 | 2026-11-02 |
+| Fla. Stat. § 627.7142 | VERIFIED (Official) | Homeowner Claims Bill of Rights must be provided within 14 days after receiving an initial communication about a claim; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/627.7142 | 2026-11-02 |
+| Fla. Stat. § 34.01 | VERIFIED (Official) | County court civil jurisdiction: $50,000 for actions filed on or after January 1, 2023; read 2026-11-02 | https://www.flsenate.gov/Laws/Statutes/2025/34.01 | 2026-11-02 |
+| Fla. Sm. Cl. R. 7.010 | VERIFIED (Secondary: Perplexity citing the Florida Bar rules PDF effective 7/1/2026) | Small claims cases: $8,000 or less, exclusive of costs, interest and attorney fees | https://www-media.floridabar.org/uploads/2026/08/2026_01-JUL-Small-Claims-Rules-7-1-2026-1.pdf | 2026-11-02 |
+
+### Georgia (GA)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| O.C.G.A. § 33-6-34 | CORRECTED (the "written accept or deny within 15 days" claim removed; the section has no such deadline) | Lists unfair claims practices: failing to acknowledge claim communications with reasonable promptness, refusing to pay without a reasonable investigation, failing to affirm or deny within a reasonable time after written request; amended 2020, 2022, 2023 (HB 295, eff. 7/1/2023); nothing found for 2024-2026 | https://www.legis.ga.gov/api/document/docs/default-source/joint-features-document-library/t33-ch1-22-(v24)-pdf.pdf (official LexisNexis text, 2025 Supp., read 2026-11-02) | 2026-11-02 |
+| Ga. Comp. R. & Regs. 120-2-52-.03 | VERIFIED (Official) | Personal private passenger auto claims: acknowledge within 15 days; affirm or deny within 15 days of a completed proof of loss; pay within 10 days after coverage is confirmed and the amount is undisputed; read 2026-11-02 | https://rules.sos.ga.gov/gac/120-2-52 | 2026-11-02 |
+| O.C.G.A. § 33-7-11(j) | VERIFIED (Official) | Uninsured-motorist bad faith after a 60-day demand: not more than 25 percent of the recovery or $25,000, whichever is greater, plus fees (2021 amendment) | same Title 33 PDF, p. 64 | 2026-11-02 |
+| O.C.G.A. § 33-4-6 | VERIFIED (Secondary: M.D. Ga. opinions on govinfo.gov (7:25-cv-00004-LAG, 7/21/2025; 7:25-cv-00155-WLS, 3/9/2026) and Justia; no 2024-2026 amendment found) | 60-day demand; penalty of not more than 50 percent of the liability or $5,000, whichever is greater, plus attorney fees, on a bad-faith refusal | https://law.justia.com/codes/georgia/title-33/chapter-4/section-33-4-6/ | 2026-11-02 |
+| O.C.G.A. § 9-3-24 | VERIFIED (Secondary: Justia; no amendment found) | Six years (6-year; six-year; six years) for simple written contracts | https://law.justia.com/codes/georgia/title-9/chapter-3/article-2/section-9-3-24/ | 2026-11-02 |
+| O.C.G.A. § 15-10-2 | VERIFIED (Secondary: Justia 2024 Code and county court sites) | Magistrate court civil jurisdiction where the amount demanded does not exceed $15,000 | https://law.justia.com/codes/georgia/title-15/chapter-10/article-1/section-15-10-2/ | 2026-11-02 |
+| HB 1344 (2026 session), new O.C.G.A. § 33-24-59.37 | VERIFIED (Official: enrolled text read 2026-11-02; signing date 5/12/2026 per Perplexity) | First-party property policies issued, delivered or renewed on or after July 1, 2027 may not set suit deadlines shorter than 2 years (two years) from the date of loss; not in force for existing policies; liability and workers' compensation exempt | https://www.legis.ga.gov/api/legislation/document/20252026/249047 | 2026-11-02 |
+
+### Illinois (IL)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| 215 ILCS 5/154.6 (Section 154.6) | VERIFIED (Official) | Acts constituting improper claims practice, if committed without just cause and in violation of Section 154.5; read 2026-11-02 | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K154.6.html | 2026-11-02 |
+| 50 Ill. Adm. Code 919.80 | VERIFIED (Official) | A fire and extended coverage claim unresolved for more than 75 calendar days from the date reported, or 25 calendar days after proof of loss, whichever is less, requires a reasonable written explanation of the delay; read 2026-11-02 | https://ftp.ilga.gov/JCAR/AdminCode/050/050009190000800R.html | 2026-11-02 |
+| Ill. S. Ct. Rule 281 | VERIFIED (Secondary: Perplexity; official rules directory lists Rule 281, amended 9/29/2021 eff. 1/1/2022; the PDF text could not be extracted) | Small claim definition: $10,000 limit | https://www.illinoiscourts.gov/rules-law/supreme-court-rules/directory/ | 2026-11-02 |
+| Sandy Point Dental v. Cincinnati Ins. Co., 20 F.4th 327 (7th Cir. 2021) | VERIFIED (Secondary: Justia opinion text via Perplexity; CourtListener does not resolve F.4th) | Loss of use without physical alteration of property is not "direct physical loss" under the policy | https://law.justia.com/cases/federal/appellate-courts/ca7/21-1186/21-1186-2021-12-09.html | 2026-11-02 |
+
+### New York (NY)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| Insurance Law § 2601 | VERIFIED (Official; last amended 2019-01-04) | Unfair claim settlement practices; thirty working days after proof of loss in subsection (a)(4); penalty under § 109(b) | https://www.nysenate.gov/legislation/laws/ISC/2601 | 2026-11-02 |
+| Insurance Law § 3224-a (Ins. Law § 3224-a) | VERIFIED (Official; last amended 2025-09-19) | Prompt pay: 30 days for electronic claims, 45 days for paper or fax claims; interest at the greater of the Tax Law corporate rate or 12% a year from the date payment was due; each late claim is a separate violation | https://www.nysenate.gov/legislation/laws/ISC/3224-A | 2026-11-02 |
+| Insurance Law § 3408 | VERIFIED (Official; last amended 2014-11-28) | Court may compel appraisal; appraisal decides actual cash value, replacement cost and extent and amount of loss, not coverage | https://www.nysenate.gov/legislation/laws/ISC/3408 | 2026-11-02 |
+| Insurance Law § 3404(e) | VERIFIED (Official; last amended 2015-03-06) | Standard fire policy: suit within 24 months (two years; 2-year; two-year) after inception of the loss; excludes increased cost by reason of any ordinance or law | https://www.nysenate.gov/legislation/laws/ISC/3404 | 2026-11-02 |
+| 11 NYCRR 216.6(c) | VERIFIED (Official text via Cornell LII) | Accept or reject within 15 business days of proof of loss or explain why more time is needed; status letters every 90 days | https://www.law.cornell.edu/regulations/new-york/11-NYCRR-216.6 | 2026-11-02 |
+| Insurance Law § 4910(c)(1) | VERIFIED (Secondary: Perplexity; nysenate.gov URL; last amended 2026-01-16) | External appeal fee of up to $25 per appeal ($25), waived for hardship, refunded if the denial is overturned | https://www.nysenate.gov/legislation/laws/ISC/4910 | 2026-11-02 |
+| NY small-claims and civil court limits | VERIFIED (Secondary: Perplexity citing nycourts.gov, which returns 403 to automated reads; page date 2025-01-01) | NYC Civil Court small claims $10,000; city and district courts $5,000; town and village courts $3,000; NYC Civil Court civil jurisdiction $50,000; City Courts outside NYC civil jurisdiction $15,000 | https://www.nycourts.gov/help/small-claims ; https://ww2.nycourts.gov/courts/6jd/descriptions.shtml | 2026-11-02 |
+
+### North Carolina (NC)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| N.C. Gen. Stat. § 58-50-75 et seq. | VERIFIED (Official) | Part of Article 50 on external review of utilization-review decisions; § 58-50-75 states purpose, scope and definitions; read 2026-11-02 | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-50-75.html | 2026-11-02 |
+| N.C. Gen. Stat. fifty-eight dash fifty dash ninety-five | REMOVED | Repealed by Session Laws 2015-92, effective June 19, 2015; the range "through" it was replaced by "et seq." on the health-appeal page and in the NC hub data | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-50-95.html | 2026-11-02 |
+| N.C. Gen. Stat. § 7A-210 | VERIFIED (Official) | Small claim action: amount in controversy not more than $10,000; read 2026-11-02 | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_7A/GS_7A-210.html | 2026-11-02 |
+| N.C. Gen. Stat. § 7A-243 | VERIFIED (Official) | District court is the proper division for civil actions of $25,000 or less; superior court above $25,000 | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_7A/GS_7A-243.html | 2026-11-02 |
+| N.C. Gen. Stat. § 6-21.1 | VERIFIED (Official) | Fees allowed where the insurer unreasonably refused to pay, damages recovered are $25,000 or less, and exceed the highest offer made no later than 90 days before trial; capped at $10,000 | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_6/GS_6-21.1.html | 2026-11-02 |
+| N.C. Gen. Stat. § 75-16.2 | VERIFIED (Official) | Civil actions under Chapter 75 barred unless commenced within four years (four-year; 4 years) after the cause of action accrues | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_75/GS_75-16.2.html | 2026-11-02 |
+
+### Ohio (OH)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| R.C. 3901.21 (ORC 3901.21; § 3901.21) | VERIFIED (Official; effective October 24, 2024) | Defines unfair and deceptive acts or practices in the business of insurance, including claim-settlement practices; read 2026-11-02 | https://codes.ohio.gov/ohio-revised-code/section-3901.21 | 2026-11-02 |
+| R.C. 2305.09 (§ 2305.09) | VERIFIED (Official) | Four-year limitation (including certain torts); literal page forms | https://codes.ohio.gov/ohio-revised-code/section-2305.09 | 2026-11-02 |
+| R.C. 1925.02 | VERIFIED (Official; effective April 9, 2025) | Small claims division: money claims not exceeding $6,000 | https://codes.ohio.gov/ohio-revised-code/section-1925.02 | 2026-11-02 |
+| R.C. 1901.17 | VERIFIED (Official) | Municipal court original jurisdiction: amount claimed not exceeding $15,000 | https://codes.ohio.gov/ohio-revised-code/section-1901.17 | 2026-11-02 |
+
+### Pennsylvania (PA)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| Terletsky v. Prudential Property & Cas. Ins. Co., 437 Pa. Super. 108, 649 A.2d 680 (1994) | VERIFIED (Primary: CourtListener reporter cite resolves to the named case) | Two-part bad-faith test: no reasonable basis for denying benefits, and knowledge or reckless disregard of that fact | https://www.courtlistener.com/c/Pa.%20Super./437/108/ | 2026-11-02 |
+| 42 Pa.C.S. § 1515(a)(3) | VERIFIED (Secondary: Perplexity citing legis.state.pa.us; (a)(3) last amended August 11, 2009) | Magisterial district court civil jurisdiction: $12,000, exclusive of interest and costs | https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/42/00.015.015.000..HTM | 2026-11-02 |
+
+### Texas (TX)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| Arnold v. National County Mutual Fire Ins. Co., 725 S.W.2d 165 (Tex. 1987) | VERIFIED (Primary: CourtListener reporter cite resolves to the named case) | Insurer's duty of good faith and fair dealing to its insured | https://www.courtlistener.com/c/S.W.2d/725/165/ | 2026-11-02 |
+| Tex. Civ. Prac. & Rem. Code § 16.051 | VERIFIED (Official) | Residual limitations period: four years (four-year; four years) after the cause of action accrues | https://tcss.legis.texas.gov/resources/CP/htm/CP.16.htm | 2026-11-02 |
+| Tex. Civ. Prac. & Rem. Code § 16.070 | VERIFIED (Official) | A contract may not limit the time to sue to less than two years (two-year; two years); shorter periods are void | https://tcss.legis.texas.gov/resources/CP/htm/CP.16.htm | 2026-11-02 |
+| Tex. Ins. Code § 542A.007 | VERIFIED (Official) | Full reasonable fees if the judgment-to-amount-alleged ratio is 0.8 or more (80%); no fees if it is less than 0.2 (20%) | https://tcss.legis.texas.gov/resources/IN/htm/IN.542A.htm | 2026-11-02 |
+| Tex. Gov't Code § 27.031 | VERIFIED (Official) | Justice court original jurisdiction over civil matters of not more than $20,000, exclusive of interest | https://tcss.legis.texas.gov/resources/GV/htm/GV.27.htm | 2026-11-02 |
+
+### National pages — first-party product facts and federal literal forms (2026-11-02)
+| Citation as it now appears | Status | What it says | Official source | verified_on |
+|---|---|---|---|---|
+| ClaimFighter price | VERIFIED (first-party: src/App.jsx constant `price: "$19"`) | One letter costs a flat $19 with no subscription; the landing-page claim about what attorneys charge was removed as unverifiable | src/App.jsx | 2026-11-02 |
+| 29 CFR § 2560.503-1 (§ 2560.503-1) | VERIFIED (Official) | ERISA claims-procedure regulation; literal section-symbol form of the entries dated 2026-07-19 in VERIFICATION_LOG.md | https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-L/part-2560/section-2560.503-1 | 2026-11-02 |

@@ -22,7 +22,6 @@
    "5%",
    "four-year",
    "two-year",
-   "one day",
    "180 days",
    "four months",
    "45 days",
@@ -35,7 +34,6 @@
   "FL": [
    "7 days",
    "60 days",
-   "90 days",
    "14 days",
    "1 year",
    "18 months",
@@ -48,11 +46,12 @@
   "NY": [
    "15 business days",
    "12%",
+   "30 days",
    "45 days",
+   "90 days",
    "6 years",
    "2-year",
    "4 months",
-   "30 days",
    "72 hours"
   ],
   "IL": [
@@ -74,7 +73,6 @@
    "3%",
    "4-year",
    "2-year",
-   "1-year",
    "180 days",
    "72 hours"
   ],
@@ -85,14 +83,13 @@
    "10 days",
    "6-year",
    "4-year",
-   "1-year",
    "180 days",
    "72 hours"
   ],
   "GA": [
    "15 days",
-   "60-day",
    "10 days",
+   "60-day",
    "$5,000",
    "50%",
    "6-year",
@@ -112,7 +109,6 @@
    "60-day",
    "6-year",
    "2-year",
-   "1 year",
    "72 hours",
    "three years"
   ]

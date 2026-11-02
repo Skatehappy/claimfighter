@@ -24,7 +24,9 @@
     "generate:citations": "node scripts/build-verified-citations.mjs",
     "test:citelint": "node scripts/test-citelint.mjs",
     "test:authgate": "node scripts/test-authgate.mjs",
-    "test": "node --test tests/payhip-mock.test.js tests/isCheckCall.test.js tests/lock-extended.test.js",
+    "test": "node --test tests/payhip-mock.test.js tests/isCheckCall.test.js tests/lock-extended.test.js tests/verified-on.test.js",
+    "check:verified-on": "node scripts/check-verified-on.mjs",
+    "stamp:verified-on": "node scripts/stamp-verified-on.mjs",
     "test:ui": "node --test tests/ui-wiring.test.mjs",
     "generate:all": "npm run generate:content && npm run generate:pages"
   }

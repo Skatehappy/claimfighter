@@ -52,9 +52,15 @@ for (const [label, args] of [['A10: api/_verified-citations.json is stale (run n
 
 // ── A13: api mock tests (Payhip, isCheckCall, citation/subsection/numeric lock, checklist lock, template parity) ──
 // ── A14: Playwright UI wiring test (every button / nav / export, zero console errors; /api mocked) ──
-for (const [label, files] of [['A13: tests/*.test.js failed (run npm test)', ['tests/payhip-mock.test.js', 'tests/isCheckCall.test.js', 'tests/lock-extended.test.js']], ['A14: UI wiring test failed (run npm run test:ui)', ['tests/ui-wiring.test.mjs']]]) {
+for (const [label, files] of [['A13: tests/*.test.js failed (run npm test)', ['tests/payhip-mock.test.js', 'tests/isCheckCall.test.js', 'tests/lock-extended.test.js', 'tests/verified-on.test.js']], ['A14: UI wiring test failed (run npm run test:ui)', ['tests/ui-wiring.test.mjs']]]) {
   try { execFileSync(process.execPath, ['--test', ...files], { cwd: ROOT, stdio: 'pipe', timeout: 240000 }); } catch (e) { fail(label + '\n' + String(e.stdout || '').split('\n').filter(l => /^\s*(not ok|error:)/.test(l)).slice(0, 8).join('\n')); }
 }
 
-console.log('GATE GREEN — A1 files ok; A9 citation-log parity: all ' + tokens.size + ' citations logged; A10 citation lock current + mock test passes; A11 no Anthropic call without Payhip/G4T; A13 api mock tests pass; A14 UI wiring test passes.');
+// ── A15: verified_on freshness (every log entry dated; nothing rendered/generated from an entry older than 12 months; warns at 10) ──
+try {
+  const o = execFileSync(process.execPath, ['scripts/check-verified-on.mjs'], { cwd: ROOT, stdio: 'pipe', encoding: 'utf8' });
+  console.log(o.trim());
+} catch (e) { fail('A15: verified_on check failed (run node scripts/stamp-verified-on.mjs for new entries; re-verify stale ones) - ' + String(e.stderr || e.stdout || '').trim()); }
+
+console.log('GATE GREEN — A1 files ok; A9 citation-log parity: all ' + tokens.size + ' citations logged; A10 citation lock current + mock test passes; A11 no Anthropic call without Payhip/G4T; A13 api mock tests pass; A14 UI wiring test passes; A15 verified_on dated and fresh.');
 process.exit(0);

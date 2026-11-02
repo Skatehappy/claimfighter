@@ -418,3 +418,9 @@ The Phase A state sections above cited secondary sources (law-firm blogs, aggreg
 - **New York:** Ins. Law § 2601, § 3224-a, § 3408, § 3404. nysenate.gov (the official NY Senate statute site) returns a Cloudflare challenge; the FindLaw mirror is the fallback.
 - **Georgia:** O.C.G.A. §§ 33-6-30 to 33-6-37, § 33-6-34, § 33-4-6, § 9-3-24, Title 33. Georgia's official code is published by LexisNexis behind a click-through license; no free official text exists. Justia is the fallback.
 - **Pennsylvania:** 40 P.S. §§ 1171.1 to 1171.15: § 1171.5 is verified against legis.state.pa.us (Phase B); the other sections of the range were not individually re-read.
+
+### Illinois (IL) — literal page forms (2026-11-01 close-out)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| Insurance Code § 397 (Section 397; 215 ILCS 5/397) | VERIFIED | Directs the Director to make basic fire policies uniform; no proof-of-loss or suit deadline of its own | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K397.html |
+| 50 Ill. Adm. Code § 919 (Section 919; Code 919) | VERIFIED | Improper Claims Practice rules: 15 working days for reasonable promptness (919.40); affirm or deny in a reasonable time and pay within 30 days after affirming liability (919.50) | https://ftp.ilga.gov/JCAR/AdminCode/050/050009190000500R.html |

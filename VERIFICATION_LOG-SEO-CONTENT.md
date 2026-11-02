@@ -327,3 +327,94 @@ Official text: eCFR 29 CFR § 2560.503-1, current through 2026-10-29, `https://w
 | 29 CFR § 2560.503-1(h)(2)(i) | VERIFIED | Plans other than group health and disability plans must give claimants at least 60 days after notice of an adverse benefit determination to appeal | eCFR 2560.503-1 |
 | 29 CFR § 2560.503-1(h)(4) | VERIFIED | Plans providing disability benefits must meet (h)(3)(i)-(v), including at least 180 days to appeal | eCFR 2560.503-1 |
 | 29 CFR § 2560.503-1(h) | VERIFIED | Full and fair review: 180 days to appeal for group health and disability plans (h)(3)(i), (h)(4); 60 days for other plans (h)(2)(i) | eCFR 2560.503-1 |
+
+## Source-grade audit of the Phase A "Key verified facts" citations (2026-11-01 close-out)
+The Phase A state sections above cited secondary sources (law-firm blogs, aggregators). Each citation that appeared only there was re-checked against the official text on 2026-11-01. VERIFIED (Official) = the legislature's or agency's own site; VERIFIED (Primary) = full opinion text on CourtListener (the reporter citation resolves to the named case). Anything the official site blocks from automated reads stays SECONDARY and is listed at the end. No official text contradicted a Phase A claim.
+
+### California (CA)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| Brandt v. Superior Court, 37 Cal.3d 813 (1985) | VERIFIED (Primary: CourtListener opinion text) | Insured may recover attorney fees incurred to obtain policy benefits after a bad-faith denial (Brandt fees) | https://www.courtlistener.com/c/Cal.%203d/37/813/ |
+
+### Texas (TX)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| Tex. Ins. Code Ch. 541 | VERIFIED (Official) | Unfair methods of competition / unfair or deceptive practices in insurance | https://tcss.legis.texas.gov/resources/IN/htm/IN.541.htm |
+| Tex. Ins. Code Ch. 542 | VERIFIED (Official) | Processing and settlement of claims (prompt payment) | https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm |
+| Tex. Ins. Code § 542.055 | VERIFIED (Official) | Receipt of notice of claim: acknowledge, commence investigation, request items | https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm |
+| Tex. Ins. Code § 542.056 | VERIFIED (Official) | Notice of acceptance or rejection of claim | same |
+| Tex. Ins. Code § 542.057 | VERIFIED (Official) | Payment of claim | same |
+| Tex. Ins. Code § 542.059 | VERIFIED (Official) | Extension of deadlines | same |
+| Tex. Ins. Code Ch. 1813 | VERIFIED (Official) | Chapter exists in the Insurance Code (existence only; no figure relied on) | https://tcss.legis.texas.gov/resources/IN/htm/IN.1813.htm |
+
+### Florida (FL)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| Fla. Stat. § 626.9541 | VERIFIED (Official) | Unfair methods of competition and unfair or deceptive acts | https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0626/Sections/0626.9541.html |
+| Fla. Stat. § 627.70131 | VERIFIED (Official) | Insurer's duty: acknowledge within 7 calendar days; pay or deny within 60 days after notice of a property claim | https://www.flsenate.gov/Laws/Statutes/2025/627.70131 |
+| Fla. Stat. § 627.7142 | VERIFIED (Official) | Homeowner Claims Bill of Rights | https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7142.html |
+| Fla. Stat. § 624.155 | VERIFIED (Official) | Civil remedy for insurer bad faith | https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0624/Sections/0624.155.html |
+| Fla. Stat. § 627.4265 | VERIFIED (Official) | Payment of settlement | https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.4265.html |
+| Fla. Stat. § 627.70132 | VERIFIED (Official) | Notice of property insurance claim | https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.70132.html |
+| Fla. Stat. § 55.03 | VERIFIED (Official) | Judgment interest rate | https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0055/Sections/0055.03.html |
+
+### New York (NY)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| Bi-Economy Market, Inc. v. Harleysville Ins. Co. of N.Y., 10 N.Y.3d 187 (2008) | VERIFIED (Primary: CourtListener opinion text) | Consequential damages for breach of the insurance contract | https://www.courtlistener.com/c/N.Y.3d/10/187/ |
+| Panasia Estates, Inc. v. Hudson Ins. Co., 10 N.Y.3d 200 (2008) | VERIFIED (Primary: CourtListener opinion text) | Consequential damages for breach of the insurance contract | https://www.courtlistener.com/c/N.Y.3d/10/200/ |
+
+### Illinois (IL)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| 215 ILCS 5/154.5 | VERIFIED (Official) | Improper claims practice where committed knowingly or with frequency | https://ftp.ilga.gov/ILCS/Ch%200215/Act%200005/021500050K154.5.html |
+| 735 ILCS 5/13-206 | VERIFIED (Official) | Ten-year limitation on written contracts | https://ftp.ilga.gov/ILCS/Ch%200735/Act%200005/073500050K13-206.html |
+
+### Pennsylvania (PA)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| 42 Pa.C.S. § 8371 | VERIFIED (Official) | Insurer bad faith: interest at prime rate plus 3%, punitive damages, court costs and attorney fees | https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/42/00.083..HTM |
+| 42 Pa.C.S. § 5524 | VERIFIED (Official) | Two-year limitation | https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/42/00.055..HTM |
+| 42 Pa.C.S. § 5525 | VERIFIED (Official) | Four-year limitation (contract actions) | same |
+| 31 Pa. Code § 146.7 | VERIFIED (Official) | Standards for prompt, fair and equitable settlements | https://www.pacodeandbulletin.gov/secure/pacode/data/031/chapter146/s146.7.html |
+| Rancosky v. Washington National Ins. Co., 170 A.3d 364 (Pa. 2017) | VERIFIED (Primary: CourtListener opinion text) | Bad-faith standard under 42 Pa.C.S. § 8371 (Terletsky test) | https://www.courtlistener.com/c/A.3d/170/364/ |
+
+### Ohio (OH)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| R.C. 3901.20 | VERIFIED (Official) | Unfair and deceptive acts in the business of insurance | https://codes.ohio.gov/ohio-revised-code/section-3901.20 |
+| R.C. 2315.21 | VERIFIED (Official) | Punitive damages: procedure and caps | https://codes.ohio.gov/ohio-revised-code/section-2315.21 |
+| R.C. 2305.09 | VERIFIED (Official) | Four-year limitation (including certain torts) | https://codes.ohio.gov/ohio-revised-code/section-2305.09 |
+| R.C. Ch. 3922 | VERIFIED (Official) | External review of adverse benefit determinations | https://codes.ohio.gov/ohio-revised-code/chapter-3922 |
+| Hoskins v. Aetna Life Ins. Co., 6 Ohio St.3d 272 (1983) | VERIFIED (Primary: CourtListener opinion text) | First-party bad-faith tort | https://www.courtlistener.com/c/Ohio%20St.%203d/6/272/ |
+| Zoppo v. Homestead Ins. Co., 71 Ohio St.3d 552 (1994) | VERIFIED (Primary: CourtListener opinion text) | First-party bad-faith standard (lack of reasonable justification) | https://www.courtlistener.com/c/Ohio%20St.%203d/71/552/ |
+
+### North Carolina (NC)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| N.C. Gen. Stat. § 58-63-15 | VERIFIED (Official) | Unfair methods of competition and unfair or deceptive acts | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-63-15.html |
+| N.C. Gen. Stat. § 75-1.1 | VERIFIED (Official) | Unfair or deceptive acts or practices in commerce | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_75/GS_75-1.1.html |
+| N.C. Gen. Stat. § 75-16 | VERIFIED (Official) | Treble damages | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_75/GS_75-16.html |
+| N.C. Gen. Stat. § 75-16.1 | VERIFIED (Official) | Attorney fees in Chapter 75 actions | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_75/GS_75-16.1.html |
+| N.C. Gen. Stat. § 58-3-100 | VERIFIED (Official) | Claim acknowledgment and status timing | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-3-100.html |
+| N.C. Gen. Stat. § 58-44-16 | VERIFIED (Official) | Standard fire policy: loss payable 60 days after proof of loss and ascertainment | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-44-16.html |
+| N.C. Gen. Stat. § 1-52 | VERIFIED (Official) | Three-year limitation | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_1/GS_1-52.html |
+| N.C. Gen. Stat. § 58-50-75 | VERIFIED (Official) | External review article (Smart NC) | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-50-75.html |
+| N.C. Gen. Stat. § 58-3-225 | VERIFIED (Official) | Prompt claim payments under health benefit plans | https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_58/GS_58-3-225.html |
+
+### Arizona (AZ)
+| Citation as it now appears | Status | What it says | Official source |
+|---|---|---|---|
+| A.R.S. § 20-461 | VERIFIED (Official) | Unfair claim settlement practices | https://www.azleg.gov/ars/20/00461.htm |
+| A.R.S. § 20-462 | VERIFIED (Official) | Timely payment: a first-party claim unpaid 30 days after acceptable proof of loss bears interest at the legal rate | https://www.azleg.gov/ars/20/00462.htm |
+| A.R.S. § 12-548 | VERIFIED (Official) | Six-year limitation (written contracts) | https://www.azleg.gov/ars/12/00548.htm |
+| A.R.S. § 12-542 | VERIFIED (Official) | Two-year limitation | https://www.azleg.gov/ars/12/00542.htm |
+| A.R.S. §§ 20-2533 through 20-2537 | VERIFIED (Official) | Health care appeals: grievance, expedited, initial appeal, external independent review | https://www.azleg.gov/ars/20/02533.htm ; https://www.azleg.gov/ars/20/02537.htm |
+| Noble v. National American Life Ins. Co., 128 Ariz. 188 (1981) | VERIFIED (Primary: CourtListener opinion text) | First-party bad-faith tort | https://www.courtlistener.com/c/Ariz./128/188/ |
+| Zilisch v. State Farm Mut. Auto. Ins. Co., 196 Ariz. 234 (2000) | VERIFIED (Primary: CourtListener opinion text) | Bad faith: duty beyond fair debatability | https://www.courtlistener.com/c/Ariz./196/234/ |
+
+### Remaining SECONDARY (official source blocks automated reads or is not public)
+- **California:** Ins. Code § 790.03, § 2071; Civ. Code § 3294. leginfo.legislature.ca.gov returns a Cloudflare challenge to every automated request. Sources used: law.justia.com California code mirror and the Phase B official-domain reads.
+- **New York:** Ins. Law § 2601, § 3224-a, § 3408, § 3404. nysenate.gov (the official NY Senate statute site) returns a Cloudflare challenge; the FindLaw mirror is the fallback.
+- **Georgia:** O.C.G.A. §§ 33-6-30 to 33-6-37, § 33-6-34, § 33-4-6, § 9-3-24, Title 33. Georgia's official code is published by LexisNexis behind a click-through license; no free official text exists. Justia is the fallback.
+- **Pennsylvania:** 40 P.S. §§ 1171.1 to 1171.15: § 1171.5 is verified against legis.state.pa.us (Phase B); the other sections of the range were not individually re-read.

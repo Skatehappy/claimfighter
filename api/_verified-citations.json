@@ -132,6 +132,10 @@
     "what": "59 Cal.2d 21 (1963): efficient proximate cause"
    },
    {
+    "cite": "Brandt v. Superior Court, 37 Cal.3d 813 (1985)",
+    "what": "Insured may recover attorney fees incurred to obtain policy benefits after a bad-faith denial (Brandt fees)"
+   },
+   {
     "cite": "§ 790.03",
     "what": ""
    },
@@ -141,10 +145,6 @@
    },
    {
     "cite": "§ 3294",
-    "what": ""
-   },
-   {
-    "cite": "Brandt v. Superior",
     "what": ""
    }
   ],
@@ -234,32 +234,32 @@
     "what": "Fee award proportional to judgment/amount-alleged ratio (<0.2 none; >=0.8 full); fee cutoff if notice lacked specific amount"
    },
    {
-    "cite": "Ch. 542",
-    "what": ""
+    "cite": "Tex. Ins. Code Ch. 541",
+    "what": "Unfair methods of competition / unfair or deceptive practices in insurance"
    },
    {
-    "cite": "Ch. 541",
-    "what": ""
+    "cite": "Tex. Ins. Code Ch. 542",
+    "what": "Processing and settlement of claims (prompt payment)"
    },
    {
-    "cite": "Ch. 1813",
-    "what": ""
+    "cite": "Tex. Ins. Code § 542.055",
+    "what": "Receipt of notice of claim: acknowledge, commence investigation, request items"
    },
    {
-    "cite": "§ 542.055",
-    "what": ""
+    "cite": "Tex. Ins. Code § 542.056",
+    "what": "Notice of acceptance or rejection of claim"
    },
    {
-    "cite": "§ 542.056",
-    "what": ""
+    "cite": "Tex. Ins. Code § 542.057",
+    "what": "Payment of claim"
    },
    {
-    "cite": "§ 542.057",
-    "what": ""
+    "cite": "Tex. Ins. Code § 542.059",
+    "what": "Extension of deadlines"
    },
    {
-    "cite": "§ 542.059",
-    "what": ""
+    "cite": "Tex. Ins. Code Ch. 1813",
+    "what": "Chapter exists in the Insurance Code (existence only; no figure relied on)"
    }
   ],
   "FL": [
@@ -296,32 +296,32 @@
     "what": "Optional roof deductible capped at the lesser of 2% of Coverage A or 50% of roof replacement cost"
    },
    {
-    "cite": "§ 626.9541",
-    "what": ""
+    "cite": "Fla. Stat. § 626.9541",
+    "what": "Unfair methods of competition and unfair or deceptive acts"
    },
    {
-    "cite": "§ 627.70131",
-    "what": ""
+    "cite": "Fla. Stat. § 627.70131",
+    "what": "Insurer's duty: acknowledge within 7 calendar days; pay or deny within 60 days after notice of a property claim"
    },
    {
-    "cite": "§ 627.7142",
-    "what": ""
+    "cite": "Fla. Stat. § 627.7142",
+    "what": "Homeowner Claims Bill of Rights"
    },
    {
-    "cite": "§ 624.155",
-    "what": ""
+    "cite": "Fla. Stat. § 624.155",
+    "what": "Civil remedy for insurer bad faith"
    },
    {
-    "cite": "§ 55.03",
-    "what": ""
+    "cite": "Fla. Stat. § 627.4265",
+    "what": "Payment of settlement"
    },
    {
-    "cite": "§ 627.4265",
-    "what": ""
+    "cite": "Fla. Stat. § 627.70132",
+    "what": "Notice of property insurance claim"
    },
    {
-    "cite": "§ 627.70132",
-    "what": ""
+    "cite": "Fla. Stat. § 55.03",
+    "what": "Judgment interest rate"
    }
   ],
   "NY": [
@@ -364,6 +364,14 @@
    {
     "cite": "Pioneer Tower Owners Assn. v. State Farm Fire & Cas. Co., 12 N.Y.3d 302 (2009)",
     "what": "Exclusions must be clear; ambiguous earth-movement exclusions are read narrowly in favor of coverage"
+   },
+   {
+    "cite": "Bi-Economy Market, Inc. v. Harleysville Ins. Co. of N.Y., 10 N.Y.3d 187 (2008)",
+    "what": "Consequential damages for breach of the insurance contract"
+   },
+   {
+    "cite": "Panasia Estates, Inc. v. Hudson Ins. Co., 10 N.Y.3d 200 (2008)",
+    "what": "Consequential damages for breach of the insurance contract"
    },
    {
     "cite": "§ 2601",
@@ -425,14 +433,14 @@
    },
    {
     "cite": "215 ILCS 5/154.5",
-    "what": ""
-   },
-   {
-    "cite": "§ 155",
-    "what": ""
+    "what": "Improper claims practice where committed knowingly or with frequency"
    },
    {
     "cite": "735 ILCS 5/13-206",
+    "what": "Ten-year limitation on written contracts"
+   },
+   {
+    "cite": "§ 155",
     "what": ""
    }
   ],
@@ -466,11 +474,27 @@
     "what": "Quality health care accountability regulations"
    },
    {
-    "cite": "§§ 1171.1–1171.15",
-    "what": ""
+    "cite": "42 Pa.C.S. § 8371",
+    "what": "Insurer bad faith: interest at prime rate plus 3%, punitive damages, court costs and attorney fees"
    },
    {
-    "cite": "§ 8371",
+    "cite": "42 Pa.C.S. § 5524",
+    "what": "Two-year limitation"
+   },
+   {
+    "cite": "42 Pa.C.S. § 5525",
+    "what": "Four-year limitation (contract actions)"
+   },
+   {
+    "cite": "31 Pa. Code § 146.7",
+    "what": "Standards for prompt, fair and equitable settlements"
+   },
+   {
+    "cite": "Rancosky v. Washington National Ins. Co., 170 A.3d 364 (Pa. 2017)",
+    "what": "Bad-faith standard under 42 Pa.C.S. § 8371 (Terletsky test)"
+   },
+   {
+    "cite": "§§ 1171.1–1171.15",
     "what": ""
    },
    {
@@ -482,23 +506,7 @@
     "what": ""
    },
    {
-    "cite": "§ 146.7",
-    "what": ""
-   },
-   {
     "cite": "§ 146.6",
-    "what": ""
-   },
-   {
-    "cite": "§ 5525",
-    "what": ""
-   },
-   {
-    "cite": "§ 5524",
-    "what": ""
-   },
-   {
-    "cite": "Rancosky v. Washington",
     "what": ""
    }
   ],
@@ -541,27 +549,27 @@
    },
    {
     "cite": "R.C. 3901.20",
-    "what": ""
+    "what": "Unfair and deceptive acts in the business of insurance"
    },
    {
     "cite": "R.C. 2315.21",
-    "what": ""
+    "what": "Punitive damages: procedure and caps"
    },
    {
     "cite": "R.C. 2305.09",
-    "what": ""
+    "what": "Four-year limitation (including certain torts)"
    },
    {
-    "cite": "Ch. 3922",
-    "what": ""
+    "cite": "R.C. Ch. 3922",
+    "what": "External review of adverse benefit determinations"
    },
    {
-    "cite": "Hoskins v. Aetna",
-    "what": ""
+    "cite": "Hoskins v. Aetna Life Ins. Co., 6 Ohio St.3d 272 (1983)",
+    "what": "First-party bad-faith tort"
    },
    {
-    "cite": "Zoppo v. Homestead",
-    "what": ""
+    "cite": "Zoppo v. Homestead Ins. Co., 71 Ohio St.3d 552 (1994)",
+    "what": "First-party bad-faith standard (lack of reasonable justification)"
    }
   ],
   "GA": [
@@ -640,40 +648,40 @@
     "what": "Punitives capped at the greater of 3x compensatory or $250,000"
    },
    {
-    "cite": "§ 58-63-15",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 58-63-15",
+    "what": "Unfair methods of competition and unfair or deceptive acts"
    },
    {
-    "cite": "§ 75-1.1",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 75-1.1",
+    "what": "Unfair or deceptive acts or practices in commerce"
    },
    {
-    "cite": "§ 75-16",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 75-16",
+    "what": "Treble damages"
    },
    {
-    "cite": "§ 75-16.1",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 75-16.1",
+    "what": "Attorney fees in Chapter 75 actions"
    },
    {
-    "cite": "§ 58-3-100",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 58-3-100",
+    "what": "Claim acknowledgment and status timing"
    },
    {
-    "cite": "§ 58-44-16",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 58-44-16",
+    "what": "Standard fire policy: loss payable 60 days after proof of loss and ascertainment"
    },
    {
-    "cite": "§ 1-52",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 1-52",
+    "what": "Three-year limitation"
    },
    {
-    "cite": "§§ 58-50-75",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 58-50-75",
+    "what": "External review article (Smart NC)"
    },
    {
-    "cite": "§ 58-3-225",
-    "what": ""
+    "cite": "N.C. Gen. Stat. § 58-3-225",
+    "what": "Prompt claim payments under health benefit plans"
    }
   ],
   "AZ": [
@@ -698,31 +706,35 @@
     "what": "UM/UIM claim requires written notice to the insurer within three years after the accident"
    },
    {
-    "cite": "§ 20-461",
-    "what": ""
+    "cite": "A.R.S. § 20-461",
+    "what": "Unfair claim settlement practices"
    },
    {
-    "cite": "§ 20-462",
-    "what": ""
+    "cite": "A.R.S. § 20-462",
+    "what": "Timely payment: a first-party claim unpaid 30 days after acceptable proof of loss bears interest at the legal rate"
    },
    {
-    "cite": "§ 12-548",
-    "what": ""
+    "cite": "A.R.S. § 12-548",
+    "what": "Six-year limitation (written contracts)"
    },
    {
-    "cite": "§ 12-542",
-    "what": ""
+    "cite": "A.R.S. § 12-542",
+    "what": "Two-year limitation"
+   },
+   {
+    "cite": "A.R.S. §§ 20-2533 through 20-2537",
+    "what": "Health care appeals: grievance, expedited, initial appeal, external independent review"
+   },
+   {
+    "cite": "Noble v. National American Life Ins. Co., 128 Ariz. 188 (1981)",
+    "what": "First-party bad-faith tort"
+   },
+   {
+    "cite": "Zilisch v. State Farm Mut. Auto. Ins. Co., 196 Ariz. 234 (2000)",
+    "what": "Bad faith: duty beyond fair debatability"
    },
    {
     "cite": "§§ 20-2533–20-2537",
-    "what": ""
-   },
-   {
-    "cite": "Noble v. National",
-    "what": ""
-   },
-   {
-    "cite": "Zilisch v. State",
     "what": ""
    }
   ]

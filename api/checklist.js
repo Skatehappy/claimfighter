@@ -1,9 +1,10 @@
 // api/checklist.js
 import { MODEL } from './_config.js';
+import { verifyLicense, isG4TCode, g4tCount } from './_auth.js';
 
 export const config = { runtime: 'edge' };
 
-const VALID_CODES = (process.env.ACCESS_CODES || '').split(',').map(c => c.trim()).filter(Boolean);
+const PRODUCT_LINK = 'O80Tw';
 
 export default async function handler(req) {
   const headers = {
@@ -19,13 +20,21 @@ export default async function handler(req) {
   try {
     const { accessCode, state, varianceType, letterExcerpt } = await req.json();
 
-    const TEST_KEYS = (process.env.TEST_KEYS || 'SMOKE-TEST-2026-BAO').split(',').map(k => k.trim().toUpperCase()).filter(Boolean);
-    const isTestKey = TEST_KEYS.includes(String(accessCode || '').trim().toUpperCase());
-    if (!isTestKey && (!accessCode || !VALID_CODES.includes(accessCode.toUpperCase()))) {
-      return new Response(JSON.stringify({ error: 'Invalid access code' }), { status: 401, headers });
-    }
-
+    // Same gate as api/generate.js: a passed Payhip verify or a G4T test code, else no Anthropic call.
+    const payhipApiKey = process.env.PAYHIP_API_KEY;
     const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!accessCode || !String(accessCode).trim()) {
+      return new Response(JSON.stringify({ error: 'Access code required' }), { status: 401, headers });
+    }
+    if (!payhipApiKey || !apiKey) {
+      return new Response(JSON.stringify({ error: 'Service not configured' }), { status: 500, headers });
+    }
+    if (isG4TCode(accessCode)) {
+      if (!g4tCount()) return new Response(JSON.stringify({ error: 'G4T daily cap reached.' }), { status: 429, headers });
+    } else {
+      const lic = await verifyLicense(accessCode, PRODUCT_LINK, payhipApiKey);
+      if (!lic.ok) return new Response(JSON.stringify({ error: lic.error }), { status: lic.status, headers });
+    }
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',

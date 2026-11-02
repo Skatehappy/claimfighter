@@ -1,7 +1,7 @@
 // Playwright UI wiring test: every button / nav control / export on the real built app does what it says,
 // with ZERO console errors and zero page errors. /api/** is mocked in the browser (no Payhip, no Anthropic).
 // Needs playwright-core and an installed Chromium-family browser (Edge channel by default).
-// Resolve order: PLAYWRIGHT_CORE env (path to the package dir) -> ./node_modules -> C:\Users\jakld\captainsdesk\node_modules.
+// playwright-core is a devDependency (npm install). Browser: Edge channel by default (UI_BROWSER_CHANNEL overrides).
 // Run: node --test tests/ui-wiring.test.mjs
 import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -15,11 +15,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, '.uitest-dist');
 const require = createRequire(import.meta.url);
-function loadPlaywright() {
-  const cands = [process.env.PLAYWRIGHT_CORE, path.join(ROOT, 'node_modules', 'playwright-core'), 'C:\\Users\\jakld\\captainsdesk\\node_modules\\playwright-core'].filter(Boolean);
-  for (const c of cands) { try { return require(c); } catch {} }
-  throw new Error('playwright-core not found (set PLAYWRIGHT_CORE to its package dir)');
-}
+function loadPlaywright() { return require('playwright-core'); }
 
 let server, browser, base;
 const state = { mode: 'ok', apiCalls: [] };

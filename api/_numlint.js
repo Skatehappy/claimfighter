@@ -7,9 +7,31 @@
 // Demand deadlines the letter sets for the insurer ("within 30 days of receipt of this letter")
 // are the buyer's choice, not a statement of law, and are exempt.
 
-const WORDS = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, fifteen: 15, twenty: 20, thirty: 30, forty: 40, 'forty-five': 45, sixty: 60, ninety: 90, 'one hundred twenty': 120, 'one hundred eighty': 180 };
+// Spelled-out numbers up to 999,999: "thirty", "thirty-six", "thirty six", "one hundred twenty", "five hundred",
+// "two thousand five hundred". NUM is a regex source (no capture groups); wordsToNumber() turns a match into a number.
+const ONES = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 };
+const TEENS = { ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19 };
+const TENS = { twenty: 20, thirty: 30, forty: 40, fourty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const WORDNUM = { ...ONES, ...TEENS, ...TENS };
+const alt = o => Object.keys(o).sort((x, y) => y.length - x.length).join('|');
+const B100 = String.raw`(?:(?:${alt(TENS)})(?:[-\s]+(?:${alt(ONES)}))?|${alt(TEENS)}|${alt(ONES)})`;
+const B1000 = String.raw`(?:(?:${alt(ONES)})\s+hundred(?:\s+(?:and\s+)?${B100})?|${B100})`;
+const NUM = String.raw`(?:${B1000}\s+thousand(?:\s+(?:and\s+)?${B1000})?|${B1000})`;
+export function wordsToNumber(str) {
+  let total = 0, cur = 0;
+  for (const t of String(str).toLowerCase().split(/[-\s]+/)) {
+    if (t === 'and') continue;
+    if (t === 'hundred') cur = (cur || 1) * 100;
+    else if (t === 'thousand') { total += (cur || 1) * 1000; cur = 0; }
+    else if (WORDNUM[t]) cur += WORDNUM[t];
+    else return NaN;
+  }
+  return total + cur;
+}
+const toN = x => (/^[\d.,]+$/.test(x) ? parseFloat(x.replace(/,/g, '')) : wordsToNumber(x));
 const UNIT = { day: 'd', hour: 'h', week: 'w', month: 'm', year: 'y' };
-const wordAlt = Object.keys(WORDS).sort((a, b) => b.length - a.length).map(w => w.replace('-', '[- ]')).join('|');
+// optional parenthetical repeat of the number: "thirty (30) days", "30 (thirty) days", "five hundred dollars ($500)"
+const PAREN = String.raw`(?:\s*\(\s*\$?(${NUM}|\d[\d,]*(?:\.\d+)?)\s*%?\s*\))?`;
 
 // → Map(canonical → sample text)
 export function extractFigures(text) {
@@ -21,14 +43,17 @@ export function extractFigures(text) {
     if (/million/i.test(m[3] || '')) n *= 1e6; else if (/thousand/i.test(m[3] || '')) n *= 1e3;
     add('$' + n, m[0]);
   }
-  for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s?(?:%|percent\b)/gi)) add(parseFloat(m[1]) + '%', m[0]);
-  const dur = new RegExp(String.raw`\b(\d+|${wordAlt})[\s-]+(?:(business|working|calendar)[\s-]+)?(day|hour|week|month|year)s?\b`, 'gi');
+  // "five hundred dollars", "500 dollars", "five hundred (500) dollars"
+  const dollars = new RegExp(String.raw`\b(\d[\d,]*(?:\.\d+)?|${NUM})${PAREN}\s+dollars?\b`, 'gi');
+  for (const m of text.matchAll(dollars)) for (const g of [m[1], m[2]]) { const n = g && toN(g); if (Number.isFinite(n) && n > 0) add('$' + n, m[0]); }
+  // "10%", "ten percent", "ten (10) percent", "ten per cent"
+  const pct = new RegExp(String.raw`(?<![\w.])(\d+(?:\.\d+)?|${NUM})${PAREN}\s?(?:%|percent\b|per\s?cent\b)`, 'gi');
+  for (const m of text.matchAll(pct)) for (const g of [m[1], m[2]]) { const n = g && toN(g); if (Number.isFinite(n)) add(n + '%', m[0]); }
+  // "30 days", "thirty days", "thirty (30) days", "thirty-six months", "ten business days"
+  const dur = new RegExp(String.raw`\b(\d+|${NUM})${PAREN}[\s-]+(?:(business|working|calendar)[\s-]+)?(day|hour|week|month|year)s?\b`, 'gi');
   for (const m of text.matchAll(dur)) {
-    const raw = m[1].toLowerCase().replace(/ /g, '-');
-    const n = /^\d+$/.test(raw) ? parseInt(raw, 10) : (WORDS[raw] ?? WORDS[raw.replace(/-/g, ' ')]);
-    if (!n) continue;
-    const bd = /business|working/i.test(m[2] || '') ? 'b' : '';
-    add(n + bd + UNIT[m[3].toLowerCase()], m[0], true);
+    const bd = /business|working/i.test(m[3] || '') ? 'b' : '';
+    for (const g of [m[1], m[2]]) { const n = g && toN(g); if (n) add(n + bd + UNIT[m[4].toLowerCase()], m[0], true); }
   }
   for (const m of text.matchAll(/\b(\d+)(?:st|nd|rd|th)\s+day\b/gi)) add(m[1] + 'd', m[0], true);
   return out;

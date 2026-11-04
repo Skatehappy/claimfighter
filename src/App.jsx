@@ -1,5 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { stripMarkdown } from "./stripMarkdown.js";
+
+// Appended to every letter system prompt (standard and assertive share it so the sender block is identical).
+const FORMAT_RULES = `
+
+Formatting rules (apply to every version of the letter):
+- Write PLAIN TEXT only. No markdown: no # headings, no ** or __ bold, no * italics, no bullet symbols, no tables, no code fences. Use numbered headings like "I. Basis for Appeal" as ordinary text lines and "1." or "-" for lists.
+- Begin with the sender block, one item per line, exactly: the policyholder's name, then [Address], then [Phone], then [Email]. Then a blank line, then [DATE], then the insurer's name and address block, then "VIA CERTIFIED MAIL, RETURN RECEIPT REQUESTED", then the Re: line.
+- Keep these bracketed placeholders literally; never invent an address, phone number or email address.`;
 
 const EMAILJS_SERVICE_ID  = "YOUR_EMAILJS_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
@@ -286,7 +295,7 @@ export default function App() {
   useEffect(() => {
     const d = store.get();
     if (d && d.formData) setFormData(d.formData);
-    if (d && d.letter) { setLetter(d.letter); setAltLetter(d.altLetter || ""); setChecklist(d.checklist || []); setRestored(true); }
+    if (d && d.letter) { setLetter(stripMarkdown(d.letter)); setAltLetter(stripMarkdown(d.altLetter || "")); setChecklist(d.checklist || []); setRestored(true); }
     hydrated.current = true;
   }, []);
 
@@ -531,7 +540,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
     setAltLetter("");
     setChecklist([]);
     try {
-      const effectivePrompt = pickSystemPrompt(formData.claimType);
+      const effectivePrompt = pickSystemPrompt(formData.claimType) + FORMAT_RULES;
       setLoadingMsg("Drafting your appeal letter...");
       const pr = progress.current;   // resume after a transient failure: finished passes are not re-run
       const draft = pr.draft || await callAPI(effectivePrompt, buildPrompt("standard"), false, "");
@@ -539,11 +548,11 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
       setLoadingMsg("Running quality review...");
       const reviewed = pr.reviewed || await callAPI("", "", true, draft);
       pr.reviewed = reviewed;
-      setLetter(reviewed);
+      setLetter(stripMarkdown(reviewed));
       setLoadingMsg("Generating assertive version...");
       const alt = pr.alt || await callAPI(effectivePrompt, buildPrompt("assertive"), false, "");
       pr.alt = alt;
-      setAltLetter(alt);
+      setAltLetter(stripMarkdown(alt));
       setLoadingMsg("Building checklist...");
       try {
         const clRes = await fetch("/api/checklist", {
@@ -609,7 +618,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
     doc.setFont("Times", "normal");
     doc.setFontSize(11);
     const today = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-    const fullText = text.replace(/\[DATE\]/g, today);
+    const fullText = stripMarkdown(text).replace(/\[DATE\]/g, today);
     const lines = doc.splitTextToSize(fullText, usableWidth);
     let y = margin;
     lines.forEach(line => {
@@ -825,7 +834,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
             </div>
 
             <div style={{ background: colors.white, border: `1px solid ${colors.border}`, borderRadius: "10px", padding: "40px 48px", lineHeight: "1.9", fontSize: "14px", color: colors.inkLight, whiteSpace: "pre-wrap", fontFamily: APP.font, boxShadow: "0 4px 32px rgba(0,0,0,0.08)", marginBottom: "24px" }}>
-              {activeTab === "standard" ? letter : altLetter}
+              {stripMarkdown(activeTab === "standard" ? letter : altLetter)}
             </div>
 
             {EMAIL_ENABLED && email && !emailSent && (

@@ -18,10 +18,17 @@ const PRODUCT_LINK = 'O80Tw';
 // once with a higher limit, and a still-truncated reply throws a 502 so no partial letter is ever linted,
 // returned or counted against the license.
 const TOKEN_LIMITS = [3000, 6000];
-async function callModel({ anthropicKey, system, messages }) {
-  const r = await callComplete('https://api.anthropic.com/v1/messages', anthropicKey, max => ({ model: MODEL, max_tokens: max, thinking: { type: 'disabled' }, system: system || undefined, messages }), TOKEN_LIMITS);
+// Time budget: ONE request must stay well under the 60s Node limit (Hobby max). Model calls (first call, truncation
+// retry, lint regeneration) share one hard deadline at MODEL_BUDGET_MS after handler start (the license verify is
+// already inside it; the usage mark adds <=4s: worst case ~48s). The truncation retry needs 68% of the budget still
+// free and the lint regeneration 57%; otherwise they are skipped (retry -> clean 502 try again, regeneration ->
+// unverified sentences are stripped). CF_GEN_BUDGET_MS only exists so tests can scale time.
+export const MODEL_BUDGET_MS = 44000;
+const budgetMs = () => Number(process.env.CF_GEN_BUDGET_MS) || MODEL_BUDGET_MS;
+async function callModel({ anthropicKey, system, messages, deadline, limits = TOKEN_LIMITS, minRetryMs = 0 }) {
+  const r = await callComplete('https://api.anthropic.com/v1/messages', anthropicKey, max => ({ model: MODEL, max_tokens: max, thinking: { type: 'disabled' }, system: system || undefined, messages }), limits, { deadline, minRetryMs });
   if (!r.ok) {
-    const e = new Error(r.truncated ? 'The letter came out incomplete. Nothing was lost and your access code has not been used. Click Try again; it is free.' : 'AI generation failed');
+    const e = new Error(r.truncated ? 'The letter came out incomplete. Nothing was lost and your access code has not been used. Click Try again; it is free.' : r.timeout ? 'The AI took too long. Nothing was lost and your access code has not been used. Click Try again; it is free.' : 'AI generation failed');
     e.status = 502; e.detail = r.err; throw e;
   }
   return r.text;
@@ -86,7 +93,7 @@ export default async function handler(req, res) {
 
     let messages;
     if (reviewMode && draftLetter) {
-      messages = [{ role: 'user', content: `Review and improve this appeal letter. Fix vague language, ensure all arguments are explicitly stated, remove emotional appeals, tighten redundancy. Return ONLY the improved letter:\n\n${draftLetter}` }];
+      messages = [{ role: 'user', content: `Review and improve this appeal letter. Write plain text only: no markdown, no asterisks, no # headings, no tables. Keep the sender contact block ([Your Name], [Address], [Phone], [Email]) and [DATE] placeholders exactly as in the draft. Fix vague language, ensure all arguments are explicitly stated, remove emotional appeals, tighten redundancy. Return ONLY the improved letter:\n\n${draftLetter}` }];
     } else {
       messages = [{ role: 'user', content: userPrompt }];
     }
@@ -98,16 +105,17 @@ export default async function handler(req, res) {
     const lock = isCheckCall ? '' : citationBlock(verified);
     const system = isCheckCall ? undefined : ((systemPrompt || '') + lock).trim() || undefined;
 
-    let text = await callModel({ anthropicKey, system, messages });
+    const B = budgetMs(), deadline = t0 + B;
+    let text = await callModel({ anthropicKey, system, messages, deadline, minRetryMs: B * 0.68 });
 
     if (!isCheckCall) {
       // numeric-claims allow-list: verified data for this state + the buyer's own facts + this app's own instructions
       const figAllowed = new Set([...verified.figSet, ...figureSet([systemPrompt || '', userPrompt || '', draftLetter || ''])]);
       const linted = await lintLetter(text, verified, async forbidden => {
-        // one regeneration, skipped when the 60s function budget is mostly spent
-        if (Date.now() - t0 > 30000) return null;
+        // one regeneration (single call, no truncation retry), skipped unless 57% of the budget is still free
+        if (deadline - Date.now() < B * 0.57) return null;
         try {
-          return await callModel({ anthropicKey, system: (system || '') + `
+          return await callModel({ anthropicKey, deadline, limits: [TOKEN_LIMITS[1]], system: (system || '') + `
 
 Your previous draft cited authorities or stated figures that are not verified: ${forbidden.join('; ')}. Rewrite the letter and do NOT cite those or any authority not in the verified list, and do not state any dollar amount, percentage or number of days/months/years as a legal rule unless it is in the verified list or the policyholder's own facts.`, messages });
         } catch { return null; }
@@ -121,6 +129,7 @@ Your previous draft cited authorities or stated figures that are not verified: $
     if (!isCheckCall && !g4t) {
       try {
         await fetch(`https://payhip.com/api/v1/license/usage`, {
+          signal: AbortSignal.timeout(Math.min(4000, B / 10)),
           method: 'PUT',
           headers: { 'payhip-api-key': payhipApiKey, 'Content-Type': 'application/x-www-form-urlencoded' },
           body: `product_link=${PRODUCT_LINK}&license_key=${encodeURIComponent(accessCode.trim())}`,

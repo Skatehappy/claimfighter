@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const BANNED = [/attorney[\s-]*quality/i, /lawyer[\s-]*quality/i, /attorney[\s-]*grade/i, /lawyer[\s-]*grade/i,
   /attorney[\s-]*written/i, /attorney[\s-]*drafted/i, /lawyer[\s-]*written/i, /lawyer[\s-]*drafted/i, /real\s+lawyer/i];
-const NEG = /b(not|no|never|nor|without|cannot)b|n['’]tb/i;
+const NEG = /\b(?:not|no|never|nor|without|cannot)\b|n['’]t\b/i;
 
 // Returns a list of problems for a text blob.
 export function findViolations(text) {

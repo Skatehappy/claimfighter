@@ -5,7 +5,9 @@ import fs from 'node:fs';
 import { calls, resetMock, mock, callGen, callChk } from './helpers.js';
 import { verifiedFor, extractCitations, findUnverified, trimUnverifiedSubsections, findUnverifiedSubsections, subsectionMap } from '../api/_citelint.js';
 import { extractFigures, figureSet, sentenceFigureHits } from '../api/_numlint.js';
-import { lockChecklist, FALLBACK_CHECKLIST } from '../api/_checklist-lock.js';
+import { lockChecklist } from '../api/_checklist-lock.js';
+import { fallbackFor } from '../api/_checklist-fallbacks.js';
+const FALLBACK_CHECKLIST = fallbackFor('Other');
 
 const read = f => fs.readFileSync(new URL('../' + f, import.meta.url), 'utf8');
 const gbody = (o = {}) => ({ accessCode: 'REAL-CODE-1', systemPrompt: 'You write letters.', userPrompt: 'Policyholder in Texas.', state: 'Texas', ...o });

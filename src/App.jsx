@@ -553,7 +553,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
             accessCode,
             address: formData.insurerName,
             state: formData.state,
-            varianceType: "insurance appeal",
+            varianceType: formData.claimType || "insurance appeal",
             letterExcerpt: reviewed.substring(0, 300),
           }),
         });

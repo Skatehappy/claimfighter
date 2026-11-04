@@ -3,6 +3,7 @@ import { MODEL } from './_config.js';
 import { verifiedFor, citationBlock, lintLetter } from './_citelint.js';
 import { verifyLicense, isG4TCode, g4tCount } from './_auth.js';
 import { figureSet } from './_numlint.js';
+import { callComplete } from './_complete.js';
 
 // Node serverless runtime (NOT edge). Edge caps at ~25s on Hobby and ignores
 // maxDuration, which 504'd ~25s Opus letters. Node honors maxDuration:60. This
@@ -13,19 +14,17 @@ export const config = { maxDuration: 60 };
 
 const PRODUCT_LINK = 'O80Tw';
 
-// One Anthropic call; returns the text or throws.
+// One Anthropic call; returns the text or throws. stop_reason "max_tokens" = truncated: callComplete retries
+// once with a higher limit, and a still-truncated reply throws a 502 so no partial letter is ever linted,
+// returned or counted against the license.
+const TOKEN_LIMITS = [3000, 6000];
 async function callModel({ anthropicKey, system, messages }) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-api-key': anthropicKey, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify({ model: MODEL, max_tokens: 3000, thinking: { type: 'disabled' }, system: system || undefined, messages }),
-  });
-  if (!response.ok) { const e = new Error('AI generation failed'); e.status = 502; e.detail = await response.text(); throw e; }
-  const data = await response.json();
-  // Extract the text block by type, not by position (adaptive thinking can put a thinking block first).
-  const text = data.content?.find(b => b.type === 'text')?.text;
-  if (!text) throw new Error(`No text block in API response (stop_reason: ${data.stop_reason || 'unknown'})`);
-  return text;
+  const r = await callComplete('https://api.anthropic.com/v1/messages', anthropicKey, max => ({ model: MODEL, max_tokens: max, thinking: { type: 'disabled' }, system: system || undefined, messages }), TOKEN_LIMITS);
+  if (!r.ok) {
+    const e = new Error(r.truncated ? 'The letter came out incomplete. Nothing was lost and your access code has not been used. Click Try again; it is free.' : 'AI generation failed');
+    e.status = 502; e.detail = r.err; throw e;
+  }
+  return r.text;
 }
 
 function cors(res) {

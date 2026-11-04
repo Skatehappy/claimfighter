@@ -42,7 +42,7 @@ ${stormClaims.map(p => `    <p>${escapeHtml(p)}</p>`).join('\n')}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${state.name} ${capitalize(APP_CONFIG.vertical)} — Demand Letter Generator | ${APP_CONFIG.name}</title>
-<meta name="description" content="State-specific demand letters for ${APP_CONFIG.vertical} disputes in ${state.name}. AI-generated, attorney-quality, $${APP_CONFIG.price} flat. Covers all ${disputes.length} major dispute types.">
+<meta name="description" content="State-specific demand letters for ${APP_CONFIG.vertical} disputes in ${state.name}. AI-generated, well-organized letters, $${APP_CONFIG.price} flat. Covers all ${disputes.length} major dispute types.">
 <link rel="canonical" href="https://${APP_CONFIG.domain}/${state.slug}">
 <meta property="og:title" content="${state.name} ${capitalize(APP_CONFIG.vertical)} | ${APP_CONFIG.name}">
 <meta property="og:description" content="State-specific demand letters for ${state.name}. $${APP_CONFIG.price} flat.">
@@ -102,7 +102,7 @@ footer a{color:rgba(255,255,255,0.7);text-decoration:none}
 </nav>
 <section class="hero">
   <h1>${state.name} ${capitalize(APP_CONFIG.vertical)}</h1>
-  <p>State-specific demand letters citing ${state.name} statutes. AI-generated, attorney-quality, $${APP_CONFIG.price} flat. Covers all ${disputes.length} major dispute types.</p>
+  <p>State-specific demand letters citing ${state.name} statutes. AI-generated, well-organized letters, $${APP_CONFIG.price} flat. Covers all ${disputes.length} major dispute types.</p>
   <a class="btn-primary" href="/app?state=${state.slug}">Generate My ${state.name} Letter →</a>
 </section>
 <div class="container">
@@ -127,7 +127,7 @@ ${mergedHTML}${stormHTML}
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-title">AI Writes Your Letter</div>
-      <div class="step-body">Citing ${state.name} statutes, deadlines, and remedies. Attorney-quality.</div>
+      <div class="step-body">Citing ${state.name} statutes, deadlines, and remedies. A clear, well-organized letter.</div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
@@ -149,7 +149,7 @@ ${mergedHTML}${stormHTML}
 </div>
 <footer>
   <p>${APP_CONFIG.name} &middot; &copy; 2026 The Super Simple Software Company &middot; <a href="mailto:support@buyappsonce.com">support@buyappsonce.com</a></p>
-  <p style="margin-top:8px;font-size:11px;opacity:0.6">Legal Disclaimer: This page provides general information about ${state.name} ${APP_CONFIG.vertical} law and is not legal advice. Statutes change; verify current law or consult a licensed attorney for advice on your specific situation.</p>
+  <p style="margin-top:8px;font-size:11px;opacity:0.6">Legal Disclaimer: This page provides general information about ${state.name} ${APP_CONFIG.vertical} law and is not legal advice. ClaimFighter is not a law firm and does not give legal advice. Statutes change; verify current law or consult a licensed attorney for advice on your specific situation.</p>
 </footer>
 </body>
 </html>`;

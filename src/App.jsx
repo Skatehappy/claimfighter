@@ -686,7 +686,7 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
               They Denied Your Claim. Fight Back.
             </h1>
             <p style={{ fontSize: "17px", color: colors.inkMuted, maxWidth: "480px", margin: "0 auto 40px", lineHeight: "1.7" }}>
-              AI-generated appeal letters for insurance denials of all types — health, medical bills, life, disability, long-term care, and property. Attorney-quality. 5 minutes. $19.
+              AI-generated appeal letters for insurance denials of all types — health, medical bills, life, disability, long-term care, and property. A clear, well-organized letter citing your state's law, in about 5 minutes. $19.
             </p>
             <div style={{ maxWidth: "400px", margin: "0 auto", background: colors.white, border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
               <div style={{ fontSize: "14px", color: colors.inkLight, marginBottom: "16px", fontWeight: "600" }}>Enter Your Access Code</div>
@@ -709,6 +709,9 @@ ADDITIONAL INFO: ${formData.additionalInfo || "none"}`;
               </div>
               <div style={{ marginTop: "12px", fontSize: "12px", color: colors.inkFaint }}>
                 Your letter tool is at <strong>claimfighterapp.com</strong> — bookmark it.
+              </div>
+              <div style={{ marginTop: "12px", fontSize: "11px", color: colors.inkFaint, lineHeight: "1.5" }}>
+                ClaimFighter is not a law firm and does not give legal advice. Letters are AI-generated; review before sending, and consult a licensed attorney for advice about your situation.
               </div>
             </div>
           </div>

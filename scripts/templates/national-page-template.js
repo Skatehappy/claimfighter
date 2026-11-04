@@ -98,7 +98,7 @@ ${faqs.length ? `
 </main>
 <footer>
   <p>${APP_CONFIG.name} &middot; &copy; 2026 The Super Simple Software Company &middot; <a href="mailto:support@buyappsonce.com">support@buyappsonce.com</a></p>
-  <p style="margin-top:8px;font-size:11px;opacity:0.6">Legal Disclaimer: This page provides general information and is not legal advice. Rules change and vary by plan and state; verify current law or consult a licensed attorney for advice on your specific situation.</p>
+  <p style="margin-top:8px;font-size:11px;opacity:0.6">Legal Disclaimer: This page provides general information and is not legal advice. ClaimFighter is not a law firm and does not give legal advice. Rules change and vary by plan and state; verify current law or consult a licensed attorney for advice on your specific situation.</p>
 </footer>
 </body>
 </html>`;

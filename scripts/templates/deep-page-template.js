@@ -175,7 +175,7 @@ ${enrichmentHTML}
   </div>
 
   <div class="disclaimer">
-    <strong>Legal Disclaimer:</strong> This page provides general information about ${state.name} ${APP_CONFIG.vertical} law and is not legal advice. Statutes change; verify current law with ${state.name}'s statutes or consult a licensed attorney for advice on your specific situation. ${APP_CONFIG.name} generates demand letters; it does not provide legal representation.
+    <strong>Legal Disclaimer:</strong> This page provides general information about ${state.name} ${APP_CONFIG.vertical} law and is not legal advice. ClaimFighter is not a law firm and does not give legal advice. Statutes change; verify current law with ${state.name}'s statutes or consult a licensed attorney for advice on your specific situation. ${APP_CONFIG.name} generates demand letters; it does not provide legal representation.
   </div>
 </div>
 <footer>

@@ -56,6 +56,9 @@ for (const [label, files] of [['A13: tests/*.test.js failed (run npm test)', ['t
   try { execFileSync(process.execPath, ['--test', ...files], { cwd: ROOT, stdio: 'pipe', timeout: 240000 }); } catch (e) { fail(label + '\n' + String(e.stdout || '').split('\n').filter(l => /^\s*(not ok|error:)/.test(l)).slice(0, 8).join('\n')); }
 }
 
+// ── A16: marketing-claims check (no attorney-quality-style claims; legal advice only in not/no disclaimers) ──
+try { execFileSync(process.execPath, ['scripts/check-claims.mjs'], { cwd: ROOT, stdio: 'pipe' }); } catch (e) { fail('A16: marketing-claims check failed: ' + String(e.stderr || '')); }
+
 // ── A15: verified_on freshness (every log entry dated; nothing rendered/generated from an entry older than 12 months; warns at 10) ──
 try {
   const o = execFileSync(process.execPath, ['scripts/check-verified-on.mjs'], { cwd: ROOT, stdio: 'pipe', encoding: 'utf8' });

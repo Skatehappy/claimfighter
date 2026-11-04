@@ -4,6 +4,7 @@ import { verifiedFor, citationBlock, lintLetter } from './_citelint.js';
 import { verifyLicense, isG4TCode, g4tCount } from './_auth.js';
 import { figureSet } from './_numlint.js';
 import { callComplete } from './_complete.js';
+import { findAttorneyVoice, SIGN_RULE } from './_letterlint.js';
 
 // Node serverless runtime (NOT edge). Edge caps at ~25s on Hobby and ignores
 // maxDuration, which 504'd ~25s Opus letters. Node honors maxDuration:60. This
@@ -93,7 +94,7 @@ export default async function handler(req, res) {
 
     let messages;
     if (reviewMode && draftLetter) {
-      messages = [{ role: 'user', content: `Review and improve this appeal letter. Write plain text only: no markdown, no asterisks, no # headings, no tables. Keep the sender contact block ([Your Name], [Address], [Phone], [Email]) and [DATE] placeholders exactly as in the draft. Fix vague language, ensure all arguments are explicitly stated, remove emotional appeals, tighten redundancy. Return ONLY the improved letter:\n\n${draftLetter}` }];
+      messages = [{ role: 'user', content: `Review and improve this appeal letter. Write plain text only: no markdown, no asterisks, no # headings, no tables. Keep the sender contact block ([Your Name], [Address], [Phone], [Email]) and [DATE] placeholders exactly as in the draft. Fix vague language, ensure all arguments are explicitly stated, remove emotional appeals, tighten redundancy. The letter is written and signed by the claimant in their own voice. ${SIGN_RULE} Return ONLY the improved letter:\n\n${draftLetter}` }];
     } else {
       messages = [{ role: 'user', content: userPrompt }];
     }
@@ -103,11 +104,26 @@ export default async function handler(req, res) {
     // ("Reply: VALID") is not a letter and is left untouched.
     const verified = verifiedFor(state);
     const lock = isCheckCall ? '' : citationBlock(verified);
-    const system = isCheckCall ? undefined : ((systemPrompt || '') + lock).trim() || undefined;
+    const withRule = systemPrompt && !systemPrompt.includes(SIGN_RULE) ? `${systemPrompt}\n\n${SIGN_RULE}` : (systemPrompt || '');
+    const system = isCheckCall ? undefined : (withRule + lock).trim() || undefined;
 
     const B = budgetMs(), deadline = t0 + B;
     let text = await callModel({ anthropicKey, system, messages, deadline, minRetryMs: B * 0.68 });
 
+    // No attorney voice: the letter is written and signed by the claimant. One regeneration naming the rejected phrase
+    // (only if budget allows), then a clean 502 BEFORE the usage mark; the offending text is never returned.
+    const voiceFail = phrase => Object.assign(new Error(`The letter came out in the wrong voice (it contained "${phrase}"). Nothing was lost and your access code has not been used. Click Try again; it is free.`), { status: 502, detail: 'attorney_voice' });
+    if (!isCheckCall) {
+      const p1 = findAttorneyVoice(text);
+      if (p1) {
+        if (deadline - Date.now() < B * 0.57) throw voiceFail(p1);
+        text = await callModel({ anthropicKey, deadline, limits: [TOKEN_LIMITS[1]], system: (system || '') + `
+
+Your previous draft contained the wording "${p1}". The letter is written and signed by the claimant in their own name, never by an attorney, counsel or firm. Rewrite it without that wording and without any attorney, counsel, Esq., firm or "my client" self-description. ${SIGN_RULE}`, messages });
+        const p2 = findAttorneyVoice(text);
+        if (p2) throw voiceFail(p2);
+      }
+    }
     if (!isCheckCall) {
       // numeric-claims allow-list: verified data for this state + the buyer's own facts + this app's own instructions
       const figAllowed = new Set([...verified.figSet, ...figureSet([systemPrompt || '', userPrompt || '', draftLetter || ''])]);
@@ -122,6 +138,8 @@ Your previous draft cited authorities or stated figures that are not verified: $
       }, console.log, { figAllowed });
       text = linted.text;
       if (!text) throw new Error('Letter was empty after citation check.');
+      const p3 = findAttorneyVoice(text);   // a citation-lint regeneration could reintroduce it: no further retry
+      if (p3) throw voiceFail(p3);
     }
 
     // Mark license as used. Awaited (not fire-and-forget): on Node serverless,

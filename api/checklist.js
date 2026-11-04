@@ -4,6 +4,7 @@ import { verifyLicense, isG4TCode, g4tCount } from './_auth.js';
 import { verifiedFor, citationBlock } from './_citelint.js';
 import { lockChecklist } from './_checklist-lock.js';
 import { callComplete } from './_complete.js';
+import { findAttorneyVoice } from './_letterlint.js';
 import { typeInfo, fallbackFor } from './_checklist-fallbacks.js';
 
 export const config = { runtime: 'edge' };
@@ -78,7 +79,8 @@ Letter excerpt: ${letterExcerpt?.substring(0, 200) || ''}`;
         const clean = r.text.replace(/```json|```/g, '').trim();
         const parsed = JSON.parse(clean);
         checklist = lockChecklist(Array.isArray(parsed) ? parsed : [], verifiedFor(state), `${state} ${varianceType} ${letterExcerpt?.substring(0, 200) || ''}`);
-        diag.survivors = checklist.length;
+        // no attorney voice in checklist items: any hit discards the model list (the type's own fallback is used)
+        if (checklist.some(findAttorneyVoice)) { diag.attorneyVoice = true; checklist = null; } else diag.survivors = checklist.length;
       } catch { diag.parseFailed = true; }
     } else {
       diag.failed = r.truncated ? 'truncated' : r.timeout ? 'timeout' : 'model-error';

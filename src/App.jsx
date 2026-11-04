@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { stripMarkdown } from "./stripMarkdown.js";
+import { SIGN_RULE } from "./letterRules.js";
 
 // Appended to every letter system prompt (standard and assertive share it so the sender block is identical).
 const FORMAT_RULES = `
@@ -377,7 +378,7 @@ export default function App() {
     return (await res.json()).text;
   };
 
-  const systemPrompt = `You are an expert insurance appeal attorney. Write compelling, legally precise appeal letters that maximize the chance of claim approval.
+  const systemPrompt = `You are an expert insurance-appeal letter writer. Write compelling, legally precise appeal letters that maximize the chance of claim approval.
 
 Rules:
 - Open with clear statement of what was denied, policy number, and claim number
@@ -390,9 +391,10 @@ Rules:
 - Format: formal letter with [DATE] placeholder, via certified mail
 - For medical bill disputes: cite the No Surprises Act (effective Jan 1, 2022), and state balance billing laws. Demand an itemized bill and removal of improper charges or correction of billing errors.
 - For collections disputes: cite FDCPA validation rights and demand proof of debt before any payment.
+- ${SIGN_RULE}
 - Output ONLY the letter, no preamble`;
 
-  const lifeSystemPrompt = `You are an expert insurance appeal attorney specializing in life insurance claim denials. Write compelling, legally precise demand letters to reverse denials of death benefit claims.
+  const lifeSystemPrompt = `You are an expert insurance-appeal letter writer specializing in life insurance claim denials. Write compelling, legally precise demand letters to reverse denials of death benefit claims.
 
 Rules:
 - Open with clear statement of the policy, insured's name, date of death, policy number, and denied claim amount
@@ -407,9 +409,10 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
+- ${SIGN_RULE}
 - Output ONLY the letter, no preamble`;
 
-  const disabilitySystemPrompt = `You are an expert insurance appeal attorney specializing in disability insurance denials, including ERISA-governed group plans and individual policies. Write compelling, legally precise appeal letters.
+  const disabilitySystemPrompt = `You are an expert insurance-appeal letter writer specializing in disability insurance denials, including ERISA-governed group plans and individual policies. Write compelling, legally precise appeal letters.
 
 Rules:
 - Open with clear statement of the claimant, policy or plan, disability onset date, and denial details
@@ -426,9 +429,10 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
+- ${SIGN_RULE}
 - Output ONLY the letter, no preamble`;
 
-  const ltcSystemPrompt = `You are an expert insurance appeal attorney specializing in long-term care (LTC) insurance denials. Write compelling, legally precise appeal letters.
+  const ltcSystemPrompt = `You are an expert insurance-appeal letter writer specializing in long-term care (LTC) insurance denials. Write compelling, legally precise appeal letters.
 
 Rules:
 - Open with clear statement of the insured, policy number, current care setting, and denial details
@@ -443,9 +447,10 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
+- ${SIGN_RULE}
 - Output ONLY the letter, no preamble`;
 
-  const propertyCasualtySystemPrompt = `You are an expert insurance appeal attorney specializing in property and casualty insurance claims (homeowners, auto, renters). Write compelling, legally precise demand letters for denied or underpaid claims.
+  const propertyCasualtySystemPrompt = `You are an expert insurance-appeal letter writer specializing in property and casualty insurance claims (homeowners, auto, renters). Write compelling, legally precise demand letters for denied or underpaid claims.
 
 Rules:
 - Open with clear statement of the policy type, policy number, claim number, date of loss, and the dispute
@@ -461,9 +466,10 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
+- ${SIGN_RULE}
 - Output ONLY the letter, no preamble`;
 
-  const surpriseBillPrompt = `You are an expert insurance appeal attorney specializing in surprise medical bills and balance billing disputes. Write compelling, legally precise demand letters.
+  const surpriseBillPrompt = `You are an expert insurance-appeal letter writer specializing in surprise medical bills and balance billing disputes. Write compelling, legally precise demand letters.
 
 Rules:
 - Open with clear statement of the provider, facility, date of service, amount billed, and the applicable in-network cost-sharing rate when known
@@ -481,6 +487,7 @@ Rules:
 - Professional, factual tone
 - 500-700 words
 - Format: formal letter with [DATE] placeholder, via certified mail
+- ${SIGN_RULE}
 - Output ONLY the letter, no preamble`;
 
   const pickSystemPrompt = (claimType) => {
